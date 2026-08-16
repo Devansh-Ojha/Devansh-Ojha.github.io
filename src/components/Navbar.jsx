@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import React, { useState, useEffect, useRef } from "react";
 
-const NavLink = ({ to, children, onClick }) => {
+const NavLink = ({ to, children, onClick, isActive }) => {
+  const base = "text-slate-600 hover:text-blue-600 text-[15px] font-medium cursor-pointer py-1.5 transition-all duration-200";
+  const active = "text-blue-600 font-semibold border-b-2 border-blue-600";
   return (
-    <ScrollLink
-      to={to}
-      spy={true}
-      smooth={true}
-      offset={-80}
-      duration={500}
-      activeClass="text-blue-600 font-semibold border-b-2 border-blue-600"
-      className="text-slate-600 hover:text-blue-600 text-[15px] font-medium cursor-pointer py-1.5 transition-all duration-200"
-      onClick={onClick}
+    <button
+      onClick={() => onClick && onClick(to)}
+      className={`${base} ${isActive ? active : ""}`}
     >
       {children}
-    </ScrollLink>
+    </button>
   );
 };
 
@@ -32,6 +27,31 @@ const Navbar = () => {
     };
   }, []);
 
+  const [activeId, setActiveId] = useState("home");
+  const sectionsRef = useRef([]);
+
+  useEffect(() => {
+    const ids = ["home", "experience", "projects", "contact"];
+    sectionsRef.current = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { root: null, rootMargin: "-20% 0px -50% 0px", threshold: 0 }
+    );
+    sectionsRef.current.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNavClick = (to) => {
+    const el = document.getElementById(to);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setIsOpen(false);
+    setActiveId(to);
+  };
+
   const navClass = scrolled
     ? 'py-3 bg-white/80 border-b border-slate-200/40 shadow-sm'
     : 'py-4 bg-white/70 border-b border-transparent';
@@ -47,10 +67,11 @@ const Navbar = () => {
         </span>
         
         <div className="hidden md:flex items-center gap-8">
-          <NavLink to="home">About</NavLink>
-          <NavLink to="experience">Experience</NavLink>
-          <NavLink to="projects">Projects</NavLink> 
-          <NavLink to="contact">Contact</NavLink> 
+          <NavLink to="home" onClick={handleNavClick} isActive={activeId==="home"}>About</NavLink>
+          <NavLink to="experience" onClick={handleNavClick} isActive={activeId==="experience"}>Experience</NavLink>
+          <NavLink to="projects" onClick={handleNavClick} isActive={activeId==="projects"}>Projects</NavLink>
+          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[15px] font-medium py-1.5">Thoughts</a>
+          <NavLink to="contact" onClick={handleNavClick} isActive={activeId==="contact"}>Contact</NavLink>
         </div>
 
         <div className="md:hidden">
@@ -70,10 +91,11 @@ const Navbar = () => {
       
       {isOpen && (
         <div className="md:hidden mt-4 flex flex-col items-center gap-4 bg-white/90 backdrop-blur-lg border border-slate-200/50 rounded-xl p-4 shadow-lg">
-          <NavLink to="home" onClick={() => setIsOpen(false)}>About</NavLink>
-          <NavLink to="experience" onClick={() => setIsOpen(false)}>Experience</NavLink>
-          <NavLink to="projects" onClick={() => setIsOpen(false)}>Projects</NavLink> 
-          <NavLink to="contact" onClick={() => setIsOpen(false)}>Contact</NavLink> 
+          <NavLink to="home" onClick={handleNavClick} isActive={activeId==="home"}>About</NavLink>
+          <NavLink to="experience" onClick={handleNavClick} isActive={activeId==="experience"}>Experience</NavLink>
+          <NavLink to="projects" onClick={handleNavClick} isActive={activeId==="projects"}>Projects</NavLink>
+          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[15px] font-medium py-1.5">Thoughts</a>
+          <NavLink to="contact" onClick={handleNavClick} isActive={activeId==="contact"}>Contact</NavLink>
         </div>
       )}
     </nav>
