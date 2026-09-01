@@ -6,12 +6,6 @@ const Project = () => {
 
   const projects = [
     {
-      title: "Computer Vision Project",
-      description: "A collection of computer vision projects exploring visual understanding, detection, and image-based learning.",
-      tech: ["Computer Vision", "Python", "Deep Learning"],
-      to: "/cvproj"
-    },
-    {
       title: "BrowseCheck — AI Agent Runtime Security",
       description: "Built a runtime guardrail system for autonomous browser agents using Claude SDK, Playwright, FastAPI and Docker.",
       github: "https://github.com/Devansh-Ojha/BrowseCheck",
@@ -49,6 +43,12 @@ const Project = () => {
       tech: ["Go", "Symmetric Encryption", "Digital Signatures", "MACs", "Computer Security"],
       isNDA: true,
       ndaReason: "Can't share due to school's honesty policy"
+    },
+    {
+      title: "Computer Vision Project",
+      description: "A collection of computer vision projects exploring visual understanding, detection, and image-based learning.",
+      tech: ["Computer Vision", "Python", "Deep Learning"],
+      to: "/cvproj"
     }
   ];
 
