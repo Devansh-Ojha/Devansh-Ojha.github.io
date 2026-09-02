@@ -53,11 +53,11 @@ const CVProjectDetail = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
               <figure>
-                <img src="/img-1783.jpg" alt="Close-up selfie portrait" className="w-full rounded-lg" />
+                <img src="/img-1783.jpg?v=part1" alt="Close-up selfie portrait" className="w-full rounded-lg" />
                 <figcaption className="text-xs text-slate-500 mt-2">IMG_1783: close-up portrait</figcaption>
               </figure>
               <figure>
-                <img src="/img-1798.jpg" alt="Portrait taken from farther away with zoom" className="w-full rounded-lg" />
+                <img src="/img-1798.jpg?v=part1" alt="Portrait taken from farther away with zoom" className="w-full rounded-lg" />
                 <figcaption className="text-xs text-slate-500 mt-2">IMG_1798: farther away with zoom</figcaption>
               </figure>
             </div>
