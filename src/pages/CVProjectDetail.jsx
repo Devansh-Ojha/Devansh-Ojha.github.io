@@ -4,15 +4,15 @@ import { Link, useParams } from "react-router-dom";
 const projectDetails = {
   proj0: {
     label: "Project 0",
-    title: "Visual Recognition",
-    description: "A closer look at the image classification work, including the model approach, dataset, and evaluation results.",
-    tech: "Python, PyTorch, OpenCV"
+    title: "Becoming Friends with Your Camera",
+    description: "First Project",
+    tech: ""
   },
   proj1: {
     label: "Project 1",
-    title: "Real-time Detection",
-    description: "A closer look at the real-time detection pipeline, including video processing, object tracking, and performance considerations.",
-    tech: "Python, YOLO, Computer Vision"
+    title: "",
+    description: "",
+    tech: ""
   }
 };
 
@@ -49,16 +49,25 @@ const CVProjectDetail = () => {
             <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-2">Part 1</p>
             <h2 className="text-2xl font-bold text-slate-900">Selfie: The Wrong Way vs. The Right Way</h2>
             <p className="text-slate-600 leading-relaxed mt-4">
-              Take a close-up portrait, then step back several feet and zoom in until the face is approximately the same size. Compare how changing the camera distance and focal length changes facial distortion.
+             This is a picture of me. From what I noticed, the first picture looks distored while the other one looks way better. From my understand the reason for this is due the distance of object being super close to my camera lense, but when it is far away it more balanced the image appears more even.
             </p>
-            <img src="https://cal-cs180.github.io/fa26/hw/proj0/selfie.png" alt="Close portrait comparison" className="w-full rounded-lg mt-6" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+              <figure>
+                <img src="/img-1783.jpg" alt="Close-up selfie portrait" className="w-full rounded-lg" />
+                <figcaption className="text-xs text-slate-500 mt-2">IMG_1783: close-up portrait</figcaption>
+              </figure>
+              <figure>
+                <img src="/img-1798.jpg" alt="Portrait taken from farther away with zoom" className="w-full rounded-lg" />
+                <figcaption className="text-xs text-slate-500 mt-2">IMG_1798: farther away with zoom</figcaption>
+              </figure>
+            </div>
           </section>
 
           <section className="bg-white/75 backdrop-blur-sm border border-slate-200/60 rounded-xl p-5 sm:p-8 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-2">Part 2</p>
             <h2 className="text-2xl font-bold text-slate-900">Architectural Perspective Compression</h2>
             <p className="text-slate-600 leading-relaxed mt-4">
-              Photograph a building from far away while zoomed in, then walk toward it and take a second photo without zoom. Keep the building approximately the same size and compare the compressed and expanded perspective.
+              For this part I pictured the building next to the new gateway building right after lecture on tuesday. I noticed when I am closer it was much more detailed and less flat. I believe this is the case due to the noise and camera algorithm smoothing out the photo which makes it look flatter and looses the details. When we are zooming from far it is introducing these noise elements and has to stretch the pixels to make it how we want it to appear and thus more flat.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
               <figure>
@@ -76,7 +85,7 @@ const CVProjectDetail = () => {
             <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-2">Part 3</p>
             <h2 className="text-2xl font-bold text-slate-900">The Dolly Zoom</h2>
             <p className="text-slate-600 leading-relaxed mt-4">
-              Move the camera backward while zooming in, keeping the subject roughly the same size in every frame. The resulting animation demonstrates how camera translation and focal length can change the background perspective.
+              For my dolly zoom I picked this Oat milk bottle, I used around 9 images to get this done, as you can see it appears like dolly zoom. To achieve this I kept the subject in same position and kept moving the camera back and zooming in to keep it the same size and position in the pictures i took.  The background appears to move forward and looks like it is changing distance. One thing I noticed is how my gif looses quality looks less sharp.
             </p>
             <img src="/dolly-zoom.gif" alt="Dolly zoom animation of an oat carton" className="w-full max-w-xl mx-auto rounded-lg mt-6" />
           </section>
