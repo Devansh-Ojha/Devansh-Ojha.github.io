@@ -4,16 +4,10 @@ import ProjectCard from "../components/ProjectCard";
 
 const projects = [
   {
-    title: "Project 0 — Visual Recognition",
-    description: "An image classification project focused on learning robust visual features from labeled data.",
-    tech: ["Python", "PyTorch", "OpenCV"],
+    title: "Becoming Friends with Your Camera",
+    description: "First Project",
+    tech: [],
     to: "/cvproj/proj0"
-  },
-  {
-    title: "Project 1 — Real-time Detection",
-    description: "A real-time computer vision pipeline for detecting and tracking objects in video.",
-    tech: ["Python", "YOLO", "Computer Vision"],
-    to: "/cvproj/proj1"
   }
 ];
 
