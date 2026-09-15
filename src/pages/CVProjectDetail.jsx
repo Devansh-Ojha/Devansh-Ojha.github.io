@@ -10,11 +10,18 @@ const projectDetails = {
   },
   proj1: {
     label: "Project 1",
-    title: "",
-    description: "",
-    tech: ""
+    title: "Project 1 Title",
+    description: "Single-scale alignment, image pyramids, and failure analysis.",
+    tech: "Computer Vision, Multi-scale Processing"
   }
 };
+
+const projectOneVisual = (src, alt, caption) => (
+  <figure className="flex-1 min-w-0">
+    <img src={src} alt={alt} className="w-full rounded-lg border border-slate-200 bg-white object-cover shadow-sm" style={{ borderRadius: "12px" }} />
+    <figcaption className="mt-3 text-center text-xs text-slate-500 italic">{caption}</figcaption>
+  </figure>
+);
 
 const CVProjectDetail = () => {
   const { projectId } = useParams();
@@ -92,6 +99,108 @@ const CVProjectDetail = () => {
         </div>
 
         <div className="mt-10 pt-5 border-t border-slate-200 text-sm text-slate-500"><span className="font-semibold text-slate-700">Tools:</span> Smartphone camera, zoom, still-image sequence, animated GIF</div>
+      </main>
+    );
+  }
+
+  if (projectId === "proj1") {
+    return (
+      <main className="relative min-h-screen max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-slate-800">
+        <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors mb-10">
+          <ArrowLeft size={16} /> Back to Computer Vision projects
+        </Link>
+
+        <header className="mb-12 border-b border-slate-200 pb-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 mb-3">01 / Project 1</p>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900">Project 1 Title</h1>
+        </header>
+
+        <div className="space-y-10">
+          <section className="pt-2">
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Background Context</h2>
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              <!-- Leave a minimal placeholder paragraph here for me to write about the project overview and goals -->
+            </p>
+          </section>
+
+          <div className="h-px w-full bg-slate-200" />
+
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Single Scale Alignment</h2>
+            <div className="mt-6 space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900">Explanation</h3>
+                <p className="mt-3 text-base leading-8 text-slate-600">
+                  <!-- Space to explain the theory behind single scale alignment -->
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900">Approach</h3>
+                <p className="mt-3 text-base leading-8 text-slate-600">
+                  <!-- Space to outline the algorithmic choices and implementation steps -->
+                </p>
+              </div>
+              <div className="mt-8">
+                <div className="flex flex-col md:flex-row gap-5 justify-center">
+                  {projectOneVisual("path/to/single_scale_1.jpg", "Single Scale Progress 1", "Caption for image 1")}
+                  {projectOneVisual("path/to/single_scale_2.jpg", "Single Scale Progress 2", "Caption for image 2")}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="h-px w-full bg-slate-200" />
+
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Image Pyramids</h2>
+            <div className="mt-6 space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900">Explanation</h3>
+                <p className="mt-3 text-base leading-8 text-slate-600">
+                  <!-- Space to explain multi-scale processing and image pyramids -->
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900">Approach</h3>
+                <p className="mt-3 text-base leading-8 text-slate-600">
+                  <!-- Space to outline the pyramid implementation and depth selection -->
+                </p>
+              </div>
+              <div className="mt-8">
+                <div className="flex flex-col md:flex-row gap-5 justify-center">
+                  {projectOneVisual("path/to/pyramid_result_1.jpg", "Final Result 1", "Caption for final result 1")}
+                  {projectOneVisual("path/to/pyramid_result_2.jpg", "Final Result 2", "Caption for final result 2")}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="h-px w-full bg-slate-200" />
+
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Failures</h2>
+            <div className="mt-6 space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900">Explanation</h3>
+                <p className="mt-3 text-base leading-8 text-slate-600">
+                  <!-- Space to analyze what causes the algorithm to break down -->
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900">Approach</h3>
+                <p className="mt-3 text-base leading-8 text-slate-600">
+                  <!-- Space to describe attempts to fix or mitigate failure cases -->
+                </p>
+              </div>
+              <div className="mt-8">
+                <div className="flex flex-col md:flex-row gap-5 justify-center">
+                  {projectOneVisual("path/to/failure_1.jpg", "Failure Case 1", "Caption for failure 1")}
+                  {projectOneVisual("path/to/failure_2.jpg", "Failure Case 2", "Caption for failure 2")}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
     );
   }

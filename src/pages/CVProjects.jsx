@@ -8,6 +8,12 @@ const projects = [
     description: "First Project",
     tech: [],
     to: "/cvproj/proj0"
+  },
+  {
+    title: "Project 1 Title",
+    description: "Single-scale alignment, image pyramids, and failure analysis.",
+    tech: ["Computer Vision", "Multi-scale Processing"],
+    to: "/cvproj/proj1"
   }
 ];
 
