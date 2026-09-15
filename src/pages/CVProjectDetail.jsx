@@ -126,21 +126,21 @@ const CVProjectDetail = () => {
     return (
       <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <Link to="/cvproj" className="inline-flex items-center gap-2 text-base font-light text-slate-600 hover:text-blue-600 transition-colors mb-12">
+          <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-light text-slate-600 hover:text-blue-600 transition-colors mb-10">
             <ArrowLeft size={16} /> Back to Computer Vision projects
           </Link>
 
           <article className="max-w-5xl">
             <header className="mb-10 pb-6 border-b border-slate-200">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">01 / Project 1 Title</p>
-              <h1 className="mt-2 text-[clamp(2.5rem,5.5vw,7rem)] font-light leading-[0.88] tracking-[-0.07em] text-slate-800">
+              <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
                 Project 1 Title
               </h1>
             </header>
 
             <section className="py-2">
-              <h2 className="text-[clamp(1.75rem,2.5vw,3.25rem)] font-light tracking-[-0.05em] leading-[1] text-slate-900">Background Context</h2>
-              <p className="mt-4 text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.65] text-slate-600">
+              <h2 className="text-[clamp(1.5rem,2vw,2.5rem)] font-light tracking-[-0.04em] leading-[1.05] text-slate-900">Background Context</h2>
+              <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                 A short overview of the project goals, the problem being studied, and the reasoning behind the method.
               </p>
             </section>
@@ -148,19 +148,19 @@ const CVProjectDetail = () => {
             <div className="my-8 border-t border-slate-200" />
 
             <section>
-              <h2 className="text-[clamp(1.75rem,2.5vw,3.25rem)] font-light tracking-[-0.05em] leading-[1] text-slate-900">Single Scale Alignment</h2>
+              <h2 className="text-[clamp(1.5rem,2vw,2.5rem)] font-light tracking-[-0.04em] leading-[1.05] text-slate-900">Single Scale Alignment</h2>
 
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-[clamp(1.1rem,1.6vw,1.6rem)] font-light tracking-[-0.03em] leading-[1.15] text-slate-900">Explanation</h3>
-                  <p className="mt-3 text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.65] text-slate-600">
+                  <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Explanation</h3>
+                  <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                     This section explains the theory behind single-scale alignment and how local correspondences are estimated before refinement.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-[clamp(1.1rem,1.6vw,1.6rem)] font-light tracking-[-0.03em] leading-[1.15] text-slate-900">Approach</h3>
-                  <p className="mt-3 text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.65] text-slate-600">
+                  <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
+                  <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                     The implementation follows a direct alignment strategy: establish a consistent scale, select matching features, and evaluate the transformation before moving to more robust multi-scale refinement.
                   </p>
                 </div>
@@ -179,19 +179,19 @@ const CVProjectDetail = () => {
             <div className="my-8 border-t border-slate-200" />
 
             <section>
-              <h2 className="text-[clamp(1.75rem,2.5vw,3.25rem)] font-light tracking-[-0.05em] leading-[1] text-slate-900">Image Pyramids</h2>
+              <h2 className="text-[clamp(1.5rem,2vw,2.5rem)] font-light tracking-[-0.04em] leading-[1.05] text-slate-900">Image Pyramids</h2>
 
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-[clamp(1.1rem,1.6vw,1.6rem)] font-light tracking-[-0.03em] leading-[1.15] text-slate-900">Explanation</h3>
-                  <p className="mt-3 text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.65] text-slate-600">
+                  <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Explanation</h3>
+                  <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                     Multi-scale processing helps stabilize alignment when image content varies significantly across resolutions and detail levels.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-[clamp(1.1rem,1.6vw,1.6rem)] font-light tracking-[-0.03em] leading-[1.15] text-slate-900">Approach</h3>
-                  <p className="mt-3 text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.65] text-slate-600">
+                  <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
+                  <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                     Image pyramids were used to iterate from coarse matches to fine-grained refinement, selecting the depth that best balances robustness and detail preservation.
                   </p>
                 </div>
@@ -210,19 +210,19 @@ const CVProjectDetail = () => {
             <div className="my-8 border-t border-slate-200" />
 
             <section>
-              <h2 className="text-[clamp(1.75rem,2.5vw,3.25rem)] font-light tracking-[-0.05em] leading-[1] text-slate-900">Failures</h2>
+              <h2 className="text-[clamp(1.5rem,2vw,2.5rem)] font-light tracking-[-0.04em] leading-[1.05] text-slate-900">Failures</h2>
 
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-[clamp(1.1rem,1.6vw,1.6rem)] font-light tracking-[-0.03em] leading-[1.15] text-slate-900">Explanation</h3>
-                  <p className="mt-3 text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.65] text-slate-600">
+                  <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Explanation</h3>
+                  <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                     Failure cases arise when the alignment model encounters repeated structures, motion blur, or weak texture under large appearance changes.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-[clamp(1.1rem,1.6vw,1.6rem)] font-light tracking-[-0.03em] leading-[1.15] text-slate-900">Approach</h3>
-                  <p className="mt-3 text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.65] text-slate-600">
+                  <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
+                  <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                     These scenarios were analyzed to understand where the method diverges and which constraints or preprocessing steps could mitigate the breakdown.
                   </p>
                 </div>
