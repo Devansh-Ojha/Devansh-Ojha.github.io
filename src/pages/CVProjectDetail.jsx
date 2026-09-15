@@ -104,102 +104,140 @@ const CVProjectDetail = () => {
   }
 
   if (projectId === "proj1") {
+    const imageGrid = (leftSrc, leftAlt, leftCaption, rightSrc, rightAlt, rightCaption) => (
+      <div align="center" style={{ marginTop: "1.5rem" }}>
+        <table border="0" cellPadding="5" style={{ width: "100%", maxWidth: "860px", borderCollapse: "collapse" }}>
+          <tbody>
+            <tr>
+              <td style={{ width: "50%", padding: "0.5rem", verticalAlign: "top", textAlign: "center" }}>
+                <img src={leftSrc} width="400" alt={leftAlt} style={{ width: "100%", maxWidth: "400px", borderRadius: "8px", border: "1px solid #e5e5e5", display: "block", margin: "0 auto" }} />
+                <em style={{ display: "block", marginTop: "0.5rem", fontSize: "12px", color: "#666" }}>{leftCaption}</em>
+              </td>
+              <td style={{ width: "50%", padding: "0.5rem", verticalAlign: "top", textAlign: "center" }}>
+                <img src={rightSrc} width="400" alt={rightAlt} style={{ width: "100%", maxWidth: "400px", borderRadius: "8px", border: "1px solid #e5e5e5", display: "block", margin: "0 auto" }} />
+                <em style={{ display: "block", marginTop: "0.5rem", fontSize: "12px", color: "#666" }}>{rightCaption}</em>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+
     return (
-      <main className="relative min-h-screen max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-slate-800">
-        <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors mb-10">
-          <ArrowLeft size={16} /> Back to Computer Vision projects
-        </Link>
+      <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <Link to="/cvproj" className="inline-flex items-center gap-2 text-base font-light text-slate-600 hover:text-blue-600 transition-colors mb-12">
+            <ArrowLeft size={16} /> Back to Computer Vision projects
+          </Link>
 
-        <header className="mb-12 border-b border-slate-200 pb-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 mb-3">01 / Project 1</p>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900">Project 1 Title</h1>
-        </header>
+          <article className="max-w-5xl">
+            <header className="mb-10 pb-6 border-b border-slate-200">
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">01 / Project 1 Title</p>
+              <h1 className="mt-2 text-[clamp(3rem,7vw,9rem)] font-light leading-[0.84] tracking-[-0.08em] text-slate-800">
+                Project 1 Title
+              </h1>
+            </header>
 
-        <div className="space-y-10">
-          <section className="pt-2">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Background Context</h2>
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              <!-- Leave a minimal placeholder paragraph here for me to write about the project overview and goals -->
-            </p>
-          </section>
+            <section className="py-2">
+              <h2 className="text-[clamp(2rem,3vw,4rem)] font-light tracking-[-0.06em] leading-[0.96] text-slate-900">Background Context</h2>
+              <p className="mt-4 text-[clamp(1.05rem,1.8vw,1.55rem)] font-light leading-[1.7] text-slate-600">
+                A short overview of the project goals, the problem being studied, and the reasoning behind the method.
+              </p>
+            </section>
 
-          <div className="h-px w-full bg-slate-200" />
+            <div className="my-8 border-t border-slate-200" />
 
-          <section>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Single Scale Alignment</h2>
-            <div className="mt-6 space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">Explanation</h3>
-                <p className="mt-3 text-base leading-8 text-slate-600">
-                  <!-- Space to explain the theory behind single scale alignment -->
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">Approach</h3>
-                <p className="mt-3 text-base leading-8 text-slate-600">
-                  <!-- Space to outline the algorithmic choices and implementation steps -->
-                </p>
-              </div>
-              <div className="mt-8">
-                <div className="flex flex-col md:flex-row gap-5 justify-center">
-                  {projectOneVisual("path/to/single_scale_1.jpg", "Single Scale Progress 1", "Caption for image 1")}
-                  {projectOneVisual("path/to/single_scale_2.jpg", "Single Scale Progress 2", "Caption for image 2")}
+            <section>
+              <h2 className="text-[clamp(2rem,3vw,4rem)] font-light tracking-[-0.06em] leading-[0.96] text-slate-900">Single Scale Alignment</h2>
+
+              <div className="mt-6 space-y-6">
+                <div>
+                  <h3 className="text-[clamp(1.2rem,2vw,2rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900">Explanation</h3>
+                  <p className="mt-3 text-[clamp(1.05rem,1.8vw,1.55rem)] font-light leading-[1.7] text-slate-600">
+                    This section explains the theory behind single-scale alignment and how local correspondences are estimated before refinement.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-[clamp(1.2rem,2vw,2rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900">Approach</h3>
+                  <p className="mt-3 text-[clamp(1.05rem,1.8vw,1.55rem)] font-light leading-[1.7] text-slate-600">
+                    The implementation follows a direct alignment strategy: establish a consistent scale, select matching features, and evaluate the transformation before moving to more robust multi-scale refinement.
+                  </p>
                 </div>
               </div>
-            </div>
-          </section>
 
-          <div className="h-px w-full bg-slate-200" />
+              {imageGrid(
+                "path/to/single_scale_1.jpg",
+                "Single Scale Progress 1",
+                "Caption for image 1",
+                "path/to/single_scale_2.jpg",
+                "Single Scale Progress 2",
+                "Caption for image 2"
+              )}
+            </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Image Pyramids</h2>
-            <div className="mt-6 space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">Explanation</h3>
-                <p className="mt-3 text-base leading-8 text-slate-600">
-                  <!-- Space to explain multi-scale processing and image pyramids -->
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">Approach</h3>
-                <p className="mt-3 text-base leading-8 text-slate-600">
-                  <!-- Space to outline the pyramid implementation and depth selection -->
-                </p>
-              </div>
-              <div className="mt-8">
-                <div className="flex flex-col md:flex-row gap-5 justify-center">
-                  {projectOneVisual("path/to/pyramid_result_1.jpg", "Final Result 1", "Caption for final result 1")}
-                  {projectOneVisual("path/to/pyramid_result_2.jpg", "Final Result 2", "Caption for final result 2")}
+            <div className="my-8 border-t border-slate-200" />
+
+            <section>
+              <h2 className="text-[clamp(2rem,3vw,4rem)] font-light tracking-[-0.06em] leading-[0.96] text-slate-900">Image Pyramids</h2>
+
+              <div className="mt-6 space-y-6">
+                <div>
+                  <h3 className="text-[clamp(1.2rem,2vw,2rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900">Explanation</h3>
+                  <p className="mt-3 text-[clamp(1.05rem,1.8vw,1.55rem)] font-light leading-[1.7] text-slate-600">
+                    Multi-scale processing helps stabilize alignment when image content varies significantly across resolutions and detail levels.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-[clamp(1.2rem,2vw,2rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900">Approach</h3>
+                  <p className="mt-3 text-[clamp(1.05rem,1.8vw,1.55rem)] font-light leading-[1.7] text-slate-600">
+                    Image pyramids were used to iterate from coarse matches to fine-grained refinement, selecting the depth that best balances robustness and detail preservation.
+                  </p>
                 </div>
               </div>
-            </div>
-          </section>
 
-          <div className="h-px w-full bg-slate-200" />
+              {imageGrid(
+                "path/to/pyramid_result_1.jpg",
+                "Final Result 1",
+                "Caption for final result 1",
+                "path/to/pyramid_result_2.jpg",
+                "Final Result 2",
+                "Caption for final result 2"
+              )}
+            </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Failures</h2>
-            <div className="mt-6 space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">Explanation</h3>
-                <p className="mt-3 text-base leading-8 text-slate-600">
-                  <!-- Space to analyze what causes the algorithm to break down -->
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">Approach</h3>
-                <p className="mt-3 text-base leading-8 text-slate-600">
-                  <!-- Space to describe attempts to fix or mitigate failure cases -->
-                </p>
-              </div>
-              <div className="mt-8">
-                <div className="flex flex-col md:flex-row gap-5 justify-center">
-                  {projectOneVisual("path/to/failure_1.jpg", "Failure Case 1", "Caption for failure 1")}
-                  {projectOneVisual("path/to/failure_2.jpg", "Failure Case 2", "Caption for failure 2")}
+            <div className="my-8 border-t border-slate-200" />
+
+            <section>
+              <h2 className="text-[clamp(2rem,3vw,4rem)] font-light tracking-[-0.06em] leading-[0.96] text-slate-900">Failures</h2>
+
+              <div className="mt-6 space-y-6">
+                <div>
+                  <h3 className="text-[clamp(1.2rem,2vw,2rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900">Explanation</h3>
+                  <p className="mt-3 text-[clamp(1.05rem,1.8vw,1.55rem)] font-light leading-[1.7] text-slate-600">
+                    Failure cases arise when the alignment model encounters repeated structures, motion blur, or weak texture under large appearance changes.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-[clamp(1.2rem,2vw,2rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900">Approach</h3>
+                  <p className="mt-3 text-[clamp(1.05rem,1.8vw,1.55rem)] font-light leading-[1.7] text-slate-600">
+                    These scenarios were analyzed to understand where the method diverges and which constraints or preprocessing steps could mitigate the breakdown.
+                  </p>
                 </div>
               </div>
-            </div>
-          </section>
+
+              {imageGrid(
+                "path/to/failure_1.jpg",
+                "Failure Case 1",
+                "Caption for failure 1",
+                "path/to/failure_2.jpg",
+                "Failure Case 2",
+                "Caption for failure 2"
+              )}
+            </section>
+          </article>
         </div>
       </main>
     );
