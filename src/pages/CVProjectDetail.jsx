@@ -132,7 +132,7 @@ const CVProjectDetail = () => {
 
           <article className="max-w-5xl">
             <header className="mb-10 pb-6 border-b border-slate-200">
-              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">01 / Project 1 Title</p>
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">01 / Project 1</p>
               <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
                 Project 1: Images of the Russian Empire: Colorizing the Prokudin-Gorskii photo collection
               </h1>
@@ -144,6 +144,10 @@ const CVProjectDetail = () => {
                 The goal of this project was to understand the differences using image processing techniques and produce a color image with as few visual artifacts as possible. In the images provided, we had a few .jpg and .tif images. The main challenge was to come up with ways to find the right approach for smaller-sized images (JPG) and for larger images (TIF).  Sergie took pictures in R, G, and B filters to capture the exposure of the scene. Using these different exposures captured, we can recreate the colored image. My goal in this project was to align the colored glass plates with each other to minimize visual artifacts using image processing methodology, as doing it by brute force (just straight up stacking it) would result in to be hazy and not aligned.
 
               </p>
+              <figure className="max-w-2xl mx-auto mt-6">
+                <img src="/download.png" alt="Colorized image alignment result" className="w-full rounded-lg border border-slate-200" />
+                <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Colorized alignment result</figcaption>
+              </figure>
             </section>
 
             <div className="my-8 border-t border-slate-200" />
