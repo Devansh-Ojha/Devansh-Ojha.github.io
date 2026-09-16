@@ -169,15 +169,15 @@ const CVProjectDetail = () => {
               <div className="grid grid-cols-3 gap-3 max-w-3xl mx-auto mt-6">
                 <figure>
                   <img src="/monastery.jpg" alt="Monastery alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
-                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Monastery</figcaption>
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Monastery<br />Green (dy, dx): (2, -3) | Red (dy, dx): (2, 3)</figcaption>
                 </figure>
                 <figure>
                   <img src="/tobolsk.jpg" alt="Tobolsk alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
-                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Tobolsk</figcaption>
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Tobolsk<br />Green (dy, dx): (3, 3) | Red (dy, dx): (3, 6)</figcaption>
                 </figure>
                 <figure>
                   <img src="/cathedral.jpg" alt="Cathedral alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
-                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Cathedral</figcaption>
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Cathedral<br />Green (dy, dx): (2, 5) | Red (dy, dx): (3, 12)</figcaption>
                 </figure>
               </div>
             </section>
@@ -205,24 +205,24 @@ const CVProjectDetail = () => {
 
               <div className="grid grid-cols-2 gap-4 max-w-3xl mx-auto mt-6">
                 {[
-                  ["church.jpg", "Church"],
-                  ["harvesters.jpg", "Harvesters"],
-                  ["icon.jpg", "Icon"],
-                  ["ilemselga.jpg", "Ilemselga"],
-                  ["melons.jpg", "Melons"],
-                  ["religous_painting.jpg", "Religious painting"],
-                  ["self_portrait.jpg", "Self portrait"],
-                  ["siren.jpg", "Siren"],
-                  ["three_generations.jpg", "Three generations"],
-                  ["wharf.jpg", "Wharf"],
-                  ["new1.jpg", "Portrait of woman"],
-                  ["new2.jpg", "Person"],
-                  ["new3.jpg", "Rocks"],
-                  ["new4.jpg", "Soldier"]
-                ].map(([fileName, label]) => (
+                  ["church.jpg", "Church", [4, 25], [-4, 58]],
+                  ["harvesters.jpg", "Harvesters", [16, 59], [13, 123]],
+                  ["icon.jpg", "Icon", [17, 41], [23, 89]],
+                  ["ilemselga.jpg", "Ilemselga", [7, 40], [11, 130]],
+                  ["melons.jpg", "Melons", [10, 81], [13, 178]],
+                  ["religous_painting.jpg", "Religious painting", [3, 27], [7, 68]],
+                  ["self_portrait.jpg", "Self portrait", [29, 78], [37, 176]],
+                  ["siren.jpg", "Siren", [-6, 49], [-25, 95]],
+                  ["three_generations.jpg", "Three generations", [14, 53], [11, 112]],
+                  ["wharf.jpg", "Wharf", [-7, 15], [-16, 82]],
+                  ["new1.jpg", "Portrait of woman", [38, 48], [55, 107]],
+                  ["new2.jpg", "Person", [21, 38], [35, 76]],
+                  ["new3.jpg", "Rocks", [33, 40], [59, 94]],
+                  ["new4.jpg", "Soldier", [8, 39], [-6, 93]]
+                ].map(([fileName, label, green, red]) => (
                   <figure key={fileName}>
                     <img src={`/${fileName}`} alt={`${label} alignment example`} className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
-                    <figcaption className="mt-2 text-center text-xs text-slate-500 italic">{label}</figcaption>
+                    <figcaption className="mt-2 text-center text-xs text-slate-500 italic">{label}<br />Green (dy, dx): ({green[0]}, {green[1]}) | Red (dy, dx): ({red[0]}, {red[1]})</figcaption>
                   </figure>
                 ))}
               </div>
@@ -251,8 +251,51 @@ const CVProjectDetail = () => {
 
               <figure className="max-w-sm mx-auto mt-6">
                 <img src="/emir.jpg" alt="Emir failure case" className="w-full rounded-lg border border-slate-200" />
-                <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Emir</figcaption>
+                <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Emir<br />Green (dy, dx): (24, 49) | Red (dy, dx): (-249, 95)</figcaption>
               </figure>
+            </section>
+
+            <section className="mt-10 max-w-4xl mx-auto">
+              <h2 className="text-[clamp(1.5rem,2vw,2.5rem)] font-light tracking-[-0.04em] leading-[1.05] text-center text-slate-900">Alignment Offsets</h2>
+              <p className="mt-3 text-center text-sm text-slate-500">All offsets are listed in (dy, dx) format.</p>
+              <div className="mt-5 overflow-x-auto">
+                <table className="w-full border-collapse text-sm text-center">
+                  <thead>
+                    <tr className="border-b border-slate-300 text-slate-700">
+                      <th className="px-3 py-3 font-semibold">Image</th>
+                      <th className="px-3 py-3 font-semibold">Green (dy, dx)</th>
+                      <th className="px-3 py-3 font-semibold">Red (dy, dx)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-slate-600">
+                    {[
+                      ["Cathedral", [2, 5], [3, 12]],
+                      ["Monastery", [2, -3], [2, 3]],
+                      ["Tobolsk", [3, 3], [3, 6]],
+                      ["Siren", [-6, 49], [-25, 95]],
+                      ["Church", [4, 25], [-4, 58]],
+                      ["Harvesters", [16, 59], [13, 123]],
+                      ["Melons", [10, 81], [13, 178]],
+                      ["Religious painting", [3, 27], [7, 68]],
+                      ["Self portrait", [29, 78], [37, 176]],
+                      ["Three generations", [14, 53], [11, 112]],
+                      ["Wharf", [-7, 15], [-16, 82]],
+                      ["Ilemselga", [7, 40], [11, 130]],
+                      ["Emir", [24, 49], [-249, 95]],
+                      ["Portrait of woman", [38, 48], [55, 107]],
+                      ["Person", [21, 38], [35, 76]],
+                      ["Rocks", [33, 40], [59, 94]],
+                      ["Soldier", [8, 39], [-6, 93]]
+                    ].map(([label, green, red]) => (
+                      <tr key={label} className="border-b border-slate-200">
+                        <td className="px-3 py-3 font-medium text-slate-800">{label}</td>
+                        <td className="px-3 py-3">({green[0]}, {green[1]})</td>
+                        <td className="px-3 py-3">({red[0]}, {red[1]})</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
           </article>
         </div>
