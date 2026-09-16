@@ -134,14 +134,15 @@ const CVProjectDetail = () => {
             <header className="mb-10 pb-6 border-b border-slate-200">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">01 / Project 1 Title</p>
               <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
-                Project 1 Title
+                Project 1: Images of the Russian Empire: Colorizing the Prokudin-Gorskii photo collection
               </h1>
             </header>
 
             <section className="py-2">
               <h2 className="text-[clamp(1.5rem,2vw,2.5rem)] font-light tracking-[-0.04em] leading-[1.05] text-slate-900">Background Context</h2>
               <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                A short overview of the project goals, the problem being studied, and the reasoning behind the method.
+                The goal of this project was to understand the differences using image processing techniques and produce a color image with as few visual artifacts as possible. In the images provided, we had a few .jpg and .tif images. The main challenge was to come up with ways to find the right approach for smaller-sized images (JPG) and for larger images (TIF).  Sergie took pictures in R, G, and B filters to capture the exposure of the scene. Using these different exposures captured, we can recreate the colored image. My goal in this project was to align the colored glass plates with each other to minimize visual artifacts using image processing methodology, as doing it by brute force (just straight up stacking it) would result in to be hazy and not aligned.
+
               </p>
             </section>
 
@@ -201,6 +202,21 @@ const CVProjectDetail = () => {
                     Image pyramids were used to iterate from coarse matches to fine-grained refinement, selecting the depth that best balances robustness and detail preservation.
                   </p>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3 max-w-3xl mx-auto mt-6">
+                <figure>
+                  <img src="/monastery.jpg" alt="Monastery pyramid alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Monastery<br />Green (dy, dx): (-3, 2) | Red (dy, dx): (3, 2)</figcaption>
+                </figure>
+                <figure>
+                  <img src="/tobolsk.jpg" alt="Tobolsk pyramid alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Tobolsk<br />Green (dy, dx): (3, 3) | Red (dy, dx): (6, 3)</figcaption>
+                </figure>
+                <figure>
+                  <img src="/cathedral.jpg" alt="Cathedral pyramid alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Cathedral<br />Green (dy, dx): (5, 2) | Red (dy, dx): (12, 3)</figcaption>
+                </figure>
               </div>
 
               <div className="grid grid-cols-2 gap-4 max-w-3xl mx-auto mt-6">
