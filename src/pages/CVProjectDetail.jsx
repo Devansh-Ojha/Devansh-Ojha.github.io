@@ -203,14 +203,25 @@ const CVProjectDetail = () => {
                 </div>
               </div>
 
-              {imageGrid(
-                "path/to/pyramid_result_1.jpg",
-                "Final Result 1",
-                "Caption for final result 1",
-                "path/to/pyramid_result_2.jpg",
-                "Final Result 2",
-                "Caption for final result 2"
-              )}
+              <div className="grid grid-cols-2 gap-4 max-w-3xl mx-auto mt-6">
+                {[
+                  ["church.jpg", "Church"],
+                  ["harvesters.jpg", "Harvesters"],
+                  ["icon.jpg", "Icon"],
+                  ["ilemselga.jpg", "Ilemselga"],
+                  ["melons.jpg", "Melons"],
+                  ["religous_painting.jpg", "Religious painting"],
+                  ["self_portrait.jpg", "Self portrait"],
+                  ["siren.jpg", "Siren"],
+                  ["three_generations.jpg", "Three generations"],
+                  ["wharf.jpg", "Wharf"]
+                ].map(([fileName, label]) => (
+                  <figure key={fileName}>
+                    <img src={`/${fileName}`} alt={`${label} alignment example`} className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
+                    <figcaption className="mt-2 text-center text-xs text-slate-500 italic">{label}</figcaption>
+                  </figure>
+                ))}
+              </div>
             </section>
 
             <div className="my-8 border-t border-slate-200" />
