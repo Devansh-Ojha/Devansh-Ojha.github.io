@@ -166,7 +166,7 @@ const CVProjectDetail = () => {
                 <div>
                   <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
                   <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    My align function would, for both images, take the mean of their pixel values and then subtract it from every pixel to center the image closer ot 0. Then I normalized it using the L2 norm. Then I took the dot product between these normalized values to get the score. The way my function would work is to take an image path from the dataset I inserted in the Colab folder. Then it would break it apart and separate it based on the height (BGR). Once that was done, I cropped them by 10% because the dark edges were affecting the later NCC  score and therefore not giving the best quality of results.  Now my align function would find the best NCC score by going through an up-and-down (vertical and horizontal)  shift range in the -15 to 15 range. Then, for each position, I used np.roll to compute the NCC between the shifted image and the reference channel. I kept doing this and kept updating the score based on higher NCC, which would represent the best match location/alignment. After checking the shift, it would return the best offsets, which are then used to align the image in the end. BORDERS: These were important to crop out as they were not part of actual stuff in the image and also affect the NCC score giving non-optimal points. This is because they are usually darker regions and on the edges of the images.
+                    My coloritup() function would, for both images, take the mean of their pixel values and then subtract it from every pixel to center the image closer ot 0. Then I normalized it using the L2 norm. Then I took the dot product between these normalized values to get the score. The way my function would work is to take an image path from the dataset I inserted in the Colab folder. Then it would break it apart and separate it based on the height (BGR). Once that was done, I cropped them by 10% because the dark edges were affecting the later NCC  score and therefore not giving the best quality of results. Now my coloritup() function would find the best NCC score by going through an up-and-down (vertical and horizontal) shift range in the -15 to 15 range. Then, for each position, I used np.roll to compute the NCC between the shifted image and the reference channel. I kept doing this and kept updating the score based on higher NCC, which would represent the best match location/alignment. After checking the shift, it would return the best offsets, which are then used to align the image in the end. BORDERS: These were important to crop out as they were not part of actual stuff in the image and also affect the NCC score giving non-optimal points. This is because they are usually darker regions and on the edges of the images.
                   </p>
                 </div>
               </div>
@@ -203,7 +203,7 @@ const CVProjectDetail = () => {
                 <div>
                   <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
                   <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    I used my align function and created another function called pyramidAlign() which uses recursion to go from coarse to fine. To achieve this, I use sk.transform. rescale to keep on going lowe until the +15-15 range can be used to find the best alignment using the same NCC function as before. Since one pixel at the smaller size is equivalent to about 2 pixels at the bigger scale, it then goes back to the earlier, larger resolution and doubles the shift. I then in the end run a smaller search of -4 to 4 to get the best alignment for the finest image
+                    I used my coloritup() function and created another function called Pyramidmulti() which uses recursion to go from coarse to fine. To achieve this, I use sk.transform.rescale to keep on going lower until the +-15 range can be used to find the best alignment using the same NCC function as before. Since one pixel at the smaller size is equivalent to about 2 pixels at the bigger scale, it then goes back to the earlier, larger resolution and doubles the shift. I then in the end run a smaller search of -4 to 4 to get the best alignment for the finest image
 
                   </p>
                 </div>
@@ -263,12 +263,6 @@ const CVProjectDetail = () => {
                   </p>
                 </div>
 
-                <div>
-                  <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
-                  <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    These scenarios were analyzed to understand where the method diverges and which constraints or preprocessing steps could mitigate the breakdown.
-                  </p>
-                </div>
               </div>
 
               <figure className="max-w-sm mx-auto mt-6">
