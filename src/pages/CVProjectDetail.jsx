@@ -166,14 +166,20 @@ const CVProjectDetail = () => {
                 </div>
               </div>
 
-              {imageGrid(
-                "path/to/single_scale_1.jpg",
-                "Single Scale Progress 1",
-                "Caption for image 1",
-                "path/to/single_scale_2.jpg",
-                "Single Scale Progress 2",
-                "Caption for image 2"
-              )}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                <figure>
+                  <img src="/monastery.jpg" alt="Monastery alignment example" className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Monastery</figcaption>
+                </figure>
+                <figure>
+                  <img src="/tobolsk.jpg" alt="Tobolsk alignment example" className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Tobolsk</figcaption>
+                </figure>
+                <figure>
+                  <img src="/cathedral.jpg" alt="Cathedral alignment example" className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
+                  <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Cathedral</figcaption>
+                </figure>
+              </div>
             </section>
 
             <div className="my-8 border-t border-slate-200" />
