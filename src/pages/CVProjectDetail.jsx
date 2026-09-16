@@ -297,6 +297,7 @@ const CVProjectDetail = () => {
                       ["Siren", [49, -6], [95, -25]],
                       ["Church", [25, 4], [58, -4]],
                       ["Harvesters", [59, 16], [123, 13]],
+                      ["Icon", [41, 17], [89, 23]],
                       ["Melons", [81, 10], [178, 13]],
                       ["Religious painting", [27, 3], [68, 7]],
                       ["Self portrait", [78, 29], [176, 37]],
