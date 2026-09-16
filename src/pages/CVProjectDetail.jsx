@@ -155,14 +155,14 @@ const CVProjectDetail = () => {
                 <div>
                   <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Explanation</h3>
                   <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    This section explains the theory behind single-scale alignment and how local correspondences are estimated before refinement.
+                    When the images were smaller, such as the .jpg images, Single Scale Alignment was the most straightforward approach because of the reason that it is not that computationally expensive to check the possible shift when the image is of less quality/pixel or of low resolution. The way I did this was using the Normalized Cross-Correlation (NCC). We use NCC because we need a way to check how good the match is at a shift. The higher the NCC, the better the alignment it will give .
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
                   <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    The implementation follows a direct alignment strategy: establish a consistent scale, select matching features, and evaluate the transformation before moving to more robust multi-scale refinement.
+                    My align function would, for both images, take the mean of their pixel values and then subtract it from every pixel to center the image closer ot 0. Then I normalized it using the L2 norm. Then I took the dot product between these normalized values to get the score. The way my function would work is to take an image path from the dataset I inserted in the Colab folder. Then it would break it apart and separate it based on the height (BGR). Once that was done, I cropped them by 10% because the dark edges were affecting the later NCC  score and therefore not giving the best quality of results.  Now my align function would find the best NCC score by going through an up-and-down (vertical and horizontal)  shift range in the -15 to 15 range. Then, for each position, I used np.roll to compute the NCC between the shifted image and the reference channel. I kept doing this and kept updating the score based on higher NCC, which would represent the best match location/alignment. After checking the shift, it would return the best offsets, which are then used to align the image in the end. BORDERS: These were important to crop out as they were not part of actual stuff in the image and also affect the NCC score giving non-optimal points. This is because they are usually darker regions and on the edges of the images.
                   </p>
                 </div>
               </div>
@@ -192,14 +192,15 @@ const CVProjectDetail = () => {
                 <div>
                   <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Explanation</h3>
                   <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    Multi-scale processing helps stabilize alignment when image content varies significantly across resolutions and detail levels.
+                   Explanation- Now the task was a bit different compared to before, the .tif images were way bigger compared to the .jpg counterparts. This means it gets super costly and slow to check every shift in the full-resolution image; also, the +-15 window may not even be the best one, and thus it would require a larger range, which in turn would make it even slower.  I tried doing it with larger window of +-100 but it not only took extra long with similar quality result compared to +-15. This is where we introduce the image pyramid, where we can repeatedly shrink the image ( this includes both blurring and then downsampling) and do alignment at a coarser resolution.  Then we can find the alignment faster at that coarse level, because of less pixel to search. Then we can use the best point of alignment in the smallest image as a starting point for the search in the next larger image after scaling it up, rinse and repeat until the larger image is reached. This is what image pyramids refer to. It is more like recursion, solving a smaller problem and then coming back up. We keep using the new scaled estimate as your starting point as you move up. Now, rather than scanning a super large range of pixels, we only have to do it over maybe a handful of pixels to find the best fit.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Approach</h3>
                   <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    Image pyramids were used to iterate from coarse matches to fine-grained refinement, selecting the depth that best balances robustness and detail preservation.
+                    I used my align function and created another function called pyramidAlign() which uses recursion to go from coarse to fine. To achieve this, I use sk.transform. rescale to keep on going lowe until the +15-15 range can be used to find the best alignment using the same NCC function as before. Since one pixel at the smaller size is equivalent to about 2 pixels at the bigger scale, it then goes back to the earlier, larger resolution and doubles the shift. I then in the end run a smaller search of -4 to 4 to get the best alignment for the finest image
+
                   </p>
                 </div>
               </div>
@@ -253,7 +254,7 @@ const CVProjectDetail = () => {
                 <div>
                   <h3 className="text-[clamp(1rem,1.3vw,1.3rem)] font-light tracking-[-0.02em] leading-[1.2] text-slate-900">Explanation</h3>
                   <p className="mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                    Failure cases arise when the alignment model encounters repeated structures, motion blur, or weak texture under large appearance changes.
+                    The one that failed was the infamous Emir image. The reason for this failure was, as said in the spec, “ the images to be matched have different brightness values as they are different color channels. The NCC relies on the similarity of the pixels' intensity between channels, but in our case the difference causes a wrong score and therefore selects the wrong coordinate or the alignment. I tried increasing the border cropping and also increasing the search window, but it didn't affect it; this is when I realised why it was behaving the way it was.
                   </p>
                 </div>
 
