@@ -166,17 +166,17 @@ const CVProjectDetail = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+              <div className="grid grid-cols-3 gap-3 max-w-3xl mx-auto mt-6">
                 <figure>
-                  <img src="/monastery.jpg" alt="Monastery alignment example" className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
+                  <img src="/monastery.jpg" alt="Monastery alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
                   <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Monastery</figcaption>
                 </figure>
                 <figure>
-                  <img src="/tobolsk.jpg" alt="Tobolsk alignment example" className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
+                  <img src="/tobolsk.jpg" alt="Tobolsk alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
                   <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Tobolsk</figcaption>
                 </figure>
                 <figure>
-                  <img src="/cathedral.jpg" alt="Cathedral alignment example" className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
+                  <img src="/cathedral.jpg" alt="Cathedral alignment example" className="w-full aspect-[3/2] object-cover rounded-lg border border-slate-200" />
                   <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Cathedral</figcaption>
                 </figure>
               </div>
@@ -234,14 +234,10 @@ const CVProjectDetail = () => {
                 </div>
               </div>
 
-              {imageGrid(
-                "path/to/failure_1.jpg",
-                "Failure Case 1",
-                "Caption for failure 1",
-                "path/to/failure_2.jpg",
-                "Failure Case 2",
-                "Caption for failure 2"
-              )}
+              <figure className="max-w-sm mx-auto mt-6">
+                <img src="/emir.jpg" alt="Emir failure case" className="w-full rounded-lg border border-slate-200" />
+                <figcaption className="mt-2 text-center text-xs text-slate-500 italic">Emir</figcaption>
+              </figure>
             </section>
           </article>
         </div>
