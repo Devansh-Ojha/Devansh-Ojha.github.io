@@ -217,7 +217,8 @@ const CVProjectDetail = () => {
                   ["wharf.jpg", "Wharf"],
                   ["new1.jpg", "Portrait of woman"],
                   ["new2.jpg", "Person"],
-                  ["new3.jpg", "Rocks"]
+                  ["new3.jpg", "Rocks"],
+                  ["new4.jpg", "Soldier"]
                 ].map(([fileName, label]) => (
                   <figure key={fileName}>
                     <img src={`/${fileName}`} alt={`${label} alignment example`} className="w-full aspect-[4/3] object-cover rounded-lg border border-slate-200" />
