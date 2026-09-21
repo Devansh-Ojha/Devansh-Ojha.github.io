@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const NavLink = ({ to, children, onClick, isActive }) => {
-  const base = "text-slate-600 hover:text-blue-600 text-[15px] font-medium cursor-pointer py-1.5 transition-all duration-200";
-  const active = "text-blue-600 font-semibold border-b-2 border-blue-600";
+  const base = "text-slate-600 hover:text-blue-600 text-[14px] font-normal tracking-[0.12em] uppercase cursor-pointer py-1.5 transition-all duration-200";
+  const active = "text-blue-600 font-medium border-b-2 border-blue-600";
   return (
     <Link to={to} onClick={onClick} className={`${base} ${isActive ? active : ""}`}>
       {children}
@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 w-full z-50 px-6 md:px-8 backdrop-blur-md transition-all duration-300 ${navClass}`}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" onClick={handleNavClick} className="font-bold text-lg tracking-tight text-slate-800 hover:text-blue-600 cursor-pointer transition-colors duration-200">
+        <Link to="/" onClick={handleNavClick} className="font-light text-lg tracking-[-0.04em] text-slate-800 hover:text-blue-600 cursor-pointer transition-colors duration-200">
           Devansh Ojha
         </Link>
         
@@ -47,7 +47,7 @@ const Navbar = () => {
           <NavLink to="/" onClick={handleNavClick} isActive={isActive("/")}>About</NavLink>
           <NavLink to="/experience" onClick={handleNavClick} isActive={isActive("/experience")}>Experience</NavLink>
           <NavLink to="/projects" onClick={handleNavClick} isActive={isActive("/projects")}>Projects</NavLink>
-          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[15px] font-medium py-1.5">Thoughts</a>
+          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[14px] font-normal tracking-[0.12em] uppercase py-1.5">Thoughts</a>
           <NavLink to="/contact" onClick={handleNavClick} isActive={isActive("/contact")}>Contact</NavLink>
         </div>
 
@@ -71,7 +71,7 @@ const Navbar = () => {
           <NavLink to="/" onClick={handleNavClick} isActive={isActive("/")}>About</NavLink>
           <NavLink to="/experience" onClick={handleNavClick} isActive={isActive("/experience")}>Experience</NavLink>
           <NavLink to="/projects" onClick={handleNavClick} isActive={isActive("/projects")}>Projects</NavLink>
-          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[15px] font-medium py-1.5">Thoughts</a>
+          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[14px] font-normal tracking-[0.12em] uppercase py-1.5">Thoughts</a>
           <NavLink to="/contact" onClick={handleNavClick} isActive={isActive("/contact")}>Contact</NavLink>
         </div>
       )}

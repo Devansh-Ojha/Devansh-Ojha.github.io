@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Route, Routes } from "react-router-dom";
 import CVProjects from "./pages/CVProjects";
 import CVProjectDetail from "./pages/CVProjectDetail";
+import ProjectDetail from "./pages/ProjectDetail";
 import ExperiencePage from "./pages/ExperiencePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
@@ -30,6 +31,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/experience" element={<ExperiencePage />} />
       <Route path="/projects" element={<ProjectsPage />} />
+      <Route path="/projects/:projectId" element={<ProjectDetail />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/cvproj" element={<CVProjects />} />
       <Route path="/cvproj/:projectId" element={<CVProjectDetail />} />

@@ -37,14 +37,14 @@ const About = () => {
                 <GraduationCap size={15} />
                 <span>Education</span>
               </div>
-              <div className="space-y-2 text-left">
-                <h3 className="text-lg sm:text-xl font-bold leading-snug text-slate-900">
-                  B.S. in Electrical Engineering &amp; Computer Science (EECS)
-                </h3>
-                <p className="text-base font-semibold leading-relaxed text-slate-700">
+              <div className="space-y-2 text-left text-slate-600">
+                <p className="text-base font-normal leading-relaxed tracking-[0.01em] text-slate-600">
                   University of California, Berkeley
                 </p>
-                <p className="text-sm leading-relaxed text-slate-500">
+                <p className="text-base font-normal leading-relaxed tracking-[0.01em] text-slate-600">
+                  B.S. in Electrical Engineering &amp; Computer Science (EECS)
+                </p>
+                <p className="text-base font-normal leading-relaxed tracking-[0.01em] text-slate-600">
                   Expected graduation: May 2027
                 </p>
               </div>
@@ -60,10 +60,10 @@ const About = () => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-6 uppercase">
+          <h2 className="text-3xl font-light tracking-[-0.06em] text-slate-900 mb-6 uppercase">
             ABOUT ME
           </h2>
-          <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed">
+          <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed tracking-[0.01em]">
             <p>
               Hi, I'm <strong className="text-slate-900">Devansh Ojha</strong>. I'm a senior at <strong className="text-slate-900 font-semibold">UC Berkeley</strong> studying <strong className="text-slate-900 font-semibold">Electrical Engineering and Computer Science</strong>.
             </p>

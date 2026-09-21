@@ -1,16 +1,81 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  font-family: 'Inter', sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+p,
+li,
+span,
+a,
+button,
+input,
+textarea,
+select,
+div {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.06em;
+  line-height: 1.05;
+}
+
+.editorial-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+  font-size: clamp(2.35rem, 4vw, 5rem);
+}
+
+.editorial-kicker {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #2563eb;
+}
+
+.editorial-body {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 400;
+  line-height: 1.8;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: #475569;
+}
+
 .active {
-  color: #2563eb; 
+  color: #2563eb;
   position: relative;
   font-weight: 600;
 }
-
 
 .active::after {
   content: '';
@@ -19,5 +84,5 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #2563eb; 
+  background-color: #2563eb;
 }

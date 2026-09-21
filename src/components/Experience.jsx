@@ -14,12 +14,15 @@ const experiences = [
     logo: tesla,
     role: "Software Engineering Intern, Generative AI Tooling",
     company: "Tesla",
-    duration: "Summer 2026",
+    duration: "May 2026 – Aug 2026",
     type: "work",
     description: [
-      "Coming Soon"
+      "Built and shipped AI tooling for multimodal content generation by coordinating multiple agents and media pipelines in parallel to accelerate production workflows.",
+      "Designed orchestration patterns for generation, validation, and delivery with a focus on reliability, policy enforcement, and secure multi-tenant access.",
+      "Worked on agentic retrieval and review systems that surfaced compliance gaps, grounded recommendations in evidence, and improved decision-making across content workflows.",
+      "Helped enable low-latency voice and agent experiences by integrating real-time orchestration, authorization, and tenant-aware content controls."
     ],
-    skills: ["Coming Soon"]
+    skills: ["AI Systems", "LLM Orchestration", "FastAPI", "Media Pipelines", "Security"]
   },
   {
     logo: bmob,
@@ -28,10 +31,12 @@ const experiences = [
     duration: "Sep 2025 - Present",
     type: "work",
     description: [
-      "Helping build Berkeley Mobile, an iOS app developed by student government to provide transit routes, library & gym info, and campus resources.",
-      "Serving 30K+ students with over 3K+ monthly active users to navigate campus efficiently."
+      "Developed iOS features for a campus-facing app used by students to access transit, library, gym, and resource information.",
+      "Improved async state syncing, local caching, and data consistency across modules to create a smoother and more reliable user experience.",
+      "Integrated on-device search and local AI capabilities to help students discover campus resources more intuitively while reducing cloud dependence.",
+      "Built and maintained real-time data sync flows for live campus information, keeping essential services up to date for students."
     ],
-    skills: ["iOS Development", "Swift", "SwiftUI", "Git", "API Integration"]
+    skills: ["iOS Development", "Swift", "SwiftUI", "Async State", "API Integration"]
   },
   {
     logo: bair,
@@ -40,10 +45,12 @@ const experiences = [
     duration: "Aug 2025 - Present",
     type: "research",
     description: [
-      "Conducting machine translation research for Asian low-resource languages under Prof. Kurt Keutzer.",
-      "Working on optimization and model tuning to improve translation quality and accuracy."
+      "Built a multi-model Sanskrit–English translation pipeline using parallel inference, model selection, and evaluation to improve translation quality for a low-resource language setting.",
+      "Developed semantic retrieval workflows combining embedding search and hybrid segmentation to support better document-level understanding and retrieval performance.",
+      "Curated and cleaned OCR-noisy scripture data to create higher-quality training pairs and benchmarked model behavior across translation and retrieval metrics.",
+      "Worked across data curation, model evaluation, and scalable ML infrastructure to support research in multilingual and low-resource NLP."
     ],
-    skills: ["Machine Learning", "NLP", "PyTorch", "Model Evaluation"]
+    skills: ["Machine Learning", "NLP", "Model Evaluation", "vLLM", "FAISS"]
   },
   {
     logo: split,
@@ -52,9 +59,10 @@ const experiences = [
     duration: "June 2025 – Aug 2025",
     type: "work",
     description: [
-      "Implemented fine-grained access control by mapping resource ownership and permissions across services.",
-      "Enabled efficient cross-service communication through global-to-local resource mapping.",
-      "Built a secure stack-based system for reliable service-to-service calls."
+      "Designed and deployed access-control frameworks that governed resource ownership, permissions, and authorization across more than ten services.",
+      "Built secure cross-service resource-sharing patterns using global-to-local identifier translation to improve utilization and reduce redundant allocations.",
+      "Hardened internal security flows by tightening service-to-service interactions and reducing unauthorized access paths in production systems.",
+      "Worked on scalable backend infrastructure that balanced security, reliability, and operational efficiency in distributed services."
     ],
     skills: ["Backend Engineering", "Access Control", "Security", "Distributed Systems"]
   },
@@ -65,8 +73,9 @@ const experiences = [
     duration: "Jan 2025 – May 2025",
     type: "teaching",
     description: [
-      "Assisted student learning in CS61B (Data Structures & Algorithms), a core course with 1,000+ students.",
-      "Held office hours to explain complex algorithms, and guided students on large programming projects."
+      "Supported learning for CS61B, a large introductory data structures course serving 1,000+ students through structured instruction and project guidance.",
+      "Led office hours and one-on-one support to help students navigate challenging algorithms and large-scale programming assignments.",
+      "Fostered a collaborative learning environment by clarifying core concepts and helping students build confidence in debugging and problem-solving."
     ],
     skills: ["Data Structures", "Algorithms", "Java", "Teaching & Mentoring"]
   },
@@ -88,8 +97,9 @@ const experiences = [
     duration: "May 2024 – July 2024",
     type: "work",
     description: [
-      "Utilized Pandas for data manipulation and analysis, deriving insights to guide business decisions.",
-      "Collaborated with the IT team to design and deploy software solutions, increasing system reliability."
+      "Used Pandas and Python to clean, transform, and analyze large datasets, extracting practical insights to support business decisions.",
+      "Partnered with the IT team to design and implement software solutions that improved operational reliability and streamlined internal workflows.",
+      "Contributed to data-driven problem solving by turning raw information into actionable recommendations for process and system improvements."
     ],
     skills: ["Python", "Pandas", "Data Engineering", "Software Development"]
   }
@@ -106,7 +116,7 @@ const Experience = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex flex-col items-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight text-center">
+          <h2 className="text-3xl font-light text-slate-900 tracking-[-0.06em] text-center">
             EXPERIENCE
           </h2>
           <div className="w-12 h-1 bg-blue-600 rounded-full mt-3" />
