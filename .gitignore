@@ -13,6 +13,14 @@ dist-ssr
 assets
 *.local
 
+# Root-level image files (copies from postbuild)
+*.jpg
+*.jpeg
+*.png
+*.gif
+!public/**
+!src/**
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
