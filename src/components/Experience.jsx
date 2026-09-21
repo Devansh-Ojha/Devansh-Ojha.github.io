@@ -115,7 +115,7 @@ const Experience = () => {
         {/* Timeline Container */}
         <div className="relative border-l-2 border-slate-200/80 ml-4 pl-6 md:pl-8 space-y-8">
           <AnimatePresence initial={false}>
-            {displayedExperiences.map((exp, index) => {
+            {displayedExperiences.map((exp) => {
               const isResearchOrTeaching = exp.type === "research" || exp.type === "teaching";
               
               return (

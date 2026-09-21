@@ -16,13 +16,6 @@ const projectDetails = {
   }
 };
 
-const projectOneVisual = (src, alt, caption) => (
-  <figure className="flex-1 min-w-0">
-    <img src={src} alt={alt} className="w-full rounded-lg border border-slate-200 bg-white object-cover shadow-sm" style={{ borderRadius: "12px" }} />
-    <figcaption className="mt-3 text-center text-xs text-slate-500 italic">{caption}</figcaption>
-  </figure>
-);
-
 const CVProjectDetail = () => {
   const { projectId } = useParams();
   const project = projectDetails[projectId];
@@ -104,25 +97,6 @@ const CVProjectDetail = () => {
   }
 
   if (projectId === "proj1") {
-    const imageGrid = (leftSrc, leftAlt, leftCaption, rightSrc, rightAlt, rightCaption) => (
-      <div align="center" style={{ marginTop: "1.5rem" }}>
-        <table border="0" cellPadding="5" style={{ width: "100%", maxWidth: "860px", borderCollapse: "collapse" }}>
-          <tbody>
-            <tr>
-              <td style={{ width: "50%", padding: "0.5rem", verticalAlign: "top", textAlign: "center" }}>
-                <img src={leftSrc} width="400" alt={leftAlt} style={{ width: "100%", maxWidth: "400px", borderRadius: "8px", border: "1px solid #e5e5e5", display: "block", margin: "0 auto" }} />
-                <em style={{ display: "block", marginTop: "0.5rem", fontSize: "12px", color: "#666" }}>{leftCaption}</em>
-              </td>
-              <td style={{ width: "50%", padding: "0.5rem", verticalAlign: "top", textAlign: "center" }}>
-                <img src={rightSrc} width="400" alt={rightAlt} style={{ width: "100%", maxWidth: "400px", borderRadius: "8px", border: "1px solid #e5e5e5", display: "block", margin: "0 auto" }} />
-                <em style={{ display: "block", marginTop: "0.5rem", fontSize: "12px", color: "#666" }}>{rightCaption}</em>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
-
     return (
       <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
