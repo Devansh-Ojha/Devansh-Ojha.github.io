@@ -103,7 +103,7 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-12 bg-transparent">
-      <div className="max-w-3xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex flex-col items-center mb-12">
           <h2 className="text-3xl font-bold text-slate-900 tracking-tight text-center">
@@ -113,7 +113,7 @@ const Experience = () => {
         </div>
 
         {/* Timeline Container */}
-        <div className="relative border-l-2 border-slate-200/80 ml-4 pl-6 md:pl-8 space-y-8">
+        <div className="relative border-l-2 border-slate-200/80 ml-3 md:ml-5 pl-6 md:pl-10 space-y-7">
           <AnimatePresence initial={false}>
             {displayedExperiences.map((exp) => {
               const isResearchOrTeaching = exp.type === "research" || exp.type === "teaching";
@@ -128,7 +128,7 @@ const Experience = () => {
                   className="relative group overflow-hidden"
                 >
                   {/* Timeline Icon Node */}
-                  <div className="absolute -left-[35px] md:-left-[43px] top-4 flex items-center justify-center w-8 h-8 rounded-full bg-white border-2 border-slate-200 group-hover:border-blue-500 group-hover:bg-blue-50/50 transition-all duration-300 shadow-sm z-10">
+                  <div className="absolute -left-[35px] md:-left-[47px] top-6 flex items-center justify-center w-9 h-9 rounded-full bg-white border-2 border-slate-200 group-hover:border-blue-500 group-hover:bg-blue-50/50 transition-all duration-300 shadow-sm z-10">
                     {isResearchOrTeaching ? (
                       <GraduationCap className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
                     ) : (
@@ -137,33 +137,33 @@ const Experience = () => {
                   </div>
 
                   {/* Experience Card */}
-                  <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-xl p-5 hover:shadow-md hover:border-slate-300 transition-all duration-300 my-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                      <div className="flex items-center gap-3">
+                  <div className="bg-white/90 backdrop-blur-sm border border-slate-200/70 rounded-2xl p-6 sm:p-7 hover:shadow-lg hover:border-blue-200 transition-all duration-300 my-1">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+                      <div className="flex items-center gap-4">
                                       {exp.logo && (
-                                        <div className="w-12 h-12 rounded-lg overflow-hidden border-2 border-slate-100 flex-shrink-0 bg-white flex items-center justify-center p-2 shadow-sm">
+                                        <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-slate-100 flex-shrink-0 bg-white flex items-center justify-center p-2 shadow-sm">
                                           <img src={exp.logo} alt={exp.company} className="max-w-full max-h-full object-contain" />
                                         </div>
                                       )}
                         <div>
-                          <h3 className="text-base font-bold text-slate-900 leading-tight">
+                          <h3 className="text-lg font-bold text-slate-900 leading-snug">
                             {exp.role}
                           </h3>
-                          <p className="text-sm font-semibold text-blue-600">
+                          <p className="text-base font-semibold text-blue-600 mt-1">
                             {exp.company}
                           </p>
                         </div>
                       </div>
                       
                       {/* Date Badge (Clean on all devices) */}
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 bg-slate-50 border border-slate-200/50 px-2.5 py-1 rounded-full w-max flex-shrink-0">
-                        <Calendar size={12} className="text-slate-400" />
+                      <div className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-blue-50/70 border border-blue-100 px-3 py-1.5 rounded-full w-max flex-shrink-0">
+                        <Calendar size={14} className="text-blue-500" />
                         <span className="font-mono">{exp.duration}</span>
                       </div>
                     </div>
 
                     {/* Bullet Descriptions */}
-                    <ul className="space-y-1.5 text-[13px] text-slate-600 list-disc pl-4 mb-4">
+                    <ul className="space-y-2 text-sm text-slate-600 list-disc pl-5 mb-1">
                       {exp.description.map((bullet, bIdx) => (
                         <li key={bIdx} className="leading-relaxed">
                           {bullet}

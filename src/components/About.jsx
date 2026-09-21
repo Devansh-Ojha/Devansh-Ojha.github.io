@@ -32,16 +32,16 @@ const About = () => {
           </div>
 
           <div className="w-full max-w-2xl mx-auto">
-            <div className="bg-white/95 border border-slate-200/70 rounded-3xl p-8 shadow-lg hover:shadow-xl hover:border-slate-300 transition-all duration-300">
-              <div className="text-sm uppercase tracking-wider text-blue-600 font-bold mb-3 flex items-center gap-2">
+            <div className="bg-white/95 border border-slate-200/70 border-l-4 border-l-blue-500 rounded-2xl p-6 sm:p-7 shadow-lg hover:shadow-xl hover:border-slate-300 transition-all duration-300">
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-blue-600 font-bold mb-5">
                 <GraduationCap size={15} />
-                Education
+                <span>Education</span>
               </div>
-              <div className="space-y-3 text-left">
-                <h3 className="text-sm font-bold leading-relaxed text-slate-900">
+              <div className="space-y-2 text-left">
+                <h3 className="text-lg sm:text-xl font-bold leading-snug text-slate-900">
                   B.S. in Electrical Engineering &amp; Computer Science (EECS)
                 </h3>
-                <p className="text-sm font-semibold leading-relaxed text-slate-700">
+                <p className="text-base font-semibold leading-relaxed text-slate-700">
                   University of California, Berkeley
                 </p>
                 <p className="text-sm leading-relaxed text-slate-500">
