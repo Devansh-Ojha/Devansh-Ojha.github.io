@@ -10,7 +10,6 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-assets
 *.local
 
 # Root-level image files (copies from postbuild)
@@ -20,6 +19,7 @@ assets
 *.gif
 !public/**
 !src/**
+!assets/**
 
 # Editor directories and files
 .vscode/*
