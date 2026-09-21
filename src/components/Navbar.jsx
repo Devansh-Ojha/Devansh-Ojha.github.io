@@ -1,21 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const NavLink = ({ to, children, onClick, isActive }) => {
   const base = "text-slate-600 hover:text-blue-600 text-[15px] font-medium cursor-pointer py-1.5 transition-all duration-200";
   const active = "text-blue-600 font-semibold border-b-2 border-blue-600";
   return (
-    <button
-      onClick={() => onClick && onClick(to)}
-      className={`${base} ${isActive ? active : ""}`}
-    >
+    <Link to={to} onClick={onClick} className={`${base} ${isActive ? active : ""}`}>
       {children}
-    </button>
+    </Link>
   );
 };
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,30 +26,11 @@ const Navbar = () => {
     };
   }, []);
 
-  const [activeId, setActiveId] = useState("home");
-  const sectionsRef = useRef([]);
-
-  useEffect(() => {
-    const ids = ["home", "experience", "projects", "contact"];
-    sectionsRef.current = ids.map((id) => document.getElementById(id)).filter(Boolean);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveId(entry.target.id);
-        });
-      },
-      { root: null, rootMargin: "-20% 0px -50% 0px", threshold: 0 }
-    );
-    sectionsRef.current.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const handleNavClick = (to) => {
-    const el = document.getElementById(to);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleNavClick = () => {
     setIsOpen(false);
-    setActiveId(to);
   };
+
+  const isActive = (path) => location.pathname === path;
 
   const navClass = scrolled
     ? 'py-3 bg-white/80 border-b border-slate-200/40 shadow-sm'
@@ -59,19 +39,16 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 w-full z-50 px-6 md:px-8 backdrop-blur-md transition-all duration-300 ${navClass}`}>
       <div className="container mx-auto flex justify-between items-center">
-        <span 
-          onClick={() => scroll.scrollToTop()} 
-          className="font-bold text-lg tracking-tight text-slate-800 hover:text-blue-600 cursor-pointer transition-colors duration-200"
-        >
+        <Link to="/" onClick={handleNavClick} className="font-bold text-lg tracking-tight text-slate-800 hover:text-blue-600 cursor-pointer transition-colors duration-200">
           Devansh Ojha
-        </span>
+        </Link>
         
         <div className="hidden md:flex items-center gap-8">
-          <NavLink to="home" onClick={handleNavClick} isActive={activeId==="home"}>About</NavLink>
-          <NavLink to="experience" onClick={handleNavClick} isActive={activeId==="experience"}>Experience</NavLink>
-          <NavLink to="projects" onClick={handleNavClick} isActive={activeId==="projects"}>Projects</NavLink>
+          <NavLink to="/" onClick={handleNavClick} isActive={isActive("/")}>About</NavLink>
+          <NavLink to="/experience" onClick={handleNavClick} isActive={isActive("/experience")}>Experience</NavLink>
+          <NavLink to="/projects" onClick={handleNavClick} isActive={isActive("/projects")}>Projects</NavLink>
           <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[15px] font-medium py-1.5">Thoughts</a>
-          <NavLink to="contact" onClick={handleNavClick} isActive={activeId==="contact"}>Contact</NavLink>
+          <NavLink to="/contact" onClick={handleNavClick} isActive={isActive("/contact")}>Contact</NavLink>
         </div>
 
         <div className="md:hidden">
@@ -91,11 +68,11 @@ const Navbar = () => {
       
       {isOpen && (
         <div className="md:hidden mt-4 flex flex-col items-center gap-4 bg-white/90 backdrop-blur-lg border border-slate-200/50 rounded-xl p-4 shadow-lg">
-          <NavLink to="home" onClick={handleNavClick} isActive={activeId==="home"}>About</NavLink>
-          <NavLink to="experience" onClick={handleNavClick} isActive={activeId==="experience"}>Experience</NavLink>
-          <NavLink to="projects" onClick={handleNavClick} isActive={activeId==="projects"}>Projects</NavLink>
+          <NavLink to="/" onClick={handleNavClick} isActive={isActive("/")}>About</NavLink>
+          <NavLink to="/experience" onClick={handleNavClick} isActive={isActive("/experience")}>Experience</NavLink>
+          <NavLink to="/projects" onClick={handleNavClick} isActive={isActive("/projects")}>Projects</NavLink>
           <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[15px] font-medium py-1.5">Thoughts</a>
-          <NavLink to="contact" onClick={handleNavClick} isActive={activeId==="contact"}>Contact</NavLink>
+          <NavLink to="/contact" onClick={handleNavClick} isActive={isActive("/contact")}>Contact</NavLink>
         </div>
       )}
     </nav>
