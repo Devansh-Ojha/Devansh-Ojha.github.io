@@ -22,7 +22,14 @@ const ProjectCard = ({ title, description, github, tech, to, isNDA = false, ndaR
                 </div>
               </div>
             ) : github ? (
-              <a href={github} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-slate-900 transition-colors" aria-label="View on GitHub">
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="text-slate-500 hover:text-slate-900 transition-colors p-1 relative z-10"
+                aria-label="View on GitHub"
+              >
                 <Github size={18} />
               </a>
             ) : null}
