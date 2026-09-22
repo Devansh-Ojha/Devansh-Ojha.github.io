@@ -47,7 +47,7 @@ const Navbar = () => {
           <NavLink to="/" onClick={handleNavClick} isActive={isActive("/")}>About</NavLink>
           <NavLink to="/experience" onClick={handleNavClick} isActive={isActive("/experience")}>Experience</NavLink>
           <NavLink to="/projects" onClick={handleNavClick} isActive={isActive("/projects")}>Projects</NavLink>
-          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[14px] font-normal tracking-[0.12em] uppercase py-1.5">Thoughts</a>
+          <NavLink to="/thoughts" onClick={handleNavClick} isActive={isActive("/thoughts")}>Thoughts</NavLink>
           <NavLink to="/contact" onClick={handleNavClick} isActive={isActive("/contact")}>Contact</NavLink>
         </div>
 
@@ -71,7 +71,7 @@ const Navbar = () => {
           <NavLink to="/" onClick={handleNavClick} isActive={isActive("/")}>About</NavLink>
           <NavLink to="/experience" onClick={handleNavClick} isActive={isActive("/experience")}>Experience</NavLink>
           <NavLink to="/projects" onClick={handleNavClick} isActive={isActive("/projects")}>Projects</NavLink>
-          <a href="/thoughts.html" className="text-slate-600 hover:text-blue-600 text-[14px] font-normal tracking-[0.12em] uppercase py-1.5">Thoughts</a>
+          <NavLink to="/thoughts" onClick={handleNavClick} isActive={isActive("/thoughts")}>Thoughts</NavLink>
           <NavLink to="/contact" onClick={handleNavClick} isActive={isActive("/contact")}>Contact</NavLink>
         </div>
       )}
