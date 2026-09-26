@@ -1,9 +1,6 @@
-import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 
 const Project = () => {
-  const [showMore, setShowMore] = useState(false);
-
   const projects = [
     {
       title: "BrowseCheck — AI Agent Runtime Security",
@@ -13,11 +10,11 @@ const Project = () => {
       to: "/projects/browsecheck"
     },
     {
-      title: "High-Performance LLM Inference Engine",
-      description: "Developed a low-latency Python inference engine with PagedAttention and async scheduling for quantized transformer models.",
-      github: "https://github.com/Devansh-Ojha/High-Performance-Inference-Engine",
-      tech: ["Python", "MLX", "PagedAttention", "FastAPI", "AsyncIO"],
-      to: "/projects/inference"
+      title: "DoctorBoom — Automated Hardware Bug Repair",
+      description: "Fine-tuned LLM agent (Qwen2.5-Coder-7B + QLoRA) for automated RISC-V/Chisel hardware bug repair, closed-loop verified via Verilator/Spike.",
+      github: "https://github.com/Devansh-Ojha/DoctorBoom",
+      tech: ["Machine Learning", "LLMs", "Qwen2.5-Coder", "QLoRA", "RISC-V", "Chisel", "Verilator", "Spike", "Python"],
+      to: "/projects/doctorboom"
     },
     {
       title: "Graphtory — On Device Activity Tracker",
@@ -25,6 +22,13 @@ const Project = () => {
       github: "https://chromewebstore.google.com/detail/graphtory/jgjoiknnfdohifhmjennggfpioamokni?pli=1",
       tech: ["WebGPU", "ONNX Runtime Web", "IndexedDB", "JavaScript", "Chrome Extension"],
       to: "/projects/graphtory"
+    },
+    {
+      title: "High-Performance LLM Inference Engine",
+      description: "Developed a low-latency Python inference engine with PagedAttention and async scheduling for quantized transformer models.",
+      github: "https://github.com/Devansh-Ojha/High-Performance-Inference-Engine",
+      tech: ["Python", "MLX", "PagedAttention", "FastAPI", "AsyncIO"],
+      to: "/projects/inference"
     },
     {
       title: "LLM-Based Movie Recommendation System",
@@ -57,8 +61,6 @@ const Project = () => {
     }
   ];
 
-  const displayedProjects = showMore ? projects : projects.slice(0, 3);
-
   return (
     <section id="projects" className="py-12 bg-transparent">
       <div className="max-w-6xl mx-auto px-4">
@@ -72,18 +74,9 @@ const Project = () => {
 
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
-        </div>
-
-        <div className="flex justify-center mt-8">
-          <button
-            onClick={() => setShowMore(!showMore)}
-            className="flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-600 hover:text-slate-800 text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-sm"
-          >
-            {showMore ? 'Show Less' : 'Show More'}
-          </button>
         </div>
       </div>
     </section>

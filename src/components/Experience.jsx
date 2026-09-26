@@ -108,8 +108,8 @@ const experiences = [
 const Experience = () => {
   const [showMore, setShowMore] = useState(false);
 
-  // Show first 4 items, hide last 2 initially
-  const displayedExperiences = showMore ? experiences : experiences.slice(0, 4);
+  // Show first 5 items, hide last 2 initially
+  const displayedExperiences = showMore ? experiences : experiences.slice(0, 5);
 
   return (
     <section id="experience" className="py-12 bg-transparent">

@@ -2,6 +2,35 @@ import { ArrowLeft } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
 const projectDetails = {
+  doctorboom: {
+    label: "01 / Hardware AI Systems",
+    title: "DoctorBoom — Automated Hardware Bug Repair",
+    description:
+      "Fine-tuned LLM agent (Qwen2.5-Coder-7B + QLoRA) for automated RISC-V/Chisel hardware bug repair, closed-loop verified via Verilator/Spike.",
+    tech: ["Machine Learning", "LLMs", "Qwen2.5-Coder", "QLoRA", "RISC-V", "Chisel", "Verilator", "Spike", "Python"],
+    sections: [
+      {
+        heading: "Overview",
+        body:
+          "Debugging complex digital hardware designs such as RISC-V processors and Chisel generators is often manual, tedious, and time-consuming. DoctorBoom automates hardware bug localization, diagnosis, and repair using a fine-tuned open-source LLM agent within a closed-loop verification workflow."
+      },
+      {
+        heading: "Fine-Tuning & Agent Workflow",
+        body:
+          "The system utilizes Qwen2.5-Coder-7B fine-tuned with QLoRA on curated hardware design benchmarks. The agentic loop coordinates error trace extraction, domain-specific prompt formulation, and iterative reasoning steps to propose targeted hardware patches."
+      },
+      {
+        heading: "Closed-Loop Verification",
+        body:
+          "Candidate fixes undergo automated simulation and verification against golden models using Verilator and Spike. This closed-loop setup ensures that proposed repairs not only compile cleanly but also maintain architectural integrity and cycle-accurate correctness."
+      },
+      {
+        heading: "Key Takeaways",
+        body:
+          "The project highlights the potential of pairing specialized code LLMs with deterministic simulation environments, bridging AI-driven generation and rigorous hardware verification."
+      }
+    ]
+  },
   browsecheck: {
     label: "01 / Security Research",
     title: "BrowseCheck — AI Agent Runtime Security",
