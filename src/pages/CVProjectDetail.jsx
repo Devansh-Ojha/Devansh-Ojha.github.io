@@ -429,24 +429,24 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
 
                 {/* Gaussian Blurred + Finite Difference */}
                 <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">1. Gaussian Smoothing followed by Finite Difference</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-4">
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/blured.png" alt="Blurred Cameraman" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">Blurred Image (σ = 2)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Blurred Image (σ = 2)</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/newDx.png" alt="Blurred dx" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">Derivative in X (newDx)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Derivative in X (newDx)</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/newDy.png" alt="Blurred dy" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">Derivative in Y (newDy)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Derivative in Y (newDy)</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/graMag.png" alt="Gradient Magnitude" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">Gradient Magnitude</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Gradient Magnitude</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/graMagWithThreshold.png" alt="Binarized Edge Image" className="w-full aspect-square object-contain rounded" />
                     <figcaption className="mt-2 text-xs text-slate-700 font-semibold">Binarized Edges (Threshold = 0.11)</figcaption>
                   </figure>
@@ -458,28 +458,28 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
 
                 {/* DoG Filters and Single Convolution */}
                 <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">2. Derivative of Gaussian (DoG) Filters & Single Convolution</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mt-4">
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/derivativedx.png" alt="DoG Filter X" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">DoG Filter X (myDogx)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">DoG Filter X (myDogx)</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/derivativedy.png" alt="DoG Filter Y" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">DoG Filter Y (myDogy)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">DoG Filter Y (myDogy)</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/DOGdx.png" alt="DoG dx Result" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">Image * DoG X (bigDog)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Image * DoG X (bigDog)</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/DogDy.png" alt="DoG dy Result" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">Image * DoG Y (bigDogy)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Image * DoG Y (bigDogy)</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/graMag2.png" alt="DoG Gradient Magnitude" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">Gradient Magnitude</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Gradient Magnitude</figcaption>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/graMag2WithThreshold.png" alt="DoG Binarized Edges" className="w-full aspect-square object-contain rounded" />
                     <figcaption className="mt-2 text-xs text-slate-700 font-semibold">Binarized Edges (Threshold = 0.11)</figcaption>
                   </figure>
