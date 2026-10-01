@@ -608,82 +608,194 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </div>
               </div>
 
-              {/* Part 2.3 + 2.4 */}
+              {/* Part 2.3 */}
               <div className="mb-12">
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
-                  Part 2.3 & 2.4: Multiresolution Blending and Gaussian/Laplacian Stacks
+                  Part 2.3: Gaussian and Laplacian Stacks
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of Gaussian and Laplacian stack construction and multiresolution blending approach will go here.]
+                  [Explanation of Gaussian and Laplacian stack construction will go here.]
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Walkthrough of the Orange + Apple blend recreating Figure 3.42 (a) through (l) will go here.]
+                  Gaussian and Laplacian stacks for Apple and Orange computed across 5 levels with kernel size <span className="font-mono text-slate-800 font-medium">k = 33</span> and scale parameters <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span>.
                 </p>
 
-                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Oraple Blending (Figure 3.42 recreation)</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Apple Stack</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Apple Stacks</figcaption>
+                <div className="space-y-6 mt-6">
+                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <img src="/gausApple.png" alt="Apple Gaussian Stack" className="w-full object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
+                      Apple Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                    </figcaption>
                   </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Orange Stack</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Orange Stacks</figcaption>
+
+                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <img src="/gausOrange.png" alt="Orange Gaussian Stack" className="w-full object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
+                      Orange Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                    </figcaption>
                   </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Mask Stack</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Mask Gaussian Stack</figcaption>
+
+                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <img src="/lapApple.png" alt="Apple Laplacian Stack" className="w-full object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
+                      Apple Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                    </figcaption>
                   </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Blended Stacks & Final</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Combined Stacks & Final Oraple</figcaption>
+
+                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <img src="/lapOrange.png" alt="Orange Laplacian Stack" className="w-full object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
+                      Orange Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                    </figcaption>
                   </figure>
                 </div>
+              </div>
 
-                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Custom Blend 1 (Irregular Mask)</h4>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-4">
-                  [Explanation of custom blend with irregular mask will go here.]
+              {/* Part 2.4 */}
+              <div className="mb-12">
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
+                  Part 2.4: Multiresolution Blending
+                </h3>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Explanation of multiresolution blending approach and mask weighting across frequency bands will go here.]
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 1</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 1</figcaption>
+
+                {/* 1. Oraple */}
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                  <h4 className="text-xl font-light text-slate-900 mb-3">1. The Oraple (Figure 3.42 Recreation)</h4>
+                  <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-6">
+                    Recreation of the classic Oraple blend using 5-level Gaussian and Laplacian stacks with <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span> and <span className="font-mono text-slate-800 font-medium">k = 33</span>.
+                  </p>
+
+                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
+                    <img src="/oraple.png" alt="Final Oraple Result" className="w-full aspect-square object-cover rounded-lg" />
+                    <figcaption className="mt-3 text-sm font-semibold text-slate-800">
+                      Final Oraple Blended Result
+                    </figcaption>
+                    <p className="text-xs text-slate-500 mt-1">Multi-resolution blend across 5 levels (σ = 1, 2, 4, 8, 16, k = 33)</p>
                   </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 2</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 2</figcaption>
-                  </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Irregular Mask</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Irregular Mask</figcaption>
-                  </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Blended Result</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Final Blended Output</figcaption>
-                  </figure>
+
+                  <div className="space-y-5">
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/MaskORaple.png" alt="Mask Gaussian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Vertical Seam Mask Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/oraple_stack1.png" alt="Apple Stack Levels" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Apple Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/oraple_stack2.png" alt="Orange Stack Levels" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Orange Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/oraple_blended_stack.png" alt="Combined Blended Laplacian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Combined Oraple Blended Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+                  </div>
                 </div>
 
-                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Custom Blend 2</h4>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-4">
-                  [Explanation of second custom blend will go here.]
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 1</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 1</figcaption>
+                {/* 2. Lego Head Blend (Irregular Mask) */}
+                <div className="mt-12 pt-6 border-t border-slate-200">
+                  <h4 className="text-xl font-light text-slate-900 mb-3">2. Custom Blend 1: Lego Face (Irregular Mask)</h4>
+                  <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-6">
+                    Custom multiresolution blend with an irregular mask separating foreground facial features and Lego geometry across 5 levels (<span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16], k = 33</span>).
+                  </p>
+
+                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
+                    <img src="/lego_final.png" alt="Final Lego Blended Result" className="w-full aspect-square object-cover rounded-lg" />
+                    <figcaption className="mt-3 text-sm font-semibold text-slate-800">
+                      Final Lego Blend Output
+                    </figcaption>
+                    <p className="text-xs text-slate-500 mt-1">Multi-resolution blend with irregular mask (σ = 1, 2, 4, 8, 16, k = 33)</p>
                   </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 2</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 2</figcaption>
+
+                  <div className="space-y-5">
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/MaskLegoMe.png" alt="Irregular Lego Mask Gaussian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Irregular Mask Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/lego_stack1.png" alt="Lego Image Laplacian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Source 1 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/lego_stack2.png" alt="Face Image Laplacian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Source 2 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/lego_blended_stack.png" alt="Combined Lego Blended Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Combined Lego Blended Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+
+                {/* 3. Giant Bird on Beach */}
+                <div className="mt-12 pt-6 border-t border-slate-200">
+                  <h4 className="text-xl font-light text-slate-900 mb-3">3. Custom Blend 2: Giant Bird on Beach</h4>
+                  <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-6">
+                    Custom multiresolution blend seamlessly integrating a giant bird onto a beach background across 5 frequency bands (<span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16], k = 33</span>).
+                  </p>
+
+                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
+                    <img src="/bird_final.png" alt="Final Giant Bird on Beach Result" className="w-full aspect-square object-cover rounded-lg" />
+                    <figcaption className="mt-3 text-sm font-semibold text-slate-800">
+                      Final Bird on Beach Blend Output
+                    </figcaption>
+                    <p className="text-xs text-slate-500 mt-1">Multi-resolution blend (σ = 1, 2, 4, 8, 16, k = 33)</p>
                   </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Mask</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Mask</figcaption>
-                  </figure>
-                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Blended Result</div>
-                    <figcaption className="mt-1 text-[11px] text-slate-500">Final Blended Output</figcaption>
-                  </figure>
+
+                  <div className="space-y-5">
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/bird_mask_stack.png" alt="Bird Mask Gaussian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Bird Mask Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/bird_stack1.png" alt="Bird Image Laplacian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Source 1 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/bird_stack2.png" alt="Beach Image Laplacian Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Source 2 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+
+                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/bird_blended_stack.png" alt="Combined Bird Blended Stack" className="w-full object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-600">
+                        Combined Bird Blended Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
+                      </figcaption>
+                    </figure>
+                  </div>
                 </div>
               </div>
             </section>
