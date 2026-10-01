@@ -515,66 +515,108 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </p>
 
                 {/* Taj Mahal Sharpening with varying alpha */}
-                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Taj Mahal: Original, Blurred, and Sharpened with Varying α</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/tajOrignal.png" alt="Original Taj Mahal" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Original Image</figcaption>
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-4">Taj Mahal: Original, Blurred, and Sharpened with Varying α</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-4">
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/tajOrignal.png" alt="Original Taj Mahal" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3">
+                      <span className="inline-block px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-medium text-xs">Original Image</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/TajBlured.png" alt="Blurred Taj Mahal" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Blurred (σ = 2, kernel = 9×9)</figcaption>
+
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/TajBlured.png" alt="Blurred Taj Mahal" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 font-medium text-xs border border-amber-200/60">Blurred</span>
+                      <span className="font-mono text-xs text-slate-500">σ = 2 | k = 9×9</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/tajresharp1.png" alt="Taj Mahal Sharpened alpha 1" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 1, σ = 2)</figcaption>
+
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/tajresharp1.png" alt="Taj Mahal Sharpened alpha 1" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Sharpened</span>
+                      <span className="font-mono text-xs font-semibold text-slate-700">α = 1.0</span>
+                      <span className="font-mono text-xs text-slate-400">σ = 2</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/tajResharp1point35.png" alt="Taj Mahal Sharpened alpha 1.35" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 1.35, σ = 2)</figcaption>
+
+                  <figure className="bg-white p-3.5 rounded-xl border border-blue-300 ring-2 ring-blue-500/10 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/tajResharp1point35.png" alt="Taj Mahal Sharpened alpha 1.35" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-blue-600 text-white font-medium text-xs">Default / Optimal</span>
+                      <span className="font-mono text-xs font-bold text-blue-900">α = 1.35</span>
+                      <span className="font-mono text-xs text-slate-500">σ = 2</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/tajresharp2.png" alt="Taj Mahal Sharpened alpha 2" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 2, σ = 2)</figcaption>
+
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/tajresharp2.png" alt="Taj Mahal Sharpened alpha 2" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Enhanced</span>
+                      <span className="font-mono text-xs font-semibold text-slate-700">α = 2.0</span>
+                      <span className="font-mono text-xs text-slate-400">σ = 2</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/tajresharp5.png" alt="Taj Mahal Sharpened alpha 5" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 5, σ = 2)</figcaption>
+
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/tajresharp5.png" alt="Taj Mahal Sharpened alpha 5" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-purple-50 text-purple-700 font-medium text-xs border border-purple-200/60">High Sharpening</span>
+                      <span className="font-mono text-xs font-semibold text-slate-700">α = 5.0</span>
+                      <span className="font-mono text-xs text-slate-400">σ = 2</span>
+                    </div>
                   </figure>
                 </div>
 
                 {/* Additional Test Images: Flower and Pumpkin */}
-                <h4 className="text-base font-medium text-slate-800 mt-10 mb-3">Additional Test Images (Flower & Pumpkin)</h4>
+                <h4 className="text-base font-medium text-slate-800 mt-12 mb-4">Additional Test Images (Flower & Pumpkin)</h4>
                 
                 {/* Flower */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/flowerorg.png" alt="Original Flower" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Original Flower</figcaption>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-4">
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/flowerorg.png" alt="Original Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3">
+                      <span className="inline-block px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-medium text-xs">Original Flower</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/flowerBlurred.png" alt="Blurred Flower" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Blurred (σ = 2, kernel = 9×9)</figcaption>
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/flowerBlurred.png" alt="Blurred Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 font-medium text-xs border border-amber-200/60">Blurred</span>
+                      <span className="font-mono text-xs text-slate-500">σ = 2 | k = 9×9</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/flowerResharp.png" alt="Resharpened Flower" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Resharpened (σ = 2, α = 1.35, kernel = 9×9)</figcaption>
+                  <figure className="bg-white p-3.5 rounded-xl border border-blue-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/flowerResharp.png" alt="Resharpened Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Resharpened</span>
+                      <span className="font-mono text-xs font-semibold text-slate-800">α = 1.35 | σ = 2</span>
+                    </div>
                   </figure>
                 </div>
 
                 {/* Pumpkin */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/pumpkingOrg.png" alt="Original Pumpkin" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Original Pumpkin</figcaption>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5">
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/pumpkingOrg.png" alt="Original Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3">
+                      <span className="inline-block px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-medium text-xs">Original Pumpkin</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/pumpBlurred.png" alt="Blurred Pumpkin" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Blurred (σ = 2, kernel = 9×9)</figcaption>
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/pumpBlurred.png" alt="Blurred Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 font-medium text-xs border border-amber-200/60">Blurred</span>
+                      <span className="font-mono text-xs text-slate-500">σ = 2 | k = 9×9</span>
+                    </div>
                   </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <img src="/pumpresharp.png" alt="Resharpened Pumpkin" className="w-full aspect-[4/3] object-cover rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Resharpened (σ = 2, α = 1.35, kernel = 9×9)</figcaption>
+                  <figure className="bg-white p-3.5 rounded-xl border border-blue-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/pumpresharp.png" alt="Resharpened Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Resharpened</span>
+                      <span className="font-mono text-xs font-semibold text-slate-800">α = 1.35 | σ = 2</span>
+                    </div>
                   </figure>
                 </div>
               </div>
@@ -588,7 +630,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   [Explanation of hybrid image creation, low-pass and high-pass filtering, and frequency cutoff selection will go here.]
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  Each set displays the images paired alongside their 2D Fourier Transform (FFT) log magnitude spectra illustrating the frequency content at each step of the pipeline.
+                  Each step is presented as a paired compound card displaying both the <span className="font-medium text-slate-800">Spatial Domain Image</span> and its corresponding <span className="font-medium text-slate-800">2D Fourier Transform (log |FFT|)</span> spectrum.
                 </p>
 
                 {/* Hybrid 1: Derek + Nutmeg */}
@@ -598,62 +640,107 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Original input images, filtered low/high frequency bands, and the final hybrid composition with their corresponding Fourier transforms.
                   </p>
 
-                  {/* Featured Final Hybrid Result */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_10.png" alt="Final Hybrid Image" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result (Derek + Nutmeg)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_11.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
-                    </figure>
+                  {/* Featured Final Hybrid Result Compound Card */}
+                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-w-3xl mx-auto mb-8">
+                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-900">Final Hybrid Composition</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">Derek (Low) + Nutmeg (High)</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="text-center">
+                        <img src="/derek_10.png" alt="Final Hybrid Image" className="w-full aspect-square object-contain rounded-lg bg-slate-50 border border-slate-100" />
+                        <p className="mt-2 text-xs font-medium text-slate-700">Spatial Hybrid Image</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/derek_11.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded-lg bg-slate-950 border border-slate-800" />
+                        <p className="mt-2 text-xs font-mono text-slate-500">Hybrid log |FFT| Spectrum</p>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Separate Breakdown Section */}
                   <div className="mb-8">
-                    <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Hybrid Breakdown & Frequency Analysis</h5>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-xl mx-auto">
+                    <figure className="bg-white p-5 rounded-2xl border border-slate-200 text-center shadow-sm max-w-2xl mx-auto">
+                      <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-600 mb-3">5. Hybrid Breakdown & Scale Progression</h5>
                       <img src="/derek_9.png" alt="Hybrid Breakdown" className="w-full object-contain rounded-lg" />
-                      <figcaption className="mt-2 text-xs text-slate-600 font-medium">Hybrid Frequency Breakdown & Scale Analysis</figcaption>
+                      <figcaption className="mt-2 text-xs text-slate-500">Multi-scale frequency breakdown and distance perception check</figcaption>
                     </figure>
                   </div>
 
-                  {/* Step-by-step pipeline images & FFTs */}
-                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_1.png" alt="Derek Original" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">1. Derek (Low-pass Source)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_2.png" alt="Derek FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Derek FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_3.png" alt="Nutmeg Original" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">2. Nutmeg (High-pass Source)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_4.png" alt="Nutmeg FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Nutmeg FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_5.png" alt="Low-pass Filtered Derek" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">3. Filtered Low-pass Derek</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_7.png" alt="High-pass Filtered Nutmeg" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">4. Filtered High-pass Nutmeg</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
-                    </figure>
+                  {/* Pipeline Compound Cards */}
+                  <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Pipeline Frequency Analysis</h5>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {/* Step 1: Derek */}
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">1. Source 1: Derek</span>
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Low-pass Source</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/derek_1.png" alt="Derek Original" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/derek_2.png" alt="Derek FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Step 2: Nutmeg */}
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">2. Source 2: Nutmeg</span>
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">High-pass Source</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/derek_3.png" alt="Nutmeg Original" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/derek_4.png" alt="Nutmeg FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Step 3: Low-pass Derek */}
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">3. Low-Pass Filtered (Derek)</span>
+                        <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[11px] font-mono">Gaussian Low-Pass</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/derek_5.png" alt="Low-pass Filtered Derek" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/derek_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Step 4: High-pass Nutmeg */}
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">4. High-Pass Filtered (Nutmeg)</span>
+                        <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-600 text-[11px] font-mono">High-Pass Filter</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/derek_7.png" alt="High-pass Filtered Nutmeg" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/derek_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -664,53 +751,94 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  {/* Featured Final Result */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result</figcaption>
-                    </figure>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
-                    </figure>
+                  {/* Featured Final Result Compound Card */}
+                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-w-3xl mx-auto mb-8">
+                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-900">Final Hybrid Composition</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">Custom Blend</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="text-center">
+                        <img src="/ronaldo_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg bg-slate-50 border border-slate-100" />
+                        <p className="mt-2 text-xs font-medium text-slate-700">Spatial Hybrid Image</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/ronaldo_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg bg-slate-950 border border-slate-800" />
+                        <p className="mt-2 text-xs font-mono text-slate-500">Hybrid log |FFT| Spectrum</p>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Pipeline */}
-                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 1 (Low-pass)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 1 FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 2 (High-pass)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 2 FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Low-pass Filtered</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">High-pass Filtered</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
-                    </figure>
+                  {/* Pipeline Compound Cards */}
+                  <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Pipeline Frequency Analysis</h5>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">1. Source 1 (Low-pass)</span>
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Base Image</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/ronaldo_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/ronaldo_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">2. Source 2 (High-pass)</span>
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Detail Image</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/ronaldo_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/ronaldo_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">3. Filtered Low-pass</span>
+                        <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[11px] font-mono">Low-pass</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/ronaldo_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/ronaldo_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">4. Filtered High-pass</span>
+                        <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-600 text-[11px] font-mono">High-pass</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/ronaldo_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/ronaldo_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -721,53 +849,94 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  {/* Featured Final Result */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result</figcaption>
-                    </figure>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
-                    </figure>
+                  {/* Featured Final Result Compound Card */}
+                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-w-3xl mx-auto mb-8">
+                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-900">Final Hybrid Composition</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">Custom Blend</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="text-center">
+                        <img src="/elephant_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg bg-slate-50 border border-slate-100" />
+                        <p className="mt-2 text-xs font-medium text-slate-700">Spatial Hybrid Image</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/elephant_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg bg-slate-950 border border-slate-800" />
+                        <p className="mt-2 text-xs font-mono text-slate-500">Hybrid log |FFT| Spectrum</p>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Pipeline */}
-                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 1 (Low-pass)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 1 FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 2 (High-pass)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 2 FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Low-pass Filtered</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">High-pass Filtered</figcaption>
-                    </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
-                    </figure>
+                  {/* Pipeline Compound Cards */}
+                  <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Pipeline Frequency Analysis</h5>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">1. Source 1 (Low-pass)</span>
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Base Image</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/elephant_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/elephant_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">2. Source 2 (High-pass)</span>
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Detail Image</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/elephant_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/elephant_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">3. Filtered Low-pass</span>
+                        <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[11px] font-mono">Low-pass</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/elephant_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/elephant_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                        <span className="text-xs font-semibold text-slate-800">4. Filtered High-pass</span>
+                        <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-600 text-[11px] font-mono">High-pass</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="text-center">
+                          <img src="/elephant_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
+                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
+                        </div>
+                        <div className="text-center">
+                          <img src="/elephant_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
+                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -784,33 +953,69 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Gaussian and Laplacian stacks for Apple and Orange computed across 5 levels with kernel size <span className="font-mono text-slate-800 font-medium">k = 33</span> and scale parameters <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span>.
                 </p>
 
-                <div className="space-y-6 mt-6">
-                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                <div className="space-y-8 mt-8">
+                  {/* Apple Gaussian */}
+                  <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-800">Apple Gaussian Stack</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">k = 33</span>
+                    </div>
+                    <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                      <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                      <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                      <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                      <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                      <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                    </div>
                     <img src="/gausApple.png" alt="Apple Gaussian Stack" className="w-full object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
-                      Apple Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                    </figcaption>
                   </figure>
 
-                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                  {/* Orange Gaussian */}
+                  <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-800">Orange Gaussian Stack</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">k = 33</span>
+                    </div>
+                    <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                      <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                      <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                      <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                      <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                      <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                    </div>
                     <img src="/gausOrange.png" alt="Orange Gaussian Stack" className="w-full object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
-                      Orange Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                    </figcaption>
                   </figure>
 
-                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                  {/* Apple Laplacian */}
+                  <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-800">Apple Laplacian Stack</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">k = 33</span>
+                    </div>
+                    <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                      <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                      <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                      <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                      <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                      <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                    </div>
                     <img src="/lapApple.png" alt="Apple Laplacian Stack" className="w-full object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
-                      Apple Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                    </figcaption>
                   </figure>
 
-                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                  {/* Orange Laplacian */}
+                  <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-800">Orange Laplacian Stack</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">k = 33</span>
+                    </div>
+                    <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                      <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                      <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                      <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                      <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                      <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                    </div>
                     <img src="/lapOrange.png" alt="Orange Laplacian Stack" className="w-full object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-600 font-medium">
-                      Orange Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                    </figcaption>
                   </figure>
                 </div>
               </div>
@@ -831,41 +1036,73 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Recreation of the classic Oraple blend using 5-level Gaussian and Laplacian stacks with <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span> and <span className="font-mono text-slate-800 font-medium">k = 33</span>.
                   </p>
 
-                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
-                    <img src="/oraple.png" alt="Final Oraple Result" className="w-full aspect-square object-cover rounded-lg" />
+                  <figure className="bg-white p-5 rounded-2xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
+                    <img src="/oraple.png" alt="Final Oraple Result" className="w-full aspect-square object-cover rounded-xl" />
                     <figcaption className="mt-3 text-sm font-semibold text-slate-800">
                       Final Oraple Blended Result
                     </figcaption>
                     <p className="text-xs text-slate-500 mt-1">Multi-resolution blend across 5 levels (σ = 1, 2, 4, 8, 16, k = 33)</p>
                   </figure>
 
-                  <div className="space-y-5">
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                  <div className="space-y-6">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Vertical Seam Mask Gaussian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">5 Levels</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/MaskORaple.png" alt="Mask Gaussian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Vertical Seam Mask Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Apple Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">Blended Component</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/oraple_stack1.png" alt="Apple Stack Levels" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Apple Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Orange Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">Blended Component</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/oraple_stack2.png" alt="Orange Stack Levels" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Orange Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Combined Oraple Blended Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-xs font-semibold">Combined Levels 0–4</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/oraple_blended_stack.png" alt="Combined Blended Laplacian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Combined Oraple Blended Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
                   </div>
                 </div>
@@ -877,41 +1114,73 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Custom multiresolution blend with an irregular mask separating foreground facial features and Lego geometry across 5 levels (<span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16], k = 33</span>).
                   </p>
 
-                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
-                    <img src="/lego_final.png" alt="Final Lego Blended Result" className="w-full aspect-square object-cover rounded-lg" />
+                  <figure className="bg-white p-5 rounded-2xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
+                    <img src="/lego_final.png" alt="Final Lego Blended Result" className="w-full aspect-square object-cover rounded-xl" />
                     <figcaption className="mt-3 text-sm font-semibold text-slate-800">
                       Final Lego Blend Output
                     </figcaption>
                     <p className="text-xs text-slate-500 mt-1">Multi-resolution blend with irregular mask (σ = 1, 2, 4, 8, 16, k = 33)</p>
                   </figure>
 
-                  <div className="space-y-5">
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                  <div className="space-y-6">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Irregular Mask Gaussian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">5 Levels</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/MaskLegoMe.png" alt="Irregular Lego Mask Gaussian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Irregular Mask Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Source 1 Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">Lego Geometry</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/lego_stack1.png" alt="Lego Image Laplacian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Source 1 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Source 2 Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">Portrait Features</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/lego_stack2.png" alt="Face Image Laplacian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Source 2 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Combined Lego Blended Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-xs font-semibold">Combined Levels 0–4</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/lego_blended_stack.png" alt="Combined Lego Blended Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Combined Lego Blended Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
                   </div>
                 </div>
@@ -923,41 +1192,73 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Custom multiresolution blend seamlessly integrating a giant bird onto a beach background across 5 frequency bands (<span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16], k = 33</span>).
                   </p>
 
-                  <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
-                    <img src="/bird_final.png" alt="Final Giant Bird on Beach Result" className="w-full aspect-square object-cover rounded-lg" />
+                  <figure className="bg-white p-5 rounded-2xl border border-slate-200 text-center shadow-sm max-w-md mx-auto mb-8">
+                    <img src="/bird_final.png" alt="Final Giant Bird on Beach Result" className="w-full aspect-square object-cover rounded-xl" />
                     <figcaption className="mt-3 text-sm font-semibold text-slate-800">
                       Final Bird on Beach Blend Output
                     </figcaption>
                     <p className="text-xs text-slate-500 mt-1">Multi-resolution blend (σ = 1, 2, 4, 8, 16, k = 33)</p>
                   </figure>
 
-                  <div className="space-y-5">
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                  <div className="space-y-6">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Bird Mask Gaussian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">5 Levels</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/bird_mask_stack.png" alt="Bird Mask Gaussian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Bird Mask Gaussian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Source 1 Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">Bird Subject</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/bird_stack1.png" alt="Bird Image Laplacian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Source 1 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Source 2 Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">Beach Background</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/bird_stack2.png" alt="Beach Image Laplacian Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Source 2 Laplacian Stack — Blended Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
 
-                    <figure className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <span className="text-sm font-semibold text-slate-800">Combined Bird Blended Laplacian Stack</span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-xs font-semibold">Combined Levels 0–4</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                        <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                        <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                        <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                        <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                        <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                      </div>
                       <img src="/bird_blended_stack.png" alt="Combined Bird Blended Stack" className="w-full object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-600">
-                        Combined Bird Blended Laplacian Stack — Levels 0 to 4 (σ = 1, 2, 4, 8, 16, k = 33)
-                      </figcaption>
                     </figure>
                   </div>
                 </div>
