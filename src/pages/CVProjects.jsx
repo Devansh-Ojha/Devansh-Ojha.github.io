@@ -14,6 +14,12 @@ const projects = [
     description: "Single-scale alignment, image pyramids, and failure analysis.",
     tech: ["Computer Vision", "Multi-scale Processing"],
     to: "/cvproj/proj1"
+  },
+  {
+    title: "Project 3",
+    description: "Filters and Edges, Unsharp Masking, Hybrid Images, and Multiresolution Blending.",
+    tech: ["Computer Vision", "Convolution", "Frequencies", "Blending"],
+    to: "/cvproj/proj3"
   }
 ];
 

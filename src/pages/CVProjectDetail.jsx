@@ -13,6 +13,12 @@ const projectDetails = {
     title: "Project 1 Title",
     description: "Single-scale alignment, image pyramids, and failure analysis.",
     tech: "Computer Vision, Multi-scale Processing"
+  },
+  proj3: {
+    label: "Project 3",
+    title: "Project 3: Filters, Frequencies, and Blending",
+    description: "Filters and Edges, Unsharp Masking, Hybrid Images, and Multiresolution Blending.",
+    tech: "Computer Vision, Convolution, Frequency Domain, Image Blending"
   }
 };
 
@@ -287,6 +293,322 @@ const CVProjectDetail = () => {
                   </tbody>
                 </table>
               </div>
+            </section>
+          </article>
+        </div>
+      </main>
+    );
+  }
+
+  if (projectId === "proj3") {
+    return (
+      <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-light text-slate-600 hover:text-blue-600 transition-colors mb-10">
+            <ArrowLeft size={16} /> Back to Computer Vision projects
+          </Link>
+
+          <article className="max-w-5xl">
+            <header className="mb-10 pb-6 border-b border-slate-200">
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">02 / Project 3</p>
+              <h1 className="mt-2 text-[clamp(2.25rem,4vw,4.5rem)] font-light leading-[1.0] tracking-[-0.05em] text-slate-800">
+                Project 3: Fun with Filters and Frequencies!
+              </h1>
+              <p className="mt-4 text-slate-600 font-light text-lg">
+                Exploring 2D convolutions, edge detection, unsharp masking, hybrid images, and multiresolution blending using Gaussian & Laplacian stacks.
+              </p>
+            </header>
+
+            {/* PART 1 */}
+            <section className="py-4">
+              <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-8 pb-3 border-b border-slate-200">
+                Part 1: Filters and Edges
+              </h2>
+
+              {/* Part 1.1 */}
+              <div className="mb-12">
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
+                  Part 1.1: 2D Convolution and Finite Difference
+                </h3>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Explanation of convolution implementation and approach with numpy will go here.]
+                </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Comparison with scipy.signal.convolve2d, runtime analysis, and boundary handling discussion will go here.]
+                </p>
+              </div>
+
+              {/* Part 1.2 */}
+              <div className="mb-12">
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
+                  Part 1.2: Finite Difference Operator
+                </h3>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Explanation of partial derivatives in x and y, gradient magnitude computation, and binarized edge image will go here.]
+                </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Tradeoffs between finding all edges vs. suppressing noise and threshold selection justification will go here.]
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">dx Image</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Partial Derivative in X (dx)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">dy Image</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Partial Derivative in Y (dy)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Gradient Magnitude</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Gradient Magnitude</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Binarized Edges</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Binarized Edge Image</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              {/* Part 1.3 */}
+              <div className="mb-12">
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
+                  Part 1.3: Derivative of Gaussian (DoG) Filters
+                </h3>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Explanation of constructing Gaussian filters with cv2.getGaussianKernel, building DoG filters, and visualization will go here.]
+                </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Application of Gaussian smoothing and DoG filters on cameraman image, and comparison with finite difference method will go here.]
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">DoG Filter X & Y</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">DoG Filters (Visualized)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Smoothed + Finite Diff</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Gaussian Blur then Finite Diff</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">DoG Filter Result</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Direct DoG Convolution</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </section>
+
+            <div className="my-10 border-t border-slate-200" />
+
+            {/* PART 2 */}
+            <section className="py-4">
+              <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-8 pb-3 border-b border-slate-200">
+                Part 2: Applications
+              </h2>
+
+              {/* Part 2.1 */}
+              <div className="mb-12">
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
+                  Part 2.1: Image &quot;Sharpening&quot;
+                </h3>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Explanation of unsharp mask filter implementation and how it works in relation to blur filters and high frequencies will go here.]
+                </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Discussion of results on the Taj Mahal image and a custom image, along with demonstrations of varying sharpening amounts will go here.]
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Taj Mahal Blur</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Taj Mahal (Blurred)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Taj Mahal High Freq</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Taj Mahal (High Frequencies)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Taj Mahal Sharpened</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Taj Mahal (Sharpened)</figcaption>
+                  </figure>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Custom Image Blur</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Custom Image (Blurred)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Custom High Freq</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Custom Image (High Frequencies)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Custom Sharpened</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Custom Image (Sharpened)</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              {/* Part 2.2 */}
+              <div className="mb-12">
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
+                  Part 2.2: Hybrid Images
+                </h3>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Explanation of hybrid image creation, low-pass and high-pass filtering, and frequency cutoff selection will go here.]
+                </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Detailed walkthrough of the full pipeline for one hybrid image: alignment, Fourier transforms (original, filtered, hybrid), and cutoff choices will go here.]
+                </p>
+
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Hybrid 1 (Full Pipeline Process): Derek + Nutmeg</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-4">
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Original / Aligned</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Originals</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Original FFT</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Original FFT</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Filtered Images</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Low / High Filtered</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Filtered FFT</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Filtered FFT</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Hybrid Result</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Final Hybrid + FFT</figcaption>
+                  </figure>
+                </div>
+
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Hybrid 2: Custom Hybrid</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Source Image A</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Source Image A</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Source Image B</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Source Image B</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Final Hybrid Result</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Hybrid Image</figcaption>
+                  </figure>
+                </div>
+
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Hybrid 3: Custom Hybrid</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Source Image A</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Source Image A</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Source Image B</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Source Image B</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Final Hybrid Result</div>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Hybrid Image</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              {/* Part 2.3 + 2.4 */}
+              <div className="mb-12">
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
+                  Part 2.3 & 2.4: Multiresolution Blending and Gaussian/Laplacian Stacks
+                </h3>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Explanation of Gaussian and Laplacian stack construction and multiresolution blending approach will go here.]
+                </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  [Walkthrough of the Orange + Apple blend recreating Figure 3.42 (a) through (l) will go here.]
+                </p>
+
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Oraple Blending (Figure 3.42 recreation)</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Apple Stack</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Apple Stacks</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Orange Stack</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Orange Stacks</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Mask Stack</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Mask Gaussian Stack</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Blended Stacks & Final</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Combined Stacks & Final Oraple</figcaption>
+                  </figure>
+                </div>
+
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Custom Blend 1 (Irregular Mask)</h4>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-4">
+                  [Explanation of custom blend with irregular mask will go here.]
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 1</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 1</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 2</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 2</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Irregular Mask</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Irregular Mask</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Blended Result</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Final Blended Output</figcaption>
+                  </figure>
+                </div>
+
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Custom Blend 2</h4>
+                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-4">
+                  [Explanation of second custom blend will go here.]
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 1</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 1</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Image 2</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Source Image 2</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Mask</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Mask</figcaption>
+                  </figure>
+                  <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center">
+                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Blended Result</div>
+                    <figcaption className="mt-1 text-[11px] text-slate-500">Final Blended Output</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </section>
+
+            <div className="my-10 border-t border-slate-200" />
+
+            {/* WHAT I LEARNED */}
+            <section className="py-4">
+              <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-6">
+                What I learned from this project
+              </h2>
+              <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                [Summary of key takeaways, insights on frequencies, convolution properties, filtering intuition, and multiresolution blending will go here.]
+              </p>
             </section>
           </article>
         </div>
