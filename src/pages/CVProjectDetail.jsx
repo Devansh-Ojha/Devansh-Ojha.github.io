@@ -456,6 +456,13 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   [Explanation of unsharp mask filter implementation and how it works in relation to blur filters and high frequencies will go here.]
                 </p>
+
+                <div className="my-6 p-4 bg-slate-100/90 rounded-xl text-center border border-slate-200 shadow-inner">
+                  <span className="font-mono text-sm sm:text-base text-slate-800 font-medium tracking-wide">
+                    f<sub>sharp</sub> = f + α(f − f ∗ G) = f ∗ ((1 + α)δ − αG)
+                  </span>
+                </div>
+
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   [Discussion of results on the Taj Mahal image and a custom image, along with demonstrations of varying sharpening amounts will go here.]
                 </p>
