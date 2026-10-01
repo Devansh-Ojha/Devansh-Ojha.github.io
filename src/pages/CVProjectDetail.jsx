@@ -336,6 +336,47 @@ const CVProjectDetail = () => {
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   [Comparison with scipy.signal.convolve2d, runtime analysis, and boundary handling discussion will go here.]
                 </p>
+
+                <div className="mt-6 bg-slate-900 text-slate-100 rounded-xl p-5 overflow-x-auto shadow-sm border border-slate-800">
+                  <pre className="text-xs sm:text-sm font-mono leading-relaxed">
+                    <code>{`def convol4(image, kernel):
+  kernH, kernW = kernel.shape
+
+  output = np.zeros((image.shape[0] + kernH - 1, image.shape[1] + kernW - 1))
+  flip = np.flip(kernel)
+
+  padding = np.pad(image, ((kernH - 1, kernH - 1), (kernW - 1, kernW - 1)), 'constant', constant_values=0)
+  for i in range(image.shape[0] + kernH - 1):
+    for j in range(image.shape[1] + kernW - 1):
+      for k in range(kernH):
+        for l in range(kernW):
+          output[i, j] += (padding[i + k, j + l] * flip[k, l])
+  return output
+
+def convol2(image, kernel):
+  kernH, kernW = kernel.shape
+
+  flip = np.flip(kernel)
+
+  output = np.zeros((image.shape[0] + kernH - 1, image.shape[1] + kernW - 1))
+  padding = np.pad(image, ((kernH - 1, kernH - 1), (kernW - 1, kernW - 1)), 'constant', constant_values=0)
+
+  for i in range(image.shape[0] + kernH - 1):
+    for j in range(image.shape[1] + kernW - 1):
+      output[i, j] = np.sum(np.multiply(padding[i:i + kernH, j:j + kernW], flip))
+
+  return output
+
+bFilter = np.ones((9, 9)) / 81
+
+image = skio.imread("devansh.png", as_gray=True)
+
+convuled4 = convol4(image, bFilter)
+convuled2 = convol2(image, bFilter)
+
+bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
+                  </pre>
+                </div>
               </div>
 
               {/* Part 1.2 */}
