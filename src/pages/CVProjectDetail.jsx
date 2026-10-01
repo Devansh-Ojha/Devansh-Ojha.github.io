@@ -630,7 +630,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   [Explanation of hybrid image creation, low-pass and high-pass filtering, and frequency cutoff selection will go here.]
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  Each step is presented as a paired compound card displaying both the <span className="font-medium text-slate-800">Spatial Domain Image</span> and its corresponding <span className="font-medium text-slate-800">2D Fourier Transform (log |FFT|)</span> spectrum.
+                  Each set displays the images paired alongside their 2D Fourier Transform (FFT) log magnitude spectra illustrating the frequency content at each step of the pipeline.
                 </p>
 
                 {/* Hybrid 1: Derek + Nutmeg */}
@@ -640,107 +640,62 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Original input images, filtered low/high frequency bands, and the final hybrid composition with their corresponding Fourier transforms.
                   </p>
 
-                  {/* Featured Final Hybrid Result Compound Card */}
-                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-w-3xl mx-auto mb-8">
-                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                      <span className="text-sm font-semibold text-slate-900">Final Hybrid Composition</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">Derek (Low) + Nutmeg (High)</span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="text-center">
-                        <img src="/derek_10.png" alt="Final Hybrid Image" className="w-full aspect-square object-contain rounded-lg bg-slate-50 border border-slate-100" />
-                        <p className="mt-2 text-xs font-medium text-slate-700">Spatial Hybrid Image</p>
-                      </div>
-                      <div className="text-center">
-                        <img src="/derek_11.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded-lg bg-slate-950 border border-slate-800" />
-                        <p className="mt-2 text-xs font-mono text-slate-500">Hybrid log |FFT| Spectrum</p>
-                      </div>
-                    </div>
+                  {/* Featured Final Hybrid Result */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
+                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_10.png" alt="Final Hybrid Image" className="w-full aspect-square object-contain rounded-lg" />
+                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result (Derek + Nutmeg)</figcaption>
+                    </figure>
+                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_11.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
+                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
+                    </figure>
                   </div>
 
                   {/* Separate Breakdown Section */}
                   <div className="mb-8">
-                    <figure className="bg-white p-5 rounded-2xl border border-slate-200 text-center shadow-sm max-w-2xl mx-auto">
-                      <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-600 mb-3">5. Hybrid Breakdown & Scale Progression</h5>
+                    <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Hybrid Breakdown & Frequency Analysis</h5>
+                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-xl mx-auto">
                       <img src="/derek_9.png" alt="Hybrid Breakdown" className="w-full object-contain rounded-lg" />
-                      <figcaption className="mt-2 text-xs text-slate-500">Multi-scale frequency breakdown and distance perception check</figcaption>
+                      <figcaption className="mt-2 text-xs text-slate-600 font-medium">Hybrid Frequency Breakdown & Scale Analysis</figcaption>
                     </figure>
                   </div>
 
-                  {/* Pipeline Compound Cards */}
-                  <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Pipeline Frequency Analysis</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {/* Step 1: Derek */}
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">1. Source 1: Derek</span>
-                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Low-pass Source</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/derek_1.png" alt="Derek Original" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/derek_2.png" alt="Derek FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Step 2: Nutmeg */}
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">2. Source 2: Nutmeg</span>
-                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">High-pass Source</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/derek_3.png" alt="Nutmeg Original" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/derek_4.png" alt="Nutmeg FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Step 3: Low-pass Derek */}
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">3. Low-Pass Filtered (Derek)</span>
-                        <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[11px] font-mono">Gaussian Low-Pass</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/derek_5.png" alt="Low-pass Filtered Derek" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/derek_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Step 4: High-pass Nutmeg */}
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">4. High-Pass Filtered (Nutmeg)</span>
-                        <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-600 text-[11px] font-mono">High-Pass Filter</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/derek_7.png" alt="High-pass Filtered Nutmeg" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/derek_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Step-by-step pipeline images & FFTs */}
+                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_1.png" alt="Derek Original" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">1. Derek (Low-pass Source)</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_2.png" alt="Derek FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Derek FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_3.png" alt="Nutmeg Original" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">2. Nutmeg (High-pass Source)</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_4.png" alt="Nutmeg FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Nutmeg FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_5.png" alt="Low-pass Filtered Derek" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">3. Filtered Low-pass Derek</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_7.png" alt="High-pass Filtered Nutmeg" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">4. Filtered High-pass Nutmeg</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
                   </div>
                 </div>
 
@@ -751,94 +706,53 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  {/* Featured Final Result Compound Card */}
-                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-w-3xl mx-auto mb-8">
-                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                      <span className="text-sm font-semibold text-slate-900">Final Hybrid Composition</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">Custom Blend</span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="text-center">
-                        <img src="/ronaldo_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg bg-slate-50 border border-slate-100" />
-                        <p className="mt-2 text-xs font-medium text-slate-700">Spatial Hybrid Image</p>
-                      </div>
-                      <div className="text-center">
-                        <img src="/ronaldo_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg bg-slate-950 border border-slate-800" />
-                        <p className="mt-2 text-xs font-mono text-slate-500">Hybrid log |FFT| Spectrum</p>
-                      </div>
-                    </div>
+                  {/* Featured Final Result */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
+                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg" />
+                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result</figcaption>
+                    </figure>
+                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
+                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
+                    </figure>
                   </div>
 
-                  {/* Pipeline Compound Cards */}
-                  <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Pipeline Frequency Analysis</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">1. Source 1 (Low-pass)</span>
-                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Base Image</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/ronaldo_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/ronaldo_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">2. Source 2 (High-pass)</span>
-                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Detail Image</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/ronaldo_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/ronaldo_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">3. Filtered Low-pass</span>
-                        <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[11px] font-mono">Low-pass</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/ronaldo_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/ronaldo_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">4. Filtered High-pass</span>
-                        <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-600 text-[11px] font-mono">High-pass</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/ronaldo_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/ronaldo_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Pipeline */}
+                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 1 (Low-pass)</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 1 FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 2 (High-pass)</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 2 FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Low-pass Filtered</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">High-pass Filtered</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
                   </div>
                 </div>
 
@@ -849,94 +763,53 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  {/* Featured Final Result Compound Card */}
-                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-w-3xl mx-auto mb-8">
-                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                      <span className="text-sm font-semibold text-slate-900">Final Hybrid Composition</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">Custom Blend</span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="text-center">
-                        <img src="/elephant_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg bg-slate-50 border border-slate-100" />
-                        <p className="mt-2 text-xs font-medium text-slate-700">Spatial Hybrid Image</p>
-                      </div>
-                      <div className="text-center">
-                        <img src="/elephant_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg bg-slate-950 border border-slate-800" />
-                        <p className="mt-2 text-xs font-mono text-slate-500">Hybrid log |FFT| Spectrum</p>
-                      </div>
-                    </div>
+                  {/* Featured Final Result */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
+                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg" />
+                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result</figcaption>
+                    </figure>
+                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
+                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
+                    </figure>
                   </div>
 
-                  {/* Pipeline Compound Cards */}
-                  <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Pipeline Frequency Analysis</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">1. Source 1 (Low-pass)</span>
-                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Base Image</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/elephant_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/elephant_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">2. Source 2 (High-pass)</span>
-                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Detail Image</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/elephant_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Spatial Domain</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/elephant_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">3. Filtered Low-pass</span>
-                        <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[11px] font-mono">Low-pass</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/elephant_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/elephant_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-xs font-semibold text-slate-800">4. Filtered High-pass</span>
-                        <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-600 text-[11px] font-mono">High-pass</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="text-center">
-                          <img src="/elephant_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded bg-slate-50" />
-                          <span className="text-[11px] text-slate-500 mt-1 block">Filtered Spatial</span>
-                        </div>
-                        <div className="text-center">
-                          <img src="/elephant_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded bg-slate-950" />
-                          <span className="text-[11px] font-mono text-slate-400 mt-1 block">Filtered log |FFT|</span>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Pipeline */}
+                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 1 (Low-pass)</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 1 FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 2 (High-pass)</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 2 FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Low-pass Filtered</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">High-pass Filtered</figcaption>
+                    </figure>
+                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
                   </div>
                 </div>
               </div>
