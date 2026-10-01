@@ -640,175 +640,152 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Original input images, filtered low/high frequency bands, and the final hybrid composition with their corresponding Fourier transforms.
                   </p>
 
-                  {/* Featured Final Hybrid Result */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_10.png" alt="Final Hybrid Image" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result (Derek + Nutmeg)</figcaption>
-                    </figure>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_11.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
-                    </figure>
-                  </div>
-
-                  {/* Separate Breakdown Section */}
-                  <div className="mb-8">
-                    <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Hybrid Breakdown & Frequency Analysis</h5>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm max-w-xl mx-auto">
-                      <img src="/derek_9.png" alt="Hybrid Breakdown" className="w-full object-contain rounded-lg" />
-                      <figcaption className="mt-2 text-xs text-slate-600 font-medium">Hybrid Frequency Breakdown & Scale Analysis</figcaption>
-                    </figure>
-                  </div>
-
-                  {/* Step-by-step pipeline images & FFTs */}
-                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_1.png" alt="Derek Original" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">1. Derek (Low-pass Source)</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">1. Derek (Low Freq)</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_2.png" alt="Derek FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Derek FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Derek FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_3.png" alt="Nutmeg Original" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">2. Nutmeg (High-pass Source)</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">2. Nutmeg (High Freq)</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_4.png" alt="Nutmeg FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Nutmeg FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Nutmeg FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_5.png" alt="Low-pass Filtered Derek" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">3. Filtered Low-pass Derek</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">3. Filtered Low-pass</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_7.png" alt="High-pass Filtered Nutmeg" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">4. Filtered High-pass Nutmeg</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">4. Filtered High-pass</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_9.png" alt="Cutoff / Progression" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">5. Hybrid Breakdown</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_10.png" alt="Final Hybrid Image" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-700 font-semibold">6. Final Hybrid</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_11.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Hybrid FFT</figcaption>
                     </figure>
                   </div>
                 </div>
 
                 {/* Hybrid 2: Ronaldo */}
-                <div className="mt-12 pt-6 border-t border-slate-200">
+                <div className="mt-10 pt-6 border-t border-slate-200">
                   <h4 className="text-xl font-light text-slate-900 mb-3">Hybrid 2: Custom Hybrid (Ronaldo)</h4>
                   <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-6">
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  {/* Featured Final Result */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result</figcaption>
-                    </figure>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
-                    </figure>
-                  </div>
-
-                  {/* Pipeline */}
-                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 1 (Low-pass)</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Source 1 (Low-pass)</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 1 FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Source 1 FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 2 (High-pass)</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Source 2 (High-pass)</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 2 FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Source 2 FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Low-pass Filtered</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Low-pass Filtered</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">High-pass Filtered</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">High-pass Filtered</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-700 font-semibold">Final Hybrid Result</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Final Hybrid FFT</figcaption>
                     </figure>
                   </div>
                 </div>
 
                 {/* Hybrid 3: Elephant */}
-                <div className="mt-12 pt-6 border-t border-slate-200">
+                <div className="mt-10 pt-6 border-t border-slate-200">
                   <h4 className="text-xl font-light text-slate-900 mb-3">Hybrid 3: Custom Hybrid (Elephant)</h4>
                   <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-6">
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  {/* Featured Final Result */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Result</figcaption>
-                    </figure>
-                    <figure className="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded-lg" />
-                      <figcaption className="mt-3 text-sm font-semibold text-slate-800">Final Hybrid Fourier Transform (FFT)</figcaption>
-                    </figure>
-                  </div>
-
-                  {/* Pipeline */}
-                  <h5 className="text-sm font-semibold uppercase tracking-wider text-slate-700 mb-3">Pipeline Progression & Fourier Spectra</h5>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 1 (Low-pass)</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Source 1 (Low-pass)</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_2.png" alt="Image 1 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 1 FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Source 1 FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_3.png" alt="Image 2" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Source 2 (High-pass)</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Source 2 (High-pass)</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_4.png" alt="Image 2 FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Source 2 FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Source 2 FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">Low-pass Filtered</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Low-pass Filtered</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">Low-pass FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-700 font-medium">High-pass Filtered</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">High-pass Filtered</figcaption>
                     </figure>
-                    <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center shadow-sm">
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-2 text-xs text-slate-500 italic">High-pass FFT</figcaption>
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-700 font-semibold">Final Hybrid Result</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_10.png" alt="Hybrid FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Final Hybrid FFT</figcaption>
                     </figure>
                   </div>
                 </div>
