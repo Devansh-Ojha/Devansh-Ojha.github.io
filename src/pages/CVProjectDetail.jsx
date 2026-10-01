@@ -377,6 +377,17 @@ convuled2 = convol2(image, bFilter)
 bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   </pre>
                 </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/convul2dResult.png" alt="Custom 2D Convolution Result" className="w-full aspect-square object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Custom 2D Convolution Result</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/inBuiltFunc.png" alt="scipy.signal.convolve2d Result" className="w-full aspect-square object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">scipy.signal.convolve2d (Built-in) Result</figcaption>
+                  </figure>
+                </div>
               </div>
 
               {/* Part 1.2 */}
@@ -391,22 +402,18 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   [Tradeoffs between finding all edges vs. suppressing noise and threshold selection justification will go here.]
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">dx Image</div>
+                    <img src="/dxCameraman.png" alt="Partial Derivative in X (dx)" className="w-full aspect-square object-contain rounded" />
                     <figcaption className="mt-2 text-xs text-slate-500 italic">Partial Derivative in X (dx)</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">dy Image</div>
+                    <img src="/dycameraman.png" alt="Partial Derivative in Y (dy)" className="w-full aspect-square object-contain rounded" />
                     <figcaption className="mt-2 text-xs text-slate-500 italic">Partial Derivative in Y (dy)</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Gradient Magnitude</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Gradient Magnitude</figcaption>
-                  </figure>
-                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Binarized Edges</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Binarized Edge Image</figcaption>
+                    <img src="/cameramanTheshold.png" alt="Binarized Edge Image with Threshold" className="w-full aspect-square object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Binarized Edge Image (Thresholded)</figcaption>
                   </figure>
                 </div>
               </div>
@@ -423,18 +430,18 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   [Application of Gaussian smoothing and DoG filters on cameraman image, and comparison with finite difference method will go here.]
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">DoG Filter X & Y</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">DoG Filters (Visualized)</figcaption>
+                    <img src="/cameramanBlurred.png" alt="Gaussian Blurred Cameraman" className="w-full aspect-square object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Gaussian Blurred Cameraman (σ = 2)</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Smoothed + Finite Diff</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Gaussian Blur then Finite Diff</figcaption>
+                    <img src="/CameramanNewDxBlur.png" alt="Derivative of Gaussian in X" className="w-full aspect-square object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">DoG in X (dx of blurred image)</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-square bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">DoG Filter Result</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Direct DoG Convolution</figcaption>
+                    <img src="/CameramanNewDyBlur.png" alt="Derivative of Gaussian in Y" className="w-full aspect-square object-contain rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">DoG in Y (dy of blurred image)</figcaption>
                   </figure>
                 </div>
               </div>
@@ -464,36 +471,70 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </div>
 
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Discussion of results on the Taj Mahal image and a custom image, along with demonstrations of varying sharpening amounts will go here.]
+                  [Discussion of results on the Taj Mahal image and custom images, along with demonstrations of varying sharpening amounts will go here.]
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                {/* Taj Mahal Sharpening with varying alpha */}
+                <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">Taj Mahal: Original, Blurred, and Sharpened with Varying α</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Taj Mahal Blur</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Taj Mahal (Blurred)</figcaption>
+                    <img src="/tajOrignal.png" alt="Original Taj Mahal" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Original Image</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Taj Mahal High Freq</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Taj Mahal (High Frequencies)</figcaption>
+                    <img src="/TajBlured.png" alt="Blurred Taj Mahal" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Blurred (σ = 2, kernel = 9×9)</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Taj Mahal Sharpened</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Taj Mahal (Sharpened)</figcaption>
+                    <img src="/tajresharp1.png" alt="Taj Mahal Sharpened alpha 1" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 1, σ = 2)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/tajResharp1point35.png" alt="Taj Mahal Sharpened alpha 1.35" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 1.35, σ = 2)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/tajresharp2.png" alt="Taj Mahal Sharpened alpha 2" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 2, σ = 2)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/tajresharp5.png" alt="Taj Mahal Sharpened alpha 5" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Sharpened (α = 5, σ = 2)</figcaption>
                   </figure>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                {/* Additional Test Images: Flower and Pumpkin */}
+                <h4 className="text-base font-medium text-slate-800 mt-10 mb-3">Additional Test Images (Flower & Pumpkin)</h4>
+                
+                {/* Flower */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Custom Image Blur</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Custom Image (Blurred)</figcaption>
+                    <img src="/flowerorg.png" alt="Original Flower" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Original Flower</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Custom High Freq</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Custom Image (High Frequencies)</figcaption>
+                    <img src="/flowerBlurred.png" alt="Blurred Flower" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Blurred (σ = 2, kernel = 9×9)</figcaption>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
-                    <div className="w-full aspect-[4/3] bg-slate-100 rounded flex items-center justify-center text-slate-400 text-xs">Custom Sharpened</div>
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Custom Image (Sharpened)</figcaption>
+                    <img src="/flowerResharp.png" alt="Resharpened Flower" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Resharpened (σ = 2, α = 1.35, kernel = 9×9)</figcaption>
+                  </figure>
+                </div>
+
+                {/* Pumpkin */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/pumpkingOrg.png" alt="Original Pumpkin" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Original Pumpkin</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/pumpBlurred.png" alt="Blurred Pumpkin" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Blurred (σ = 2, kernel = 9×9)</figcaption>
+                  </figure>
+                  <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                    <img src="/pumpresharp.png" alt="Resharpened Pumpkin" className="w-full aspect-[4/3] object-cover rounded" />
+                    <figcaption className="mt-2 text-xs text-slate-700 font-medium">Resharpened (σ = 2, α = 1.35, kernel = 9×9)</figcaption>
                   </figure>
                 </div>
               </div>
