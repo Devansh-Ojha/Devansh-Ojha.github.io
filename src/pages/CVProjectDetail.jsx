@@ -328,7 +328,7 @@ const CVProjectDetail = () => {
               {/* Part 1.1 */}
               <div className="mb-12">
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
-                  Part 1.1: 2D Convolution and Finite Difference
+                  Part 1.1: Convolutions from Scratch!
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   I implemented 2D convolution in two ways: a four-loop version that multiplies each kernel window by the flipped kernel one element at a time, and a two-loop version that uses NumPy to vectorize the window multiplication and sum. Both implementations produced results that visually matched SciPy's <span className="font-mono text-slate-800">convolve2d</span> when tested with a 9 × 9 box filter.
@@ -822,7 +822,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   I built five-level Gaussian stacks for the apple and orange by repeatedly blurring each image without downsampling. The levels use σ values of 1, 2, 4, 8, and 16 with a kernel size of 33. I formed each Laplacian level by subtracting the next Gaussian level, <span className="font-mono text-slate-800">Lᵢ = Gᵢ − Gᵢ₊₁</span>; as a result, the coarsest Gaussian level is heavily blurred.
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  Gaussian and Laplacian stacks for Apple and Orange computed across 5 levels with kernel size <span className="font-mono text-slate-800 font-medium">k = 33</span> and scale parameters <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span>.
+                  Gaussian and Laplacian stacks for Apple and Orange computed across 5 levels with kernel size <span className="font-mono text-slate-800 font-medium">k = 33</span> and scale parameters <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span>. I normalized the Laplacian levels (levels 0 to 3 only) so the details are visible.
                 </p>
 
                 <div className="space-y-8 mt-8">
@@ -861,22 +861,6 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   {/* Apple Laplacian */}
                   <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
                     <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
-                      <span className="text-sm font-semibold text-slate-800">Orange Laplacian Stack</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">k = 33</span>
-                    </div>
-                    <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
-                      <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
-                      <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
-                      <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
-                      <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
-                      <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
-                    </div>
-                    <img src="/lapApple.png" alt="Orange Laplacian Stack" className="w-full object-contain rounded" />
-                  </figure>
-
-                  {/* Orange Laplacian */}
-                  <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
-                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                       <span className="text-sm font-semibold text-slate-800">Apple Laplacian Stack</span>
                       <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">k = 33</span>
                     </div>
@@ -887,7 +871,23 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
                       <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
                     </div>
-                    <img src="/lapOrange.png" alt="Apple Laplacian Stack" className="w-full object-contain rounded" />
+                    <img src="/lapApple.png" alt="Apple Laplacian Stack" className="w-full object-contain rounded" />
+                  </figure>
+
+                  {/* Orange Laplacian */}
+                  <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                      <span className="text-sm font-semibold text-slate-800">Orange Laplacian Stack</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-xs text-slate-600">k = 33</span>
+                    </div>
+                    <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
+                      <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
+                      <div>Level 1 <span className="text-slate-400">(σ=2)</span></div>
+                      <div>Level 2 <span className="text-slate-400">(σ=4)</span></div>
+                      <div>Level 3 <span className="text-slate-400">(σ=8)</span></div>
+                      <div>Level 4 <span className="text-slate-400">(σ=16)</span></div>
+                    </div>
+                    <img src="/lapOrange.png" alt="Orange Laplacian Stack" className="w-full object-contain rounded" />
                   </figure>
                 </div>
               </div>
