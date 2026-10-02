@@ -897,9 +897,20 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
                   Part 2.4: Multiresolution Blending
                 </h3>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  For multiresolution blending, I created a Gaussian stack for each mask and used it to smoothly combine corresponding levels of the images' Laplacian stacks. Each level is blended with the matching mask level, and summing the blended levels reconstructs the result. The progressively blurred mask softens transitions across frequency bands and avoids a harsh seam.
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  For this task, our goal was to make the Oraple image. To create that smooth edge finish, I made the Gaussian stack of the mask, and as noticed on the last level, it gets blurry in the middle, which would be used to blend the 2 images. The next thing I did was to get the Laplacian stack for each image. Then, after this, each level was blended, and I summed all of them in the end.
                 </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  The other irregular masks that I created are:
+                </p>
+                <ol className="mt-2 ml-6 list-decimal space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  <li>
+                    LegoDev: For the LEGO and my face blend. I created a custom mask of a square to capture my eyes, lips, and nose and then used the same blending technique from before to get the end result.
+                  </li>
+                  <li>
+                    GiantBirdMonster: For the giant bird on the beach ( dinosaurs re-incarnated), I took my bird image, mapped it, then cut out the outline of the bird and stitched them together to create the mask. It was then used to blend the bird onto the beach, making it look as if the giant dinosaur that once ruled the world came back!! (Scary)
+                  </li>
+                </ol>
 
                 {/* 1. Oraple */}
                 <div className="mt-8 pt-6 border-t border-slate-200">
