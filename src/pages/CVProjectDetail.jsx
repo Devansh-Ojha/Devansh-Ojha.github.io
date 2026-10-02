@@ -492,7 +492,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
             {/* PART 2 */}
             <section className="py-4">
               <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-8 pb-3 border-b border-slate-200">
-                Part 2: Applications
+                Part 2: Fun with Frequencies!
               </h2>
 
               {/* Part 2.1 */}
