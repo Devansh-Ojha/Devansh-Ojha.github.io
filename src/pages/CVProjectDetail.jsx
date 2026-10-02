@@ -696,7 +696,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_9.png" alt="Cutoff / Progression" className="w-full aspect-square object-contain rounded" />
+                      <img src="/derek_11.png" alt="Hybrid Breakdown" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">5. Hybrid Breakdown</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
@@ -704,7 +704,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <figcaption className="mt-1 text-[11px] text-slate-700 font-semibold">6. Final Hybrid</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_11.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded" />
+                      <img src="/derek_9.png" alt="Final Hybrid FFT" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">Hybrid FFT</figcaption>
                     </figure>
                   </div>
