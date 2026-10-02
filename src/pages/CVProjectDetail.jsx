@@ -965,7 +965,6 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                         <span className="text-sm font-semibold text-slate-800">Combined Oraple Blended Laplacian Stack</span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-xs font-semibold">Combined Levels 0–4</span>
                       </div>
                       <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
                         <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
@@ -1043,7 +1042,6 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                         <span className="text-sm font-semibold text-slate-800">Combined Lego Blended Laplacian Stack</span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-xs font-semibold">Combined Levels 0–4</span>
                       </div>
                       <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
                         <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
@@ -1121,7 +1119,6 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     <figure className="bg-white p-4 rounded-2xl border border-slate-200 text-center shadow-sm overflow-hidden">
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                         <span className="text-sm font-semibold text-slate-800">Combined Bird Blended Laplacian Stack</span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-xs font-semibold">Combined Levels 0–4</span>
                       </div>
                       <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-mono text-slate-600 bg-slate-50/80 rounded-t-lg py-2 border-b border-slate-100 mb-2">
                         <div>Level 0 <span className="text-slate-400">(σ=1)</span></div>
