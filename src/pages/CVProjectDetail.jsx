@@ -680,20 +680,20 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">Nutmeg FFT</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_5.png" alt="Low-pass Filtered Derek" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">3. Filtered Low-pass</figcaption>
+                      <img src="/derek_5.png" alt="High-pass Filtered Nutmeg" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">3. Filtered High-pass</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_7.png" alt="High-pass Filtered Nutmeg" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">4. Filtered High-pass</figcaption>
-                    </figure>
-                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/derek_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <img src="/derek_6.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_7.png" alt="Low-pass Filtered Derek" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">4. Filtered Low-pass</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/derek_8.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_9.png" alt="Cutoff / Progression" className="w-full aspect-square object-contain rounded" />
@@ -735,20 +735,20 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">Source 2 FFT</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Low-pass Filtered</figcaption>
-                    </figure>
-                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
+                      <img src="/ronaldo_5.png" alt="High-pass Filtered Messi" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">High-pass Filtered</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/ronaldo_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <img src="/ronaldo_6.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_7.png" alt="Low-pass Filtered Ronaldo" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Low-pass Filtered</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/ronaldo_8.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded" />
@@ -786,20 +786,20 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">Source 2 FFT</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_5.png" alt="Filtered Low-pass" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Low-pass Filtered</figcaption>
-                    </figure>
-                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_6.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
-                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
-                    </figure>
-                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_7.png" alt="Filtered High-pass" className="w-full aspect-square object-contain rounded" />
+                      <img src="/elephant_5.png" alt="High-pass Filtered Elephant" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">High-pass Filtered</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
-                      <img src="/elephant_8.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <img src="/elephant_6.png" alt="High-pass FFT" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-500 italic">High-pass FFT</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_7.png" alt="Low-pass Filtered Emoji" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Low-pass Filtered</figcaption>
+                    </figure>
+                    <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
+                      <img src="/elephant_8.png" alt="Low-pass FFT" className="w-full aspect-square object-contain rounded" />
+                      <figcaption className="mt-1 text-[11px] text-slate-500 italic">Low-pass FFT</figcaption>
                     </figure>
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_9.png" alt="Final Hybrid" className="w-full aspect-square object-contain rounded" />
