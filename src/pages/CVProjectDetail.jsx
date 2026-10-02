@@ -330,12 +330,13 @@ const CVProjectDetail = () => {
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
                   Part 1.1: Convolutions from Scratch!
                 </h3>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  I implemented 2D convolution in two ways: a four-loop version that multiplies each kernel window by the flipped kernel one element at a time, and a two-loop version that uses NumPy to vectorize the window multiplication and sum. Both implementations produced results that visually matched SciPy's <span className="font-mono text-slate-800">convolve2d</span> when tested with a 9 × 9 box filter.
-                </p>
-                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  I used full-mode convolution with zero padding, so the output grows to include positions where the kernel extends beyond the image. This creates dark borders near the edges. In my runtime test, the four-loop implementation took about 50.61 seconds, the two-loop NumPy version took 5.16 seconds, and SciPy's optimized implementation took 0.16 seconds. The <span className="font-mono text-slate-800">convolve2d</span> function uses the same behavior, which is full mode with zero padding, and this is why my output matches it.
-                </p>
+                <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  <li>In this task, I created the 2 convolution functions. One uses 4 for loops, and the other uses 2 for loops. Its goal is to multiply the kernel window by the flipped kernel and then sum it up. The implementation is shown in the code below!</li>
+                  <li>I then tested the image with the 9*9 box filter, and looking at them visually, they both match!</li>
+                  <li>In terms of padding, I implemented the full mode size. This means there were a few dark edges cause the kernel went out of bounds.</li>
+                  <li>In basic runtime, as expected, the 4-for-loop version was way inefficient, it was super slow. The 2-for-loop was comparatively faster because of the NumPy optimizations that vectorize the multiplication. The SciPy one was the fastest, as under the hood it is optimized for this specific task. The 2-for-loop implementation took 5.160458243999983 seconds, the 4-for-loop implementation took 50.60824986900002 seconds, and SciPy took 0.16024092900011055 seconds.</li>
+                  <li>For the convolution with Dx and Dy, the image shows the vertical edges for Dx and horizontal for Dy.</li>
+                </ul>
 
                 <div className="mt-6 bg-slate-900 text-slate-100 rounded-xl p-5 overflow-x-auto shadow-sm border border-slate-800">
                   <pre className="text-xs sm:text-sm font-mono leading-relaxed">
@@ -395,12 +396,11 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
                   Part 1.2: Finite Difference Operator
                 </h3>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  I convolved the Cameraman image with the finite-difference filters Dx and Dy. Dx emphasizes vertical edges, while Dy emphasizes horizontal edges. I combined the two responses into a gradient-magnitude image using <span className="font-mono text-slate-800">√(dx² + dy²)</span>, then thresholded it to produce a binary edge map.
-                </p>
-                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  I chose a threshold of 0.26 to balance edge detail against noise: a lower threshold picked up grass and background texture, while a higher one broke apart real edges. This setting suppresses much of the background noise while retaining important details, including the Cameraman's legs and tripod.
-                </p>
+                <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  <li>In this task, I convolved the Cameramen image given to us with Dx and Dy. Again, as noted before, Dx shows vertical edges, and Dy shows horizontal edges.</li>
+                  <li>I also computed the gradient magnitude using this formula -&gt; √(dx² + dy²).</li>
+                  <li>This combines both of them into one image. I then binarized it, setting the threshold to 0.26. I did this because a lower threshold picks up noise such as grass and a lot of background, but if you set it too high, then the actual edges are broken. In my threshold, I tried to make sure I am balancing it somewhere in between for the best result, as this removes the grass noise and background noise a lot and doesn't lose too much of the edges of the Cameraman’s leg and tripod.</li>
+                </ul>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
@@ -423,9 +423,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
                   Part 1.3: Derivative of Gaussian (DoG) Filter
                 </h3>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  Before computing image derivatives, I applied Gaussian smoothing to reduce high-frequency noise from grass and other background details. The resulting edges are cleaner and less fragmented than with the finite-difference filters alone. With the noise reduced, a lower threshold of 0.11 retained useful edges without picking up as much background texture.
-                </p>
+                <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  <li>In this task, we were supposed to investigate the Derivative of Gaussian effect on the Cameraman image. From what I noticed, compared to finite difference, smoothing reduced the high-frequency noise we saw from grass and background objects. This also makes the edges much cleaner than before without breaking.</li>
+                  <li>I also saw that I was able to achieve much better results from a lower threshold of 0.11 compared to before’s 0.26.</li>
+                </ul>
 
                 {/* Gaussian Blurred + Finite Difference */}
                 <h4 className="text-base font-medium text-slate-800 mt-8 mb-3">1. Gaussian Smoothing followed by Finite Difference</h4>
@@ -453,7 +454,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </div>
 
                 <p className="mt-8 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  I also combined the Gaussian with Dx and Dy to form derivative-of-Gaussian (DoG) filters, then applied each filter to the image in a single convolution. The results look nearly identical to smoothing the image first and then taking its derivative, as expected from the associative property of convolution.
+                  For the DoG filters, I convolved the Gaussian with Dx and Dy and then applied them to my image in a single convolution. When eyeballing the result, it gives me an identical result, as convolution has the associative property. So it gives an identical-looking result, like blurring and then doing a derivative.
                 </p>
 
                 {/* DoG Filters and Single Convolution */}
@@ -500,19 +501,17 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
                   Part 2.1: Image &quot;Sharpening&quot;
                 </h3>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  Unsharp masking separates fine detail from a blurred image, then adds a scaled amount of that detail back to the original. Subtracting the blurred image isolates high-frequency components; the scale factor α controls how strongly those details are emphasized.
-                </p>
-
                 <div className="my-6 p-4 bg-slate-100/90 rounded-xl text-center border border-slate-200 shadow-inner">
                   <span className="font-mono text-sm sm:text-base text-slate-800 font-medium tracking-wide">
                     f<sub>sharp</sub> = f + α(f − f ∗ G) = f ∗ ((1 + α)δ − αG)
                   </span>
                 </div>
 
-                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  On the Taj Mahal, α values of 1, 1.35, and 2 add increasing crispness to the dome and arches. At α = 5, the result is visibly over-sharpened, with stronger contrast and more noise. I also sharpened flower and pumpkin images from my desk using α = 1.35, σ = 2, and a 9 × 9 kernel; these settings gave a pleasing balance of detail and smoothness.
-                </p>
+                <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  <li>In this task, we are using the ideas of frequency to blur and then sharpen the image. To do this, I subtracted the blurred version from the original picture, and then I isolated the high-frequency components. Afterwards, I scaled these details using an alpha parameter and added them back to enhance image sharpness. Now, using these high-frequency outputs, I can scale them with an alpha value and add them to my image to make it sharper. For the Taj Mahal, I tried alpha values of 1, 1.35, 2, and 5. What I noticed was that the low values give a subtle crispness in the arch and the dome of the Taj Mahal, whereas when alpha was 5, it was over-sharpened and much more contrasted, with more noise.</li>
+                  <li>The other images I used were of some pumpkins and some flowers on my desk with the same values of 1.35 for my alpha, 2 for sigma, and 9 for the kernel, as they gave me a satisfying result.</li>
+                  <li>I used sigma as 2 here, and my kernel is 9 * 9 for all of my images</li>
+                </ul>
 
                 {/* Taj Mahal Sharpening with varying alpha */}
                 <h4 className="text-base font-medium text-slate-800 mt-8 mb-4">Taj Mahal: Original, Blurred, and Sharpened with Varying α</h4>
@@ -645,15 +644,12 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
                   Part 2.2: Hybrid Images
                 </h3>
-                <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  A hybrid image combines the low frequencies of one image with the high frequencies of another. The high-frequency details are more noticeable up close, while the broad shapes in the low-frequency image become clearer from farther away. I aligned each pair around the eyes, converted the images to grayscale, blurred one image for its low-pass component, and subtracted a blur from the other to get its high-pass component. I then combined the components and adjusted the Gaussian scales by trial and error.
-                </p>
-                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  For Derek and Nutmeg, I used σ = 8 for Derek's low-pass image and σ = 5 for Nutmeg's high-pass image. I also made custom hybrids of Cristiano Ronaldo with Lionel Messi, and of an emoji with an elephant, using σ values of 9 and 6. In these pairs, Ronaldo and the emoji form the low-frequency images, while Messi and the elephant contribute the high-frequency details.
-                </p>
-                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  Each set displays the images paired alongside their 2D Fourier Transform (FFT) log magnitude spectra illustrating the frequency content at each step of the pipeline.
-                </p>
+                <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  <li>For the hybrid images, the goal is to create one image where, when we look closely, we see different objects, but when seen from far away, it becomes something else. To achieve this, we extract the low frequency of one image and the high frequency of the other one. The high-frequency image is visible up close, and the low-frequency one can be seen from far away, giving this illusion.</li>
+                  <li>To do this, the first step was aligning the two images based on their eye; this was done using the starter code that was provided to us for aligning them. These images were then converted to grayscale, and once that was done, a low-pass Gaussian blur of one image filter and a high-pass (the other image - its Gaussian blur) filter were calculated. And then the hybrid image was created by taking the clipped sum.</li>
+                  <li>I chose sigma values of 8 and 5 because they gave the best results for my hybrid images of Derek and Nutmeg. Derek's image gets a larger sigma, which gives it more blur, this means his smooth shapes are left, whereas Nutmeg has a smaller sigma, so its blur is subtracted, and the fine details are left. This allows it to give the hybrid image illusion we see in the image, with Nutmeg being more visible when closer.</li>
+                  <li>For my other two images, I used an image of Cristiano Ronaldo (he is low pass) and Messi (high pass), and for the other one I used an emoji and an elephant. I used 9 and 6 after some trial and error as sigma values for both of them. Cristiano appears when looked at from far away, whereas Messi appears when looked at from close. For the other, the emoji gets low pass so it appears from far away, and the elephant gets a high pass, so it appears when closer.</li>
+                </ul>
 
                 {/* Hybrid 1: Derek + Nutmeg */}
                 <div className="mt-8 pt-6 border-t border-slate-200">
@@ -819,10 +815,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 2.3: Gaussian and Laplacian Stacks
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  I built five-level Gaussian stacks for the apple and orange by repeatedly blurring each image without downsampling. The levels use σ values of 1, 2, 4, 8, and 16 with a kernel size of 33. I formed each Laplacian level by subtracting the next Gaussian level, <span className="font-mono text-slate-800">Lᵢ = Gᵢ − Gᵢ₊₁</span>; as a result, the coarsest Gaussian level is heavily blurred.
-                </p>
-                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  Gaussian and Laplacian stacks for Apple and Orange computed across 5 levels with kernel size <span className="font-mono text-slate-800 font-medium">k = 33</span> and scale parameters <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span>. I normalized the Laplacian levels (levels 0 to 3 only) so the details are visible.
+                  In this task, I built the Gaussian and Laplacian stack for the orange and apple, which would be used for the multiresolution blend later on. I built a 5-level Gaussian stack by blurring the image with sigma values of 1, 2, 4, 8, 16 and a kernel size of 33 without downsampling. Once that was done, the Laplacian stack is just the difference between consecutive Gaussian levels: Li = Gi - G(i+1). One thing to notice is that it is super blurred on the last level because of this.
                 </p>
 
                 <div className="space-y-8 mt-8">
