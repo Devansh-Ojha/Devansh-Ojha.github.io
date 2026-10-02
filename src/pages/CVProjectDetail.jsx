@@ -903,7 +903,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
 
                 {/* 1. Oraple */}
                 <div className="mt-8 pt-6 border-t border-slate-200">
-                  <h4 className="text-xl font-light text-slate-900 mb-3">1. The Oraple (Figure 3.42 Recreation)</h4>
+                  <h4 className="text-xl font-light text-slate-900 mb-3">1. The Oraple</h4>
                   <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600 mb-6">
                     Recreation of the classic Oraple blend using 5-level Gaussian and Laplacian stacks with <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span> and <span className="font-mono text-slate-800 font-medium">k = 33</span>.
                   </p>
