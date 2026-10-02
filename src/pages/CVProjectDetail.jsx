@@ -516,7 +516,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
 
                 {/* Taj Mahal Sharpening with varying alpha */}
                 <h4 className="text-base font-medium text-slate-800 mt-8 mb-4">Taj Mahal: Original, Blurred, and Sharpened with Varying α</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-4">
                   <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
                     <img src="/tajOrignal.png" alt="Original Taj Mahal" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3">
@@ -538,6 +538,13 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Sharpened</span>
                       <span className="font-mono text-xs font-semibold text-slate-700">α = 1.0</span>
                       <span className="font-mono text-xs text-slate-400">σ = 2</span>
+                    </div>
+                  </figure>
+
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/tajHighFrequency.png" alt="High-frequency details in the Taj Mahal image" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3">
+                      <span className="inline-block px-2.5 py-1 rounded-md bg-violet-50 text-violet-700 font-medium text-xs border border-violet-200/60">High Frequency</span>
                     </div>
                   </figure>
 
@@ -573,7 +580,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <h4 className="text-base font-medium text-slate-800 mt-12 mb-4">Additional Test Images (Flower & Pumpkin)</h4>
                 
                 {/* Flower */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mt-4">
                   <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
                     <img src="/flowerorg.png" alt="Original Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3">
@@ -588,16 +595,22 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     </div>
                   </figure>
                   <figure className="bg-white p-3.5 rounded-xl border border-blue-200 text-center shadow-sm flex flex-col justify-between">
-                    <img src="/flowerResharp.png" alt="Resharpened Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <img src="/pumpresharp.png" alt="Resharpened Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
                       <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Resharpened</span>
                       <span className="font-mono text-xs font-semibold text-slate-800">α = 1.35 | σ = 2</span>
                     </div>
                   </figure>
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/flowerHighFrequency.png" alt="High-frequency details in the flower image" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3">
+                      <span className="inline-block px-2.5 py-1 rounded-md bg-violet-50 text-violet-700 font-medium text-xs border border-violet-200/60">High Frequency</span>
+                    </div>
+                  </figure>
                 </div>
 
                 {/* Pumpkin */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mt-5">
                   <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
                     <img src="/pumpkingOrg.png" alt="Original Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3">
@@ -612,10 +625,16 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     </div>
                   </figure>
                   <figure className="bg-white p-3.5 rounded-xl border border-blue-200 text-center shadow-sm flex flex-col justify-between">
-                    <img src="/pumpresharp.png" alt="Resharpened Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <img src="/flowerResharp.png" alt="Resharpened Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
                       <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Resharpened</span>
                       <span className="font-mono text-xs font-semibold text-slate-800">α = 1.35 | σ = 2</span>
+                    </div>
+                  </figure>
+                  <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
+                    <img src="/pumpkinHighFrequency.png" alt="High-frequency details in the pumpkin image" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <div className="mt-3">
+                      <span className="inline-block px-2.5 py-1 rounded-md bg-violet-50 text-violet-700 font-medium text-xs border border-violet-200/60">High Frequency</span>
                     </div>
                   </figure>
                 </div>
