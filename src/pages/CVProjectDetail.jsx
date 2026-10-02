@@ -602,7 +602,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     </div>
                   </figure>
                   <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
-                    <img src="/pumpkinHighFrequency.png" alt="High-frequency details in the flower image" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <img src="/flowerHighFrequency.png" alt="High-frequency details in the flower image" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3">
                       <span className="inline-block px-2.5 py-1 rounded-md bg-violet-50 text-violet-700 font-medium text-xs border border-violet-200/60">High Frequency</span>
                     </div>
@@ -632,7 +632,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     </div>
                   </figure>
                   <figure className="bg-white p-3.5 rounded-xl border border-slate-200 text-center shadow-sm flex flex-col justify-between">
-                    <img src="/flowerHighFrequency.png" alt="High-frequency details in the pumpkin image" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <img src="/pumpkinHighFrequency.png" alt="High-frequency details in the pumpkin image" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3">
                       <span className="inline-block px-2.5 py-1 rounded-md bg-violet-50 text-violet-700 font-medium text-xs border border-violet-200/60">High Frequency</span>
                     </div>
