@@ -393,7 +393,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
               {/* Part 1.2 */}
               <div className="mb-12">
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">
-                  Finite Difference Operator
+                  Part 1.2: Finite Difference Operator
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   I convolved the Cameraman image with the finite-difference filters Dx and Dy. Dx emphasizes vertical edges, while Dy emphasizes horizontal edges. I combined the two responses into a gradient-magnitude image using <span className="font-mono text-slate-800">√(dx² + dy²)</span>, then thresholded it to produce a binary edge map.
