@@ -662,7 +662,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Original input images, filtered low/high frequency bands, and the final hybrid composition with their corresponding Fourier transforms.
                   </p>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/derek_1.png" alt="Derek Original" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">1. Derek (Low Freq)</figcaption>
@@ -717,7 +717,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/ronaldo_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Source 1 (Low-pass)</figcaption>
@@ -768,7 +768,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     Spatial images and corresponding Fourier transforms across the filtering and hybrid process.
                   </p>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <figure className="bg-white p-2 rounded-lg border border-slate-200 text-center shadow-sm">
                       <img src="/elephant_1.png" alt="Image 1" className="w-full aspect-square object-contain rounded" />
                       <figcaption className="mt-1 text-[11px] text-slate-600 font-medium">Source 1 (Low-pass)</figcaption>
