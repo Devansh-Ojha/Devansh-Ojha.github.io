@@ -335,7 +335,6 @@ const CVProjectDetail = () => {
                   <li>I then tested the image with the 9*9 box filter, and looking at them visually, they both match!</li>
                   <li>In terms of padding, I implemented the full mode size. This means there were a few dark edges because the kernel went out of bounds. SciPy's <span className="font-mono text-slate-800">convolve2d</span> also defaults to full mode with zero padding, which is used for our comparison here.</li>
                   <li>In basic runtime, as expected, the 4-for-loop version was way inefficient, it was super slow. The 2-for-loop was comparatively faster because of the NumPy optimizations that vectorize the multiplication. The SciPy one was the fastest, as under the hood it is optimized for this specific task. The 2-for-loop implementation took 5.16 s, the 4-for-loop implementation took 50.61 s, and SciPy took 0.16 s.</li>
-                  <li>For the convolution with Dx and Dy, the image shows the vertical edges for Dx and horizontal for Dy.</li>
                 </ul>
 
                 <div className="mt-6 bg-slate-900 text-slate-100 rounded-xl p-5 overflow-x-auto shadow-sm border border-slate-800">
@@ -397,8 +396,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 1.2: Finite Difference Operator
                 </h3>
                 <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  <li>In this task, I convolved the Cameraman image given to us with Dx and Dy. Again, as noted before, Dx shows vertical edges, and Dy shows horizontal edges.</li>
-                  <li>I also computed the gradient magnitude using this formula -&gt; √(dx² + dy²).</li>
+                  <li>In this task, I convolved the Cameraman image given to us with Dx and Dy, which show vertical and horizontal edges, respectively. I also computed the gradient magnitude using the formula √(dx² + dy²).</li>
                   <li>This combines both of them into one image. I then binarized it, setting the threshold to 0.26. I did this because a lower threshold picks up noise such as grass and a lot of background, but if you set it too high, then the actual edges are broken. In my threshold, I tried to make sure I am balancing it somewhere in between for the best result, as this removes the grass noise and background noise a lot and doesn't lose too much of the edges of the Cameraman’s leg and tripod.</li>
                 </ul>
 
