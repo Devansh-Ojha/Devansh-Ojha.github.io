@@ -334,7 +334,7 @@ const CVProjectDetail = () => {
                   I implemented 2D convolution in two ways: a four-loop version that multiplies each kernel window by the flipped kernel one element at a time, and a two-loop version that uses NumPy to vectorize the window multiplication and sum. Both implementations produced results that visually matched SciPy's <span className="font-mono text-slate-800">convolve2d</span> when tested with a 9 × 9 box filter.
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  I used full-mode convolution with zero padding, so the output grows to include positions where the kernel extends beyond the image. This creates dark borders near the edges. In my runtime test, the four-loop implementation took about 50.61 seconds, the two-loop NumPy version took 5.16 seconds, and SciPy's optimized implementation took 0.16 seconds.
+                  I used full-mode convolution with zero padding, so the output grows to include positions where the kernel extends beyond the image. This creates dark borders near the edges. In my runtime test, the four-loop implementation took about 50.61 seconds, the two-loop NumPy version took 5.16 seconds, and SciPy's optimized implementation took 0.16 seconds. The <span className="font-mono text-slate-800">convolve2d</span> function uses the same behavior, which is full mode with zero padding, and this is why my output matches it.
                 </p>
 
                 <div className="mt-6 bg-slate-900 text-slate-100 rounded-xl p-5 overflow-x-auto shadow-sm border border-slate-800">
