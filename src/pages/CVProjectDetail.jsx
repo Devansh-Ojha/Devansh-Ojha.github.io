@@ -595,7 +595,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     </div>
                   </figure>
                   <figure className="bg-white p-3.5 rounded-xl border border-blue-200 text-center shadow-sm flex flex-col justify-between">
-                    <img src="/pumpresharp.png" alt="Resharpened Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <img src="/flowerResharp.png" alt="Resharpened Flower" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
                       <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Resharpened</span>
                       <span className="font-mono text-xs font-semibold text-slate-800">α = 1.35 | σ = 2</span>
@@ -625,7 +625,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     </div>
                   </figure>
                   <figure className="bg-white p-3.5 rounded-xl border border-blue-200 text-center shadow-sm flex flex-col justify-between">
-                    <img src="/flowerResharp.png" alt="Resharpened Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
+                    <img src="/pumpresharp.png" alt="Resharpened Pumpkin" className="w-full aspect-[4/3] object-cover rounded-lg" />
                     <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
                       <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-medium text-xs border border-blue-200/60">Resharpened</span>
                       <span className="font-mono text-xs font-semibold text-slate-800">α = 1.35 | σ = 2</span>
