@@ -331,10 +331,10 @@ const CVProjectDetail = () => {
                   Part 1.1: 2D Convolution and Finite Difference
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of convolution implementation and approach with numpy will go here.]
+                  I implemented 2D convolution in two ways: a four-loop version that multiplies each kernel window by the flipped kernel one element at a time, and a two-loop version that uses NumPy to vectorize the window multiplication and sum. Both implementations produced results that visually matched SciPy's <span className="font-mono text-slate-800">convolve2d</span> when tested with a 9 × 9 box filter.
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Comparison with scipy.signal.convolve2d, runtime analysis, and boundary handling discussion will go here.]
+                  I used full-mode convolution with zero padding, so the output grows to include positions where the kernel extends beyond the image. This creates dark borders near the edges. In my runtime test, the four-loop implementation took about 50.61 seconds, the two-loop NumPy version took 5.16 seconds, and SciPy's optimized implementation took 0.16 seconds.
                 </p>
 
                 <div className="mt-6 bg-slate-900 text-slate-100 rounded-xl p-5 overflow-x-auto shadow-sm border border-slate-800">
@@ -396,10 +396,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 1.2: Finite Difference Operator
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of partial derivatives in x and y, gradient magnitude computation, and binarized edge image will go here.]
+                  I convolved the Cameraman image with the finite-difference filters Dx and Dy. Dx emphasizes vertical edges, while Dy emphasizes horizontal edges. I combined the two responses into a gradient-magnitude image using <span className="font-mono text-slate-800">√(dx² + dy²)</span>, then thresholded it to produce a binary edge map.
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Tradeoffs between finding all edges vs. suppressing noise and threshold selection justification will go here.]
+                  I chose a threshold of 0.26 to balance edge detail against noise: a lower threshold picked up grass and background texture, while a higher one broke apart real edges. This setting suppresses much of the background noise while retaining important details, including the Cameraman's legs and tripod.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
@@ -413,7 +413,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   </figure>
                   <figure className="bg-white p-3 rounded-lg border border-slate-200 text-center">
                     <img src="/cameramanTheshold.png" alt="Binarized Edge Image with Threshold" className="w-full aspect-square object-contain rounded" />
-                    <figcaption className="mt-2 text-xs text-slate-500 italic">Binarized Edge Image (Thresholded)</figcaption>
+                    <figcaption className="mt-2 text-xs text-slate-500 italic">Binarized Edge Image (Threshold = 0.26)</figcaption>
                   </figure>
                 </div>
               </div>
@@ -424,7 +424,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 1.3: Derivative of Gaussian (DoG) Filter
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of Gaussian smoothing to suppress noise, constructing 2D Gaussian kernels using <span className="font-mono text-slate-800">cv2.getGaussianKernel</span>, and computing partial derivatives and gradient magnitude will go here.]
+                  Before computing image derivatives, I applied Gaussian smoothing to reduce high-frequency noise from grass and other background details. The resulting edges are cleaner and less fragmented than with the finite-difference filters alone. With the noise reduced, a lower threshold of 0.11 retained useful edges without picking up as much background texture.
                 </p>
 
                 {/* Gaussian Blurred + Finite Difference */}
@@ -453,7 +453,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </div>
 
                 <p className="mt-8 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Comparison and verification of single-convolution Derivative of Gaussian (DoG) approach vs. two-stage smoothing will go here.]
+                  I also combined the Gaussian with Dx and Dy to form derivative-of-Gaussian (DoG) filters, then applied each filter to the image in a single convolution. The results look nearly identical to smoothing the image first and then taking its derivative, as expected from the associative property of convolution.
                 </p>
 
                 {/* DoG Filters and Single Convolution */}
@@ -501,7 +501,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 2.1: Image &quot;Sharpening&quot;
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of unsharp mask filter implementation and how it works in relation to blur filters and high frequencies will go here.]
+                  Unsharp masking separates fine detail from a blurred image, then adds a scaled amount of that detail back to the original. Subtracting the blurred image isolates high-frequency components; the scale factor α controls how strongly those details are emphasized.
                 </p>
 
                 <div className="my-6 p-4 bg-slate-100/90 rounded-xl text-center border border-slate-200 shadow-inner">
@@ -511,7 +511,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </div>
 
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Discussion of results on the Taj Mahal image and custom images, along with demonstrations of varying sharpening amounts will go here.]
+                  On the Taj Mahal, α values of 1, 1.35, and 2 add increasing crispness to the dome and arches. At α = 5, the result is visibly over-sharpened, with stronger contrast and more noise. I also sharpened flower and pumpkin images from my desk using α = 1.35, σ = 2, and a 9 × 9 kernel; these settings gave a pleasing balance of detail and smoothness.
                 </p>
 
                 {/* Taj Mahal Sharpening with varying alpha */}
@@ -627,7 +627,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 2.2: Hybrid Images
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of hybrid image creation, low-pass and high-pass filtering, and frequency cutoff selection will go here.]
+                  A hybrid image combines the low frequencies of one image with the high frequencies of another. The high-frequency details are more noticeable up close, while the broad shapes in the low-frequency image become clearer from farther away. I aligned each pair around the eyes, converted the images to grayscale, blurred one image for its low-pass component, and subtracted a blur from the other to get its high-pass component. I then combined the components and adjusted the Gaussian scales by trial and error.
+                </p>
+                <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                  For Derek and Nutmeg, I used σ = 8 for Derek's low-pass image and σ = 5 for Nutmeg's high-pass image. I also made custom hybrids of Cristiano Ronaldo with Lionel Messi, and of an emoji with an elephant, using σ values of 9 and 6. In these pairs, Ronaldo and the emoji form the low-frequency images, while Messi and the elephant contribute the high-frequency details.
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   Each set displays the images paired alongside their 2D Fourier Transform (FFT) log magnitude spectra illustrating the frequency content at each step of the pipeline.
@@ -797,7 +800,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 2.3: Gaussian and Laplacian Stacks
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of Gaussian and Laplacian stack construction will go here.]
+                  I built five-level Gaussian stacks for the apple and orange by repeatedly blurring each image without downsampling. The levels use σ values of 1, 2, 4, 8, and 16 with a kernel size of 33. I formed each Laplacian level by subtracting the next Gaussian level, <span className="font-mono text-slate-800">Lᵢ = Gᵢ − Gᵢ₊₁</span>; as a result, the coarsest Gaussian level is heavily blurred.
                 </p>
                 <p className="mt-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   Gaussian and Laplacian stacks for Apple and Orange computed across 5 levels with kernel size <span className="font-mono text-slate-800 font-medium">k = 33</span> and scale parameters <span className="font-mono text-slate-800 font-medium">σ ∈ [1, 2, 4, 8, 16]</span>.
@@ -876,7 +879,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 2.4: Multiresolution Blending
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  [Explanation of multiresolution blending approach and mask weighting across frequency bands will go here.]
+                  For multiresolution blending, I created a Gaussian stack for each mask and used it to smoothly combine corresponding levels of the images' Laplacian stacks. Each level is blended with the matching mask level, and summing the blended levels reconstructs the result. The progressively blurred mask softens transitions across frequency bands and avoids a harsh seam.
                 </p>
 
                 {/* 1. Oraple */}
@@ -1123,7 +1126,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 What I learned from this project
               </h2>
               <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                [Summary of key takeaways, insights on frequencies, convolution properties, filtering intuition, and multiresolution blending will go here.]
+                This project showed me how much can be done with classical image-processing techniques, without treating image manipulation as a black box or reaching immediately for machine learning. Convolution, frequency filtering, and Gaussian and Laplacian stacks provide practical ways to detect edges, sharpen images, create hybrid illusions, and blend images smoothly. These experiments made the role of frequency in visual effects more intuitive and showed how foundational techniques can produce results often associated with modern apps.
               </p>
             </section>
           </article>
