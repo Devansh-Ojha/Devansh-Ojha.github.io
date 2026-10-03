@@ -14,9 +14,9 @@ const projectDetails = {
     description: "Single-scale alignment, image pyramids, and failure analysis.",
     tech: "Computer Vision, Multi-scale Processing"
   },
-  proj3: {
-    label: "Project 3",
-    title: "Project 3: Filters, Frequencies, and Blending",
+  proj2: {
+    label: "Project 2",
+    title: "Project 2: Filters, Frequencies, and Blending",
     description: "Filters and Edges, Unsharp Masking, Hybrid Images, and Multiresolution Blending.",
     tech: "Computer Vision, Convolution, Frequency Domain, Image Blending"
   }
@@ -300,7 +300,7 @@ const CVProjectDetail = () => {
     );
   }
 
-  if (projectId === "proj3") {
+  if (projectId === "proj2") {
     return (
       <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -310,9 +310,9 @@ const CVProjectDetail = () => {
 
           <article className="max-w-5xl">
             <header className="mb-10 pb-6 border-b border-slate-200">
-              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">02 / Project 3</p>
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">02 / Project 2</p>
               <h1 className="mt-2 text-[clamp(2.25rem,4vw,4.5rem)] font-light leading-[1.0] tracking-[-0.05em] text-slate-800">
-                Project 3: Fun with Filters and Frequencies!
+                Project 2: Fun with Filters and Frequencies!
               </h1>
               <p className="mt-4 text-slate-600 font-light text-lg">
                 Exploring 2D convolutions, edge detection, unsharp masking, hybrid images, and multiresolution blending using Gaussian & Laplacian stacks.
@@ -397,7 +397,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </h3>
                 <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
                   <li>In this task, I convolved the Cameraman image given to us with Dx and Dy, which show vertical and horizontal edges, respectively. I also computed the gradient magnitude using the formula √(dx² + dy²).</li>
-                  <li>This combines both of them into one image. I then binarized it, setting the threshold to 0.26. I did this because a lower threshold picks up noise such as grass and a lot of background, but if you set it too high, then the actual edges are broken. In my threshold, I tried to make sure I am balancing it somewhere in between for the best result, as this removes the grass noise and background noise a lot and doesn't lose too much of the edges of the Cameraman’s leg and tripod.</li>
+                  <li>Why is this the case? The reason is because Dx and Dy are just the difference between adjacent pixels, this mean whenever the brightness is changes they show that. This explains why it detects the edges of our cameraman image but also the noise that comes with it.</li>
+                  <li>This combines both of them into one image. I then binarized it, setting the threshold to 0.26. I did this because a lower threshold picks up noise such as grass and a lot of background, but if you set it too high, then the actual edges are broken. In my threshold, I tried to make sure I am balancing it somewhere in between for the best result, as this removes the grass noise and background noise a lot and doesn't lose too much of the edges of the Cameraman’s leg and tripod. </li>
                 </ul>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
@@ -422,8 +423,9 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 1.3: Derivative of Gaussian (DoG) Filter
                 </h3>
                 <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  <li>In this task, we were supposed to investigate the Derivative of Gaussian effect on the Cameraman image. From what I noticed, compared to finite difference, smoothing reduced the high-frequency noise we saw from grass and background objects. This also makes the edges much cleaner than before without breaking.</li>
-                  <li>I also saw that I was able to achieve much better results from a lower threshold of 0.11 compared to before’s 0.26.</li>
+                  <li>In this task, we were supposed to investigate the Derivative of Gaussian effect on the cameraman image. From what I noticed, compared to finite difference, smoothing reduced the high-frequency noise we saw from grass and background objects. This also makes the edges much cleaner than before without breaking.</li>
+                  <li>I also saw that I was able to achieve much better results from a lower threshold of 0.11 compared to 0.26 from the previous part.</li>
+
                 </ul>
 
                 {/* Gaussian Blurred + Finite Difference */}
@@ -452,7 +454,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </div>
 
                 <p className="mt-8 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  For the DoG filters, I convolved the Gaussian with Dx and Dy and then applied them to the Cameraman image in a single convolution. This produces an identical-looking result to blurring the Cameraman image and then taking its derivative, because convolution has the associative property.
+                  For the DoG filters, I convolved the Gaussian with Dx and Dy and then applied them to the cameraman image in a single convolution. It gave me an identical looking result to blurring and then taking a derivative, as convolution has the associative property. The blurring helps as it reduces noise by removing the change at pixel level, so now the derivative only catches the actual edges. The edges are also thicker in comparison to the finite difference.
                 </p>
 
                 {/* DoG Filters and Single Convolution */}
@@ -500,8 +502,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 2.1: Image &quot;Sharpening&quot;
                 </h3>
                 <ul className="ml-6 list-disc space-y-3 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  <li>In this task, we are using the ideas of frequency to blur and then sharpen the image. To do this, I subtracted the blurred version from the original picture, and then I isolated the high-frequency components. Afterwards, I scaled these details using an alpha parameter and added them back to enhance image sharpness. The formula for <span className="font-mono text-slate-800">f<sub>sharp</sub></span> is <span className="font-mono text-slate-800">f + α(f − f ∗ G) = f ∗ ((1 + α)δ − αG)</span>. For the Taj Mahal, I tried alpha values of 1, 1.35, 2, and 5. What I noticed was that the low values give a subtle crispness in the arch and the dome of the Taj Mahal, whereas when alpha was 5, it was over-sharpened and much more contrasted, with more noise.</li>
-                  <li>The other images I used were of some pumpkins and some flowers on my desk with the same values of 1.35 for my alpha, 2 for sigma, and 9 for the kernel, as they gave me a satisfying result.</li>
+                  <li>In this task, we are using the ideas of frequency to blur and then sharpen the image. To do this, I subtracted the blurred version from the original picture, and isolated the high-frequency components. Afterwards, I scaled these details using an alpha parameter and added them back to enhance image sharpness. The formula for <span className="font-mono text-slate-800">f<sub>s</sub></span> is <span className="font-mono text-slate-800">f + α(f − f ∗ G) = f ∗ ((1 + α)δ − αG)</span>. Key thing here is that the second form gives result in single convolution, it is just combining everything in one kernel. For the Taj Mahal, I tried alpha values of 1, 1.35, 2, and 5. What I noticed was that the low values give a subtle crispness in the arch and the dome of the Taj Mahal, whereas when alpha was 5, it was over-sharpened and much more contrasted, with more noise. This happens because high alpha is adding back the high frequency, hence making the edges more pronounces and increasing noise.</li>
+                  <li>The other images I used were of some pumpkins and some flowers with the same values of 1.35 for my alpha, 2 for sigma, and 9 * 9 kernel, as they gave me a satisfying result. One key thing to notice is that sharpening doesnt add back the details lost afterblurring, but rather enhances the ones that are there.</li>
                 </ul>
 
                 {/* Taj Mahal Sharpening with varying alpha */}
@@ -806,7 +808,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   Part 2.3: Gaussian and Laplacian Stacks
                 </h3>
                 <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                  In this task, I built the Gaussian and Laplacian stack for the orange and apple, which would be used for the multiresolution blend later on. I built a 5-level Gaussian stack by blurring the image with sigma values of 1, 2, 4, 8, 16 and a kernel size of 33 without downsampling. Once that was done, the Laplacian stack is just the difference between consecutive Gaussian levels: Li = Gi - G(i+1). One thing to notice is that it is super blurred on the last level because of this.
+                  In this task, I built the Gaussian and Laplacian stack for the orange and apple, which would be used for the multiresolution blend later on. I built a 5-level Gaussian stack by blurring the image with sigma values of 1, 2, 4, 8, 16 and a kernel size of 33 without downsampling. Once that was done, the Laplacian stack is just the difference between consecutive Gaussian levels: Li = Gi - G(i+1). One thing to notice is that it is super blurred on the last level because its the most blurred gaussian. Also to show the results, I had to normalize the Laplacian from levels 0 to 3. This is because the values can be negative, which comes out as black.
                 </p>
 
                 <div className="space-y-8 mt-8">
@@ -1134,10 +1136,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
             {/* WHAT I LEARNED */}
             <section className="py-4">
               <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-6">
-                What I learned from this project
+                What I learned from this project!
               </h2>
               <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                This project showed me how much can be done with classical image-processing techniques, without treating image manipulation as a black box or reaching immediately for machine learning. Convolution, frequency filtering, and Gaussian and Laplacian stacks provide practical ways to detect edges, sharpen images, create hybrid illusions, and blend images smoothly. These experiments made the role of frequency in visual effects more intuitive and showed how foundational techniques can produce results often associated with modern apps.
+                I learned that image processing is not just a black box or something you have to use ML to achieve. There are a lot of novel techniques based on exploiting frequency and other methods to achieve an effect that I used to see on the Internet or in mobile apps. For example, we use Gaussian-based ideas for blending the seams of two images, or sharpening and creating cool hybrid images.  It was also interesting to see how we can pick different kernel sizes, sigma values, alpha values, or different ways to write convolutions. It truly explains how we have to fine-tune these numbers to get the desired results, especially for the hybrid images. Another cool thing I learned was from reading the paper and the pyramid method of doing the multiresolution blending, it is always nice to learn about other potential solutions to a problem even if I didn't use them. I believe sometimes we forget how we can make a lot from these image ideas without bringing out the heavy guns. Frequency has been a really important topic in research, and this just goes to show the other fascinating things it can do that we dont necessarily learn in more math-focused classes.
               </p>
             </section>
           </article>
