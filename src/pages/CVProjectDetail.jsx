@@ -19,6 +19,11 @@ const projectDetails = {
     title: "Project 2: Filters, Frequencies, and Blending",
     description: "Filters and Edges, Unsharp Masking, Hybrid Images, and Multiresolution Blending.",
     tech: "Computer Vision, Convolution, Frequency Domain, Image Blending"
+  },
+  proj3: {
+    label: "Project 3",
+    title: "Proje3",
+    description: ""
   }
 };
 
@@ -1143,6 +1148,91 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
               </p>
             </section>
           </article>
+        </div>
+      </main>
+    );
+  }
+
+  if (projectId === "proj3") {
+    const partAImages = [
+      "1_1.png", "1_2a.png", "1_2b.png", "1_2c.png",
+      "1_3.png", "1_3b.png", "1_3c.png",
+      "1_4Original.png", "1_4a.png", "1_4b.png", "1_4c.png",
+      "1_5a.png", "1_5b.png", "1_6.png", "2_1.png",
+      "3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png",
+      "3_1d_web.png", "3_2.png", "3_2a.png", "3_2b.png", "Screenshot 2026-10-22 at 1.38.43 PM.png",
+      "Screenshot 2026-10-22 at 1.38.58 PM.png", "Screenshot 2026-10-22 at 1.39.11 PM.png", "p.png"
+    ];
+    const partAImageLabels = {
+      "1_1.png": "Figure 1.1",
+      "1_2a.png": "Figure 1.2(a)",
+      "1_2b.png": "Figure 1.2(b)",
+      "1_2c.png": "Figure 1.2(c)",
+      "1_3.png": "Figure 1.3",
+      "1_3b.png": "Figure 1.3(b)",
+      "1_3c.png": "Figure 1.3(c)",
+      "1_4Original.png": "Figure 1.4: Original image",
+      "1_4a.png": "Figure 1.4(a)",
+      "1_4b.png": "Figure 1.4(b)",
+      "1_4c.png": "Figure 1.4(c)",
+      "1_5a.png": "Figure 1.5(a)",
+      "1_5b.png": "Figure 1.5(b)",
+      "1_6.png": "Figure 1.6",
+      "2_1.png": "Figure 2.1",
+      "3_1a.png": "Figure 3.1(a)",
+      "3_1b.png": "Figure 3.1(b)",
+      "3_1c.png": "Figure 3.1(c)",
+      "3_1dHandDrawn1.png": "Figure 3.1(d): Hand-drawn result",
+      "3_1d_web.png": "Figure 3.1(d): Web result",
+      "3_2.png": "Figure 3.2",
+      "3_2a.png": "Figure 3.2(a)",
+      "3_2b.png": "Figure 3.2(b)",
+      "Screenshot 2026-10-22 at 1.38.43 PM.png": "Supplementary screenshot (1:38 PM)",
+      "Screenshot 2026-10-22 at 1.38.58 PM.png": "Supplementary screenshot (1:38 PM)",
+      "Screenshot 2026-10-22 at 1.39.11 PM.png": "Supplementary screenshot (1:39 PM)",
+      "p.png": "Additional result"
+    };
+    const partBImages = ["0.0", "0.2", "0.4", "0.5", "0.6", "0.8", "1.0"];
+
+    return (
+      <main className="relative min-h-screen max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors mb-10">
+          <ArrowLeft size={16} /> Back to Computer Vision projects
+        </Link>
+        <header className="mb-12">
+          <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-3">Project 3</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight">Proje3</h1>
+        </header>
+        <div className="space-y-12">
+          {["A", "B"].map((part) => (
+            <section key={part} className="bg-white/75 backdrop-blur-sm border border-slate-200/60 rounded-xl p-5 sm:p-8 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-2">Part {part}</p>
+              <h2 className="text-2xl font-bold text-slate-900">Part {part}</h2>
+              <div className="min-h-40 mt-6" aria-label={`Writeup space for Part ${part}`} />
+              {part === "A" ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
+                  {partAImages.map((fileName) => (
+                    <figure key={fileName}>
+                      <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${fileName}`} className="w-full rounded-lg border border-slate-200" loading="lazy" />
+                      <figcaption className="text-xs text-slate-500 mt-2">{partAImageLabels[fileName]}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-6">
+                  <h3 className="text-xl font-semibold text-slate-800 mb-4">Part 1.2</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {partBImages.map((sigma) => (
+                      <figure key={sigma}>
+                        <img src={`/proj3b/part1_2/sigma-${sigma}.png`} alt={`Part 1.2 result with sigma ${sigma}`} className="w-full rounded-lg border border-slate-200" loading="lazy" />
+                        <figcaption className="text-xs text-slate-500 mt-2">σ = {sigma}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          ))}
         </div>
       </main>
     );

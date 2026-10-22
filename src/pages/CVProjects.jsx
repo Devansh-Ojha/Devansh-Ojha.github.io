@@ -20,6 +20,12 @@ const projects = [
     description: "Filters and Edges, Unsharp Masking, Hybrid Images, and Multiresolution Blending.",
     tech: ["Computer Vision", "Convolution", "Frequencies", "Blending"],
     to: "/cvproj/proj2"
+  },
+  {
+    title: "Proje3",
+    description: "Part A and Part B",
+    tech: [],
+    to: "/cvproj/proj3"
   }
 ];
 
