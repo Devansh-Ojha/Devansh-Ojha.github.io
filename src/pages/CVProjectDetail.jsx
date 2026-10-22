@@ -1217,10 +1217,12 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                     <section key={title} className={`${index > 0 ? "border-t border-slate-200 pt-8" : ""}`}>
                       <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
                       <div className="min-h-32 mt-3" aria-label={`Writeup space for ${title}`} />
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-8">
                         {images.map((fileName) => (
-                          <figure key={fileName}>
-                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="w-full rounded-lg border border-slate-200" loading="lazy" />
+                          <figure key={fileName} className="w-full max-w-4xl mx-auto">
+                            <div className="aspect-[16/9] w-full flex items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                              <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="max-w-full max-h-full object-contain" loading="lazy" />
+                            </div>
                             <figcaption className="text-xs text-slate-500 mt-2">{partAImageLabels[fileName]}</figcaption>
                           </figure>
                         ))}
@@ -1232,10 +1234,12 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <div className="mt-6">
                   <h3 className="text-xl font-semibold text-slate-800 mb-4">Part 1.2</h3>
                   <div className="min-h-32 mb-5" aria-label="Writeup space for Part 1.2" />
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-8">
                     {partBImages.map((sigma) => (
-                      <figure key={sigma}>
-                        <img src={`/proj3b/part1_2/sigma-${sigma}.png`} alt={`Part 1.2 result with sigma ${sigma}`} className="w-full rounded-lg border border-slate-200" loading="lazy" />
+                      <figure key={sigma} className="w-full max-w-4xl mx-auto">
+                        <div className="aspect-[16/9] w-full flex items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                          <img src={`/proj3b/part1_2/sigma-${sigma}.png`} alt={`Part 1.2 result with sigma ${sigma}`} className="max-w-full max-h-full object-contain" loading="lazy" />
+                        </div>
                         <figcaption className="text-xs text-slate-500 mt-2">σ = {sigma}</figcaption>
                       </figure>
                     ))}
