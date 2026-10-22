@@ -1154,14 +1154,17 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
   }
 
   if (projectId === "proj3") {
-    const partAImages = [
-      "1_1.png", "1_2a.png", "1_2b.png", "1_2c.png",
-      "1_3.png", "1_3b.png", "1_3c.png",
-      "1_4Original.png", "1_4a.png", "1_4b.png", "1_4c.png",
-      "1_5a.png", "1_5b.png", "1_6.png", "2_1.png",
-      "3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png",
-      "3_1d_web.png", "3_2.png", "3_2a.png", "3_2b.png", "Screenshot 2026-10-22 at 1.38.43 PM.png",
-      "Screenshot 2026-10-22 at 1.38.58 PM.png", "Screenshot 2026-10-22 at 1.39.11 PM.png", "p.png"
+    const partASections = [
+      { title: "Part 1.1", images: ["1_1.png"] },
+      { title: "Part 1.2", images: ["1_2a.png", "1_2b.png", "1_2c.png"] },
+      { title: "Part 1.3", images: ["1_3.png", "1_3b.png", "1_3c.png"] },
+      { title: "Part 1.4", images: ["1_4Original.png", "1_4a.png", "1_4b.png", "1_4c.png"] },
+      { title: "Part 1.5", images: ["1_5a.png", "1_5b.png"] },
+      { title: "Part 1.6", images: ["1_6.png"] },
+      { title: "Part 2.1", images: ["2_1.png"] },
+      { title: "Part 3.1", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png", "3_1d_web.png"] },
+      { title: "Part 3.2", images: ["3_2.png", "3_2a.png", "3_2b.png"] },
+      { title: "Additional images", images: ["Screenshot 2026-10-22 at 1.38.43 PM.png", "Screenshot 2026-10-22 at 1.38.58 PM.png", "Screenshot 2026-10-22 at 1.39.11 PM.png", "p.png"] }
     ];
     const partAImageLabels = {
       "1_1.png": "Figure 1.1",
@@ -1208,19 +1211,27 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
             <section key={part} className="bg-white/75 backdrop-blur-sm border border-slate-200/60 rounded-xl p-5 sm:p-8 shadow-sm">
               <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-2">Part {part}</p>
               <h2 className="text-2xl font-bold text-slate-900">Part {part}</h2>
-              <div className="min-h-40 mt-6" aria-label={`Writeup space for Part ${part}`} />
               {part === "A" ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
-                  {partAImages.map((fileName) => (
-                    <figure key={fileName}>
-                      <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${fileName}`} className="w-full rounded-lg border border-slate-200" loading="lazy" />
-                      <figcaption className="text-xs text-slate-500 mt-2">{partAImageLabels[fileName]}</figcaption>
-                    </figure>
+                <div className="mt-8 space-y-10">
+                  {partASections.map(({ title, images }, index) => (
+                    <section key={title} className={`${index > 0 ? "border-t border-slate-200 pt-8" : ""}`}>
+                      <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
+                      <div className="min-h-32 mt-3" aria-label={`Writeup space for ${title}`} />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {images.map((fileName) => (
+                          <figure key={fileName}>
+                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="w-full rounded-lg border border-slate-200" loading="lazy" />
+                            <figcaption className="text-xs text-slate-500 mt-2">{partAImageLabels[fileName]}</figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    </section>
                   ))}
                 </div>
               ) : (
                 <div className="mt-6">
                   <h3 className="text-xl font-semibold text-slate-800 mb-4">Part 1.2</h3>
+                  <div className="min-h-32 mb-5" aria-label="Writeup space for Part 1.2" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {partBImages.map((sigma) => (
                       <figure key={sigma}>
