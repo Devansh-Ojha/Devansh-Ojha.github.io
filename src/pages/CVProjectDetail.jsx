@@ -1157,7 +1157,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
     const partASections = [
       { title: "1.1 Constructing Noisy Training Inputs", images: ["1_1.png", "p.png"] },
       { title: "1.2 Classical Denoising", images: ["1_2a.png", "1_2b.png", "1_2c.png"] },
-      { title: "1.3 One-Step Denoising", images: ["1_3.png", "1_3b.png", "1_3c.png", "Screenshot 2026-10-22 at 1.38.43 PM.png", "Screenshot 2026-10-22 at 1.38.58 PM.png", "Screenshot 2026-10-22 at 1.39.11 PM.png"] },
+      { title: "1.3 One-Step Denoising", images: ["1_3.png", "1_3b.png", "1_3c.png"] },
       { title: "1.4 Visualizing Velocity", images: ["1_4Original.png", "1_4a.png", "1_4b.png", "1_4c.png"] },
       { title: "1.5 Iterative Denoising with Euler Sampling", images: ["1_5a.png", "1_5b.png"] },
       { title: "1.6 Generating Images from Noise", images: ["1_6.png"] },
