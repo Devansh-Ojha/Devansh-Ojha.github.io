@@ -1189,11 +1189,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       "3_1d_web.png": "Figure 3.1(d): Web result",
       "3_2.png": "Figure 3.2",
       "3_2a.png": "Figure 3.2(a)",
-      "3_2b.png": "Figure 3.2(b)",
-      "Screenshot 2026-10-22 at 1.38.43 PM.png": "Supplementary screenshot (1:38 PM)",
-      "Screenshot 2026-10-22 at 1.38.58 PM.png": "Supplementary screenshot (1:38 PM)",
-      "Screenshot 2026-10-22 at 1.39.11 PM.png": "Supplementary screenshot (1:39 PM)",
-      "p.png": "Additional result"
+      "3_2b.png": "Figure 3.2(b)"
     };
     const partBScreenshotImages = (folder, labels) => labels.map(([fileName, label]) => ({
       src: `/proj3b/${folder}/${encodeURIComponent(fileName)}`,
@@ -1284,8 +1280,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <div className="space-y-8">
                         {images.map((fileName) => (
                           <figure key={fileName} className="w-full max-w-3xl mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center">
-                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="block w-full max-h-[32rem] object-contain rounded" loading="lazy" />
-                            <figcaption className="mt-2 text-xs text-slate-500 italic">{partAImageLabels[fileName]}</figcaption>
+                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName] || "additional image"}`} className="block w-full max-h-[32rem] object-contain rounded" loading="lazy" />
+                            {partAImageLabels[fileName] && <figcaption className="mt-2 text-xs text-slate-500 italic">{partAImageLabels[fileName]}</figcaption>}
                           </figure>
                         ))}
                       </div>
