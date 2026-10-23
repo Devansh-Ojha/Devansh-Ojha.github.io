@@ -1282,10 +1282,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <div className="min-h-32 mt-3" aria-label={`Writeup space for ${title}`} />
                       <div className="space-y-8">
                         {images.map((fileName) => (
-                          <figure key={fileName} className="w-full max-w-4xl mx-auto">
-                            <div className="aspect-[16/9] w-full flex items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                              <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="max-w-full max-h-full object-contain" loading="lazy" />
-                            </div>
+                          <figure key={fileName} className="w-full max-w-3xl mx-auto">
+                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="block w-full max-h-[32rem] object-contain rounded-lg border border-slate-200" loading="lazy" />
                             <figcaption className="text-xs text-slate-500 mt-2">{partAImageLabels[fileName]}</figcaption>
                           </figure>
                         ))}
@@ -1301,10 +1299,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <div className="min-h-32 mt-3" aria-label={`Writeup space for ${title}`} />
                       <div className="space-y-8">
                         {images.map(({ src, label }) => (
-                          <figure key={src} className="w-full max-w-4xl mx-auto">
-                            <div className="aspect-[16/9] w-full flex items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                              <img src={src} alt={`${title}: ${label}`} className="max-w-full max-h-full object-contain" loading="lazy" />
-                            </div>
+                          <figure key={src} className="w-full max-w-3xl mx-auto">
+                            <img src={src} alt={`${title}: ${label}`} className="block w-full max-h-[32rem] object-contain rounded-lg border border-slate-200" loading="lazy" />
                             <figcaption className="text-xs text-slate-500 mt-2">{label}</figcaption>
                           </figure>
                         ))}
