@@ -1162,38 +1162,38 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       { title: "1.5 Iterative Denoising with Euler Sampling", images: ["1_5a.png", "1_5b.png"] },
       { title: "1.6 Generating Images from Noise", images: ["1_6.png"] },
       { title: "2.1 Classifier-Free Guidance (CFG)", images: ["2_1.png"] },
-      { title: "3.1 Image-to-Image Editing", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png", "3_1d_web.png"] },
+      { title: "3.1 Image-to-Image Editing", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1d_web.png", "3_1dHandDrawn1.png"] },
       { title: "3.2 Text-Guided Image Editing", images: ["3_2.png", "3_2a.png", "3_2b.png"] },
       { title: "3.3 Visual Anagrams", images: ["3_3a.png", "3_3b.png"] },
       { title: "3.4 Hybrid Images", images: [] },
       { title: "Reflection", images: [] }
     ];
     const partAImageLabels = {
-      "1_1.png": "Figure 1.1",
-      "1_2a.png": "Figure 1.2(a)",
-      "1_2b.png": "Figure 1.2(b)",
-      "1_2c.png": "Figure 1.2(c)",
-      "1_3.png": "Figure 1.3",
-      "1_3b.png": "Figure 1.3(b)",
-      "1_3c.png": "Figure 1.3(c)",
+      "1_1.png": "Figure 1.1: Original image and noisy versions at t = 0.25, 0.50, 0.75 (higher t keeps more of the image)",
+      "1_2a.png": "Figure 1.2(a): Noisy input at t = 0.25 vs Gaussian blur (sigma = 8)",
+      "1_2b.png": "Figure 1.2(b): Noisy input at t = 0.50 vs Gaussian blur (sigma = 4)",
+      "1_2c.png": "Figure 1.2(c): Noisy input at t = 0.75 vs Gaussian blur (sigma = 2)",
+      "1_3.png": "Figure 1.3(a): Original, noisy input, and one-step estimate at t = 0.25",
+      "1_3b.png": "Figure 1.3(b): Original, noisy input, and one-step estimate at t = 0.50",
+      "1_3c.png": "Figure 1.3(c): Original, noisy input, and one-step estimate at t = 0.75",
       "1_4Original.png": "Figure 1.4: Original image",
-      "1_4a.png": "Figure 1.4(a)",
-      "1_4b.png": "Figure 1.4(b)",
-      "1_4c.png": "Figure 1.4(c)",
-      "1_5a.png": "Figure 1.5(a)",
-      "1_5b.png": "Figure 1.5(b)",
-      "1_6.png": "Figure 1.6",
-      "2_1.png": "Figure 2.1",
-      "3_1a.png": "Figure 3.1(a)",
-      "3_1b.png": "Figure 3.1(b)",
-      "3_1c.png": "Figure 3.1(c)",
-      "3_1dHandDrawn1.png": "Figure 3.1(d): Hand-drawn result",
-      "3_1d_web.png": "Figure 3.1(d): Web result",
-      "3_2.png": "Figure 3.2",
-      "3_2a.png": "Figure 3.2(a)",
-      "3_2b.png": "Figure 3.2(b)",
-      "3_3a.png": "Figure 3.3(a)",
-      "3_3b.png": "Figure 3.3(b)"
+      "1_4a.png": "Figure 1.4(a): Noisy image, predicted update, ground-truth update, and RMS error heatmap at t = 0.25",
+      "1_4b.png": "Figure 1.4(b): Same four panels at t = 0.50",
+      "1_4c.png": "Figure 1.4(c): Same four panels at t = 0.75",
+      "1_5a.png": "Figure 1.5(a): Euler denoising trajectory starting at t = 0.50 (shown every 5 steps: t = 0.50, 0.60, 0.70, 0.80, 0.90, 1.00)",
+      "1_5b.png": "Figure 1.5(b): Comparison on the same t = 0.50 input: original, Gaussian blur, one-step, and Euler",
+      "1_6.png": "Figure 1.6: Five samples from pure noise with the prompt \"a high quality photo\" (seeds 180 to 184)",
+      "2_1.png": "Figure 2.1: Five CFG samples (w = 7) with the same seeds and prompt as 1.6",
+      "3_1a.png": "Figure 3.1(a): Campanile edited with \"a high quality photo\"",
+      "3_1b.png": "Figure 3.1(b): My image 1 (parrot) edited with \"a high quality photo\"",
+      "3_1c.png": "Figure 3.1(c): My image 2 edited with \"a high quality photo\"",
+      "3_1d_web.png": "Figure 3.1(d): Web image (whistling emoji) edited with \"a high quality photo\"",
+      "3_1dHandDrawn1.png": "Figure 3.1(e): Hand-drawn image 1 (sprouting plant)",
+      "3_2.png": "Figure 3.2(a): Campanile edited with \"a photograph of a rocket on a launch pad\"",
+      "3_2a.png": "Figure 3.2(b): Parrot edited with \"a painting of toucan on branch\"",
+      "3_2b.png": "Figure 3.2(c): Lighthouse image edited with \"a photograph of a lighthouse in a desert\"",
+      "3_3a.png": "Figure 3.3(a): Visual anagram: upright \"an oil painting of a vintage red pickup truck\"; rotated 180° \"an oil painting of a red wooden barn\"",
+      "3_3b.png": "Figure 3.3(b): Visual anagram: upright \"an oil painting of a stag with antlers\"; rotated 180° \"an oil painting of an oak tree in winter\""
     };
     const partAIntro = <p>For Part A of the project, I used the pretrained flow model provided to us. The goal is to learn how velocity can transform noise into an image on a natural manifold. We go from <i>t</i> = 0, which is pure noise, to <i>t</i> = 1, which is a clean image. In Part A, we use the pretrained model, so no training was needed. I wrote the code for the Euler step, interpolation, and CFG, which I then used to denoise and generate the images presented.</p>;
     const partAWriteups = {
@@ -1230,8 +1230,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         <p className="mt-4">The truck and barn one was a decent result, and I could easily see the barn and the vintage truck. The brown liquid at the bottom of the car acts as the roof when flipped, and the red color of the barn works well when flipped, creating the illusion. I think the only weird part was the entrance, as that didn’t translate that well. The stag and tree one worked beautifully: the antlers became branches, and the face became the trunk. I think this one was the best result, as the empty branches work well as antlers.</p>
       </div>,
       "3.4 Hybrid Images": <div className="space-y-4">
-        <div className="space-y-2"><p className="font-semibold text-slate-800"><strong>Image 1</strong></p><p>Hybrid image prompts:</p><ul className="ml-6 list-disc space-y-1"><li>Close: “a lithograph of a wolf howling”</li><li>Far away: “a lithograph of a skull”</li></ul><p>When I looked at the image, the wolf was howling. When I looked at it from afar, it looked like a skull.</p></div>
-        <div className="space-y-2"><p className="font-semibold text-slate-800"><strong>Image 2</strong></p><p>Hybrid image prompts:</p><ul className="ml-6 list-disc space-y-1"><li>Close up: “an oil painting of a pigeon”</li><li>Far away: “an oil painting of a mountain peak with snow”</li></ul><p>The image looks like a pigeon up close, and then it looks like a snowy mountain peak.</p></div>
+        <div className="space-y-2"><p className="font-semibold text-slate-800"><strong>Image 1</strong></p><p>Hybrid image prompts:</p><ul className="ml-6 list-disc space-y-1"><li>Close: “a lithograph of a wolf howling”</li><li>Far: “a lithograph of a skull”</li></ul><p>When I looked at the image, the wolf was howling. When I looked at it from afar, it looked like a skull.</p></div>
+        <div className="space-y-2"><p className="font-semibold text-slate-800"><strong>Image 2</strong></p><p>Hybrid image prompts:</p><ul className="ml-6 list-disc space-y-1"><li>Close: “an oil painting of a pigeon”</li><li>Far: “an oil painting of a mountain peak with snow”</li></ul><p>The image looks like a pigeon up close, and then it looks like a snowy mountain peak.</p></div>
         <p>What I noticed was that it was important to have similar shapes, because I tried doing a cow face and forest, but it didn’t come out so well. To create a hybrid, I kept the low frequencies of one prompt’s velocity and added the high frequencies of the other (its prediction minus its blur). I then used that combined velocity in the update. So the image looks like the low-frequency prompt from far away and the high-frequency prompt up close.</p>
       </div>,
       "Reflection": <p>For Part A the image editing stuff was super cool, it was interesting to see my images become the randomest object and how different it showed various different images. I also noticed that CFG made the portraits cleaner, but they all started looking the same though. The hybrids and anagrams took the most trial and error. They only worked when the two prompts had  possibly similar shapes.</p>
@@ -1275,6 +1275,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       },
       {
         title: "1.2 Using the UNet to Train a Denoiser",
+        caption: "Figure 1.2: Same digits with noise at sigma = 0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0 (one row per sigma)",
         images: ["0.0", "0.2", "0.4", "0.5", "0.6", "0.8", "1.0"].map((sigma) => ({
           src: `/proj3b/part1_2/sigma-${sigma}.png`,
           label: `σ = ${sigma}`
@@ -1283,29 +1284,30 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       {
         title: "1.2.1 Training",
         images: partBScreenshotImages("1_2_1", [
-          ["epoch1.png", "Epoch 1"],
-          ["epoch5.png", "Epoch 5"],
-          ["curve.png", "Training curve"]
+          ["epoch1.png", "Figure 1.2.1(a): Denoising results on the test set after epoch 1 (rows: clean, noisy sigma = 0.5, denoised)"],
+          ["epoch5.png", "Figure 1.2.1(b): Same after epoch 5"],
+          ["curve.png", "Figure 1.2.1(c): Training loss for the denoiser (sigma = 0.5). Blue is loss per step, orange is the 100-step moving average"]
         ])
       },
       {
         title: "1.2.2 Out-of-Distribution Testing",
+        caption: "Figure 1.2.2: Denoiser output on test digits at sigma = 0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0 (one row per sigma)",
         images: partBScreenshotImages("1_2_2", [
-          ["Screenshot 2026-10-22 at 4.16.00 PM.png", "Result 1"],
-          ["Screenshot 2026-10-22 at 4.16.12 PM.png", "Result 2"],
-          ["Screenshot 2026-10-22 at 4.16.43 PM.png", "Result 3"],
-          ["Screenshot 2026-10-22 at 4.17.00 PM.png", "Result 4"],
-          ["Screenshot 2026-10-22 at 4.17.20 PM.png", "Result 5"],
-          ["Screenshot 2026-10-22 at 4.17.29 PM.png", "Result 6"],
-          ["Screenshot 2026-10-22 at 4.17.37 PM.png", "Result 7"]
+          ["Screenshot 2026-10-22 at 4.16.00 PM.png", "σ = 0.0"],
+          ["Screenshot 2026-10-22 at 4.16.12 PM.png", "σ = 0.2"],
+          ["Screenshot 2026-10-22 at 4.16.43 PM.png", "σ = 0.4"],
+          ["Screenshot 2026-10-22 at 4.17.00 PM.png", "σ = 0.5"],
+          ["Screenshot 2026-10-22 at 4.17.20 PM.png", "σ = 0.6"],
+          ["Screenshot 2026-10-22 at 4.17.29 PM.png", "σ = 0.8"],
+          ["Screenshot 2026-10-22 at 4.17.37 PM.png", "σ = 1.0"]
         ])
       },
       {
         title: "1.2.3 Denoising Pure Noise",
         images: partBScreenshotImages("1_2_3", [
-          ["e1.png", "Epoch 1"],
-          ["e5.png", "Epoch 5"],
-          ["Screenshot 2026-10-22 at 4.33.25 PM.png", "Result"]
+          ["e1.png", "Figure 1.2.3(a): Pure-noise denoiser outputs after epoch 1 (top: noise input, bottom: output)"],
+          ["e5.png", "Figure 1.2.3(b): Same after epoch 5"],
+          ["Screenshot 2026-10-22 at 4.33.25 PM.png", "Figure 1.2.3(c): Training loss for denoising pure noise"]
         ])
       },
       {
@@ -1323,7 +1325,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         title: "2.2 Training the UNet",
         images: [
           partBDiagram("2_2.png", "Training algorithm"),
-          ...partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Result"]])
+          ...partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Figure 2.2: Training loss for the time-conditioned UNet"]])
         ]
       },
       {
@@ -1332,7 +1334,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
           partBDiagram("2_3.png", "Sampling algorithm"),
           ...["new1.png", "new2.png", "new3.png"].map((fileName, index) => ({
             src: `/proj3b/2_2/2_3/${fileName}`,
-            label: `Epoch ${index + 1}`
+            label: [`Figure 2.3(a): Time-conditioned samples after epoch 1`, "Figure 2.3(b): After epoch 5", "Figure 2.3(c): After epoch 10"][index]
           }))
         ]
       },
@@ -1343,19 +1345,20 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       {
         title: "2.5 Training the UNet",
         images: partBScreenshotImages("2_5", [
-          ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Class-conditioned UNet loss"]
+          ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Figure 2.5(a): Training loss for the class-conditioned UNet (with scheduler)"],
+          ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Figure 2.5(b): Training loss for the class-conditioned UNet without the scheduler (constant lr = 1e-3)"]
         ])
       },
       {
         title: "2.6 Sampling from the UNet",
+        caption: "Four samples of each digit, with CFG gamma = 5.",
         images: [
           partBDiagram("2_6.png", "Class-conditioned sampling algorithm"),
           ...partBScreenshotImages("2_5", [
-            ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Class no Scheduler loss rate"],
-            ["Screenshot 2026-10-22 at 5.05.27 PM.png", "CUNet: Epoch 1"],
-            ["Screenshot 2026-10-22 at 5.05.38 PM.png", "CUNet: Epoch 5"],
-            ["Screenshot 2026-10-22 at 5.05.52 PM.png", "CUNet: Epoch 10"],
-            ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Final results: No Scheduler"]
+            ["Screenshot 2026-10-22 at 5.05.27 PM.png", "Figure 2.6(a): Class-conditioned samples after epoch 1"],
+            ["Screenshot 2026-10-22 at 5.05.38 PM.png", "Figure 2.6(b): After epoch 5"],
+            ["Screenshot 2026-10-22 at 5.05.52 PM.png", "Figure 2.6(c): After epoch 10"],
+            ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Figure 2.6(d): After epoch 10 without the scheduler (constant lr = 1e-3)"]
           ])
         ]
       },
@@ -1390,8 +1393,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <div className="mb-6 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">{partAWriteups[title]}</div>
                       <div className="space-y-8">
                         {title === "3.4 Hybrid Images" ? [
-                          ["3_4a.png", "3_4a_64.png", "Figure 3.4(a)"],
-                          ["3_4b.png", "3_4b_64.png", "Figure 3.4(b)"]
+                          ["3_4a.png", "3_4a_64.png", "Figure 3.4(a): Hybrid image. Close: \"a lithograph of a wolf howling\"; far: \"a lithograph of a skull\" (full size and shrunk)"],
+                          ["3_4b.png", "3_4b_64.png", "Figure 3.4(b): Hybrid image. Close: \"an oil painting of a pigeon\"; far: \"an oil painting of mountain peak with snow\" (full size and shrunk)"]
                         ].map(([original, small, label]) => (
                           <figure key={original} className="w-full max-w-5xl mx-auto bg-white p-4 rounded-lg border border-slate-300 text-center">
                             <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
@@ -1417,7 +1420,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 </div>
               ) : (
                 <div className="space-y-10">
-                  {partBSections.map(({ title, images }, index) => (
+                  {partBSections.map(({ title, images, caption }, index) => (
                     <section key={title} className={index > 0 ? "border-t border-slate-200 pt-8" : ""}>
                       <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">{title}</h3>
                       <div className="mb-6 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">{partBWriteups[title]}</div>
@@ -1425,8 +1428,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                         {images.map(({ src, label }) => (
                           <figure key={src} className="w-full max-w-3xl mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center">
                             <img src={src} alt={`${title}: ${label}`} className="block w-full max-h-[32rem] object-contain rounded" loading="lazy" />
+                            <figcaption className="mt-2 text-xs text-slate-500 italic">{label}</figcaption>
                           </figure>
                         ))}
+                        {caption && <p className="mx-auto max-w-3xl text-center text-xs text-slate-500 italic">{caption}</p>}
                       </div>
                     </section>
                   ))}
