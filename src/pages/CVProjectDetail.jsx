@@ -1307,11 +1307,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         title: "2.3 Sampling from the UNet",
         images: [
           partBDiagram("2_3.png", "Sampling algorithm"),
-          ...partBScreenshotImages("2_2/2_3", [
-            ["ep1.png", "Epoch 1"],
-            ["ep2.png", "Epoch 2"],
-            ["ep3.png", "Epoch 3"]
-          ])
+          ...["new1.jpg", "new2.jpg", "new3.jpg"].map((fileName, index) => ({
+            src: `/${fileName}`,
+            label: `Epoch ${index + 1}`
+          }))
         ]
       },
       {
