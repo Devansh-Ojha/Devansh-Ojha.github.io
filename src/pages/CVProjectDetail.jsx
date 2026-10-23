@@ -1301,7 +1301,6 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                         {images.map(({ src, label }) => (
                           <figure key={src} className="w-full max-w-3xl mx-auto">
                             <img src={src} alt={`${title}: ${label}`} className="block w-full max-h-[32rem] object-contain rounded-lg border border-slate-200" loading="lazy" />
-                            <figcaption className="text-xs text-slate-500 mt-2">{label}</figcaption>
                           </figure>
                         ))}
                       </div>
