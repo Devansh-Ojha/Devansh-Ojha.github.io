@@ -1338,7 +1338,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       },
       {
         title: "2.4 Class Conditioning",
-        images: []
+        images: [partBDiagram("2_4_class_conditional_training.png", "Class-conditional training algorithm")]
       },
       {
         title: "2.5 Training the UNet",
