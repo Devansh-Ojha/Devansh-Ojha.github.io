@@ -1242,6 +1242,23 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       src: `/proj3b/diagrams/${fileName}`,
       label
     });
+    const partBIntro = <p>In this part our goal is to train our model on the handwritten dataset from MNIST. Specifically we are training a flow matching model here. We are making a Unet, then adding time conditioning to Unet and then class conditioning to our Unet.</p>;
+    const partBWriteups = {
+      "Part 1: Training a Single-Step Denoising UNet": <p>We first startup with a one step denoiser, this means given an image , we train denoiser so that it can map the image to clean image. To achieve this we use a L2 loss. Here D = Denoiser, z = given image and x is the clean image</p>,
+      "1.1 Implementing the UNet": <p>In this task I implemented the denoiser as an unconditional U-Net. To do this we use downsample and upsample blocks with skip connections. We take the input and then keep on downsampling until we reaches a 7x7 resolution. This then flattened into a 1x1 tensor and then unflattened back to 7x7 using a transposed convolution, I then upsample it back to the original. Skip connections are used to preserve details that might be lost from before. The goal is to learn the patterns  when the image is shrinked and then expand to original.</p>,
+      "1.2 Using the UNet to Train a Denoiser": <ul className="list-disc pl-6"><li>I added noise using sigma values of  0.0, 0.2, 0.4, 0.5, 0.6, 0.8, and 1.0. The digits stay readable up to 0.4, then it gets difficult around 0.5 to 0.6, and later are covered in noise.</li></ul>,
+      "1.2.1 Training": <p> The loss drops fast in the first couple hundred steps and flattens at about 0.01. After epoch 1 the denoised digits are already clean, and epoch 5 is a little sharper. The batch size was 256, Adam learning rate was 1e-4, hidden dimension was 128 and noise sigma 0.5. I used MSE loss for output and clean image comparison for the plot.</p>,
+      "1.2.2 Out-of-Distribution Testing": <p>It works well up to about sigma = 0.6. At sigma = 0.8 the strokes break and get distorted, and at the highest noise the digits are badly damaged. It was only trained at sigma  0.5, so it struggles with higher noise.</p>,
+      "1.2.3 Denoising Pure Noise": <div className="space-y-4"><p>At epoch 1 and epoch 5, every output is the super blurry structure and it doesn't matter what the input noise is. Another thing was that the Loss plateaus at about 0.07. Pure noise tells the model nothing about which digit to draw, so under MSE the best it can do is output the center. This means the average of all the training images. This is why one-step denoising can't generate different digits.</p><p>The stats used here were Dimensions 128, 5 epochs, batch size 256 and learning rate 1e-4. Input here was gaussian noise and the target we were trying for was a clean image.</p></div>,
+      "Part 2: Training a Flow Matching Model": <div className="space-y-3"><p>The main takeaway from the last part was tha single step denoise doesn't work that well for the generative task, this is because map the whole thing in ones step instead of doing it in small steps.</p><p>To fix this we we will be iteratively denoise the image using the Flow matching style</p></div>,
+      "2.1 Adding Time Conditioning to UNet": <p>I added time conditioning with two FCBlocks that embed the normalized t. The output of the first multiplies the unflatten features, and the second multiplies the first upsampled features. That way the network knows how noisy its input is.</p>,
+      "2.2 Training the UNet": <div className="space-y-4"><p>What I observed was that the loss starts very high and then drops, and then stays flat at a low value. One key thing to notice is that flow matching loss never gets near zero, the explanation for this is as the noise component of the target is unpredictable, it would never be perfect.</p><p>The stats used here were 10 epochs, batch size 64, dimensions 64 and learning rate 1e-2 (exponential decay) and sampling had 50 euler steps</p></div>,
+      "2.3 Sampling from the UNet": <p>At epoch 1 the samples are just scribbles that don't look like digits, kind of like a kid drew them. By epoch 5 a lot of them are recognizable, and by epoch 10 they're cleaner with smoother strokes. A few are still ambiguous or malformed. I think that's because the model has no class label, so it has to decide which digit to draw and draw it at the same time.</p>,
+      "2.4 Class Conditioning": <p>I added class conditioning to the time-conditioned UNet with two more FCBlocks that take a one-hot class vector. Then  their job is to modulate the unflatten features and the first upsampled features. This is similar to what time does. During sampling I run the model with and without the class and combine them with gamma = 5.</p>,
+      "2.5 Training the UNet": <div className="space-y-4"><p>The loss drops super fast in the starting steps, then it stays flatter, almost the same as the time-only curve. One thing to notice here is that it never gets close to zero. This is because the target includes random noise the model can't predict to the exact degree.</p><p>The stats uses for this were: 10 epochs , with dimensions 64, batch size 64, learning rate at 1e-2 with the exponential decay schedule.</p></div>,
+      "2.6 Sampling from the UNet": <div className="space-y-4"><p>When I looked at epoch 1 there were still weird digits present, but most were good. When we reach epoch 5 and 10 all ten classes, the results get clearer and easy to decipher. It gave us better result when comparing it to time-only UNet as the labels and CFG remove the guessing about the digit and makes it easier to predict</p><p>For the scenario with the scheduler removed. I trained a model for 10 epochs with a constant learning rate of 1e-3. I picked this because after some research about torch adam I found this is where the scheduler brings learning rate by the last epoch. Everything else was the same. If comparing both of them they both came out quite, with minor weird notches. If you were to ask me blindly which one is which, I couldn't have guessed. The loss curve for no-scheduler shows it starts way lower, around 1.25, and flattens out like with scheduler.</p></div>,
+      "Reflection": <p>I think the important thing I observed was that the one-step denoiser works for cleaning up noisy digits, but when the input is pure noise it just outputs the average digit. In Flow matching though it  fixes this by predicting a small velocity at each step instead of the whole image at once, so that we get sharp and also varied digits. Class Conditioning was also super interesting as  the time-only model still made some weird digits, but adding class labels and CFG made it significantly better. I learned the key is to have enough iteration and not to make big jumps.</p>
+    };
     const partBSections = [
       {
         title: "Part 1: Training a Single-Step Denoising UNet",
@@ -1290,6 +1307,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         ])
       },
       {
+        title: "Part 2: Training a Flow Matching Model",
+        images: []
+      },
+      {
         title: "2.1 Adding Time Conditioning to UNet",
         images: [
           partBDiagram("2_1.png", "Time-conditioned UNet"),
@@ -1314,6 +1335,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         ]
       },
       {
+        title: "2.4 Class Conditioning",
+        images: []
+      },
+      {
         title: "2.5 Training the UNet",
         images: partBScreenshotImages("2_5", [
           ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Class-conditioned UNet loss"]
@@ -1331,6 +1356,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
             ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Final results: No Scheduler"]
           ])
         ]
+      },
+      {
+        title: "Reflection",
+        images: []
       }
     ];
 
@@ -1350,6 +1379,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                 <section key={part} className="py-4">
                   <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-8 pb-3 border-b border-slate-200">Part {part}</h2>
               {part === "A" && <div className="mb-8 max-w-4xl rounded-lg border-l-2 border-blue-300 bg-white px-5 py-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.75] text-slate-600">{partAIntro}</div>}
+              {part === "B" && <div className="mb-8 max-w-4xl rounded-lg border-l-2 border-blue-300 bg-white px-5 py-4 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.75] text-slate-600">{partBIntro}</div>}
               {part === "A" ? (
                 <div className="space-y-10">
                   {partASections.map(({ title, images }, index) => (
@@ -1388,7 +1418,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   {partBSections.map(({ title, images }, index) => (
                     <section key={title} className={index > 0 ? "border-t border-slate-200 pt-8" : ""}>
                       <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">{title}</h3>
-                      <div className="min-h-32" aria-label={`Writeup space for ${title}`} />
+                      <div className="mb-6 max-w-4xl rounded-lg border border-slate-200 bg-slate-50/80 p-4 sm:p-5 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.75] text-slate-600">{partBWriteups[title]}</div>
                       <div className="space-y-8">
                         {images.map(({ src, label }) => (
                           <figure key={src} className="w-full max-w-3xl mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center">
