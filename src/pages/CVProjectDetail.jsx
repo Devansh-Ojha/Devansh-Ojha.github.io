@@ -1195,7 +1195,70 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       "Screenshot 2026-10-22 at 1.39.11 PM.png": "Supplementary screenshot (1:39 PM)",
       "p.png": "Additional result"
     };
-    const partBImages = ["0.0", "0.2", "0.4", "0.5", "0.6", "0.8", "1.0"];
+    const partBScreenshotImages = (folder, labels) => labels.map(([fileName, label]) => ({
+      src: `/proj3b/${folder}/${encodeURIComponent(fileName)}`,
+      label
+    }));
+    const partBSections = [
+      {
+        title: "Part 1.2",
+        images: ["0.0", "0.2", "0.4", "0.5", "0.6", "0.8", "1.0"].map((sigma) => ({
+          src: `/proj3b/part1_2/sigma-${sigma}.png`,
+          label: `σ = ${sigma}`
+        }))
+      },
+      {
+        title: "Part 1.2.1",
+        images: partBScreenshotImages("1_2_1", [
+          ["epoch1.png", "Epoch 1"],
+          ["epoch5.png", "Epoch 5"],
+          ["curve.png", "Training curve"]
+        ])
+      },
+      {
+        title: "Part 1.2.2",
+        images: partBScreenshotImages("1_2_2", [
+          ["Screenshot 2026-10-22 at 4.16.00 PM.png", "Screenshot · 4:16 PM"],
+          ["Screenshot 2026-10-22 at 4.16.12 PM.png", "Screenshot · 4:16 PM"],
+          ["Screenshot 2026-10-22 at 4.16.43 PM.png", "Screenshot · 4:16 PM"],
+          ["Screenshot 2026-10-22 at 4.17.00 PM.png", "Screenshot · 4:17 PM"],
+          ["Screenshot 2026-10-22 at 4.17.20 PM.png", "Screenshot · 4:17 PM"],
+          ["Screenshot 2026-10-22 at 4.17.29 PM.png", "Screenshot · 4:17 PM"],
+          ["Screenshot 2026-10-22 at 4.17.37 PM.png", "Screenshot · 4:17 PM"]
+        ])
+      },
+      {
+        title: "Part 1.2.3",
+        images: partBScreenshotImages("1_2_3", [
+          ["e1.png", "Epoch 1"],
+          ["e5.png", "Epoch 5"],
+          ["Screenshot 2026-10-22 at 4.33.25 PM.png", "Result screenshot · 4:33 PM"]
+        ])
+      },
+      {
+        title: "Part 2.2",
+        images: partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Result screenshot · 4:44 PM"]])
+      },
+      {
+        title: "Part 2.3",
+        images: partBScreenshotImages("2_2/2_3", [
+          ["ep1.png", "Epoch 1"],
+          ["ep2.png", "Epoch 2"],
+          ["ep3.png", "Epoch 3"]
+        ])
+      },
+      {
+        title: "Part 2.5",
+        images: partBScreenshotImages("2_5", [
+          ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Screenshot · 5:04 PM"],
+          ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Screenshot · 5:05 PM"],
+          ["Screenshot 2026-10-22 at 5.05.27 PM.png", "Screenshot · 5:05 PM"],
+          ["Screenshot 2026-10-22 at 5.05.38 PM.png", "Screenshot · 5:05 PM"],
+          ["Screenshot 2026-10-22 at 5.05.52 PM.png", "Screenshot · 5:05 PM"],
+          ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Screenshot · 5:06 PM"]
+        ])
+      }
+    ];
 
     return (
       <main className="relative min-h-screen max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -1231,19 +1294,23 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   ))}
                 </div>
               ) : (
-                <div className="mt-6">
-                  <h3 className="text-xl font-semibold text-slate-800 mb-4">Part 1.2</h3>
-                  <div className="min-h-32 mb-5" aria-label="Writeup space for Part 1.2" />
-                  <div className="space-y-8">
-                    {partBImages.map((sigma) => (
-                      <figure key={sigma} className="w-full max-w-4xl mx-auto">
-                        <div className="aspect-[16/9] w-full flex items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                          <img src={`/proj3b/part1_2/sigma-${sigma}.png`} alt={`Part 1.2 result with sigma ${sigma}`} className="max-w-full max-h-full object-contain" loading="lazy" />
-                        </div>
-                        <figcaption className="text-xs text-slate-500 mt-2">σ = {sigma}</figcaption>
-                      </figure>
-                    ))}
-                  </div>
+                <div className="mt-8 space-y-10">
+                  {partBSections.map(({ title, images }, index) => (
+                    <section key={title} className={`${index > 0 ? "border-t border-slate-200 pt-8" : ""}`}>
+                      <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
+                      <div className="min-h-32 mt-3" aria-label={`Writeup space for ${title}`} />
+                      <div className="space-y-8">
+                        {images.map(({ src, label }) => (
+                          <figure key={src} className="w-full max-w-4xl mx-auto">
+                            <div className="aspect-[16/9] w-full flex items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                              <img src={src} alt={`${title}: ${label}`} className="max-w-full max-h-full object-contain" loading="lazy" />
+                            </div>
+                            <figcaption className="text-xs text-slate-500 mt-2">{label}</figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    </section>
+                  ))}
                 </div>
               )}
             </section>
