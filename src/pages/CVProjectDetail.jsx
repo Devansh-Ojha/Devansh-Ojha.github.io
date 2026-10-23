@@ -22,7 +22,7 @@ const projectDetails = {
   },
   proj3: {
     label: "Project 3",
-    title: "Proje3",
+    title: "Fun with Flow Models",
     description: ""
   }
 };
@@ -1330,8 +1330,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         title: "2.3 Sampling from the UNet",
         images: [
           partBDiagram("2_3.png", "Sampling algorithm"),
-          ...["new1.jpg", "new2.jpg", "new3.jpg"].map((fileName, index) => ({
-            src: `/${fileName}`,
+          ...["new1.png", "new2.png", "new3.png"].map((fileName, index) => ({
+            src: `/proj3b/2_2/2_3/${fileName}`,
             label: `Epoch ${index + 1}`
           }))
         ]
@@ -1374,7 +1374,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
           <article className="max-w-5xl">
             <header className="mb-10 pb-6 border-b border-slate-200">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">03 / Project 3</p>
-              <h1 className="mt-2 text-[clamp(2.25rem,4vw,4.5rem)] font-light leading-[1.0] tracking-[-0.05em] text-slate-800">Proje3</h1>
+              <h1 className="mt-2 text-[clamp(2.25rem,4vw,4.5rem)] font-light leading-[1.0] tracking-[-0.05em] text-slate-800">Fun with Flow Models</h1>
             </header>
             <div className="space-y-10">
               {["A", "B"].map((part) => (

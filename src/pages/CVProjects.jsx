@@ -22,7 +22,7 @@ const projects = [
     to: "/cvproj/proj2"
   },
   {
-    title: "Proje3",
+    title: "Fun with Flow Models",
     description: "Part A and Part B",
     tech: [],
     to: "/cvproj/proj3"
