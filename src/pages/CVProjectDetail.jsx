@@ -1198,7 +1198,22 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       src: `/proj3b/${folder}/${encodeURIComponent(fileName)}`,
       label
     }));
+    const partBDiagram = (fileName, label) => ({
+      src: `/proj3b/diagrams/${fileName}`,
+      label
+    });
     const partBSections = [
+      {
+        title: "Part 1: Training a Single-Step Denoising UNet",
+        images: [partBDiagram("1.png", "Training loss equation")]
+      },
+      {
+        title: "1.1 Implementing the UNet",
+        images: [
+          partBDiagram("1_1.png", "UNet architecture"),
+          partBDiagram("1_1_2.png", "UNet operations")
+        ]
+      },
       {
         title: "1.2 Using the UNet to Train a Denoiser",
         images: ["0.0", "0.2", "0.4", "0.5", "0.6", "0.8", "1.0"].map((sigma) => ({
@@ -1235,27 +1250,47 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         ])
       },
       {
+        title: "2.1 Adding Time Conditioning to UNet",
+        images: [
+          partBDiagram("2_1.png", "Time-conditioned UNet"),
+          partBDiagram("2_1_1.png", "Conditioning block")
+        ]
+      },
+      {
         title: "2.2 Training the UNet",
-        images: partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Result"]])
+        images: [
+          partBDiagram("2_2.png", "Training algorithm"),
+          ...partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Result"]])
+        ]
       },
       {
         title: "2.3 Sampling from the UNet",
-        images: partBScreenshotImages("2_2/2_3", [
-          ["ep1.png", "Epoch 1"],
-          ["ep2.png", "Epoch 2"],
-          ["ep3.png", "Epoch 3"]
-        ])
+        images: [
+          partBDiagram("2_3.png", "Sampling algorithm"),
+          ...partBScreenshotImages("2_2/2_3", [
+            ["ep1.png", "Epoch 1"],
+            ["ep2.png", "Epoch 2"],
+            ["ep3.png", "Epoch 3"]
+          ])
+        ]
       },
       {
         title: "2.5 Training the UNet",
-        images: partBScreenshotImages("2_5", [
-          ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Result 1"],
-          ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Result 2"],
-          ["Screenshot 2026-10-22 at 5.05.27 PM.png", "Result 3"],
-          ["Screenshot 2026-10-22 at 5.05.38 PM.png", "Result 4"],
-          ["Screenshot 2026-10-22 at 5.05.52 PM.png", "Result 5"],
-          ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Result 6"]
-        ])
+        images: [
+          partBDiagram("2_5.png", "Class-conditioned training algorithm"),
+          ...partBScreenshotImages("2_5", [
+            ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Result 1"],
+            ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Result 2"],
+            ["Screenshot 2026-10-22 at 5.05.27 PM.png", "Result 3"],
+            ["Screenshot 2026-10-22 at 5.05.38 PM.png", "Result 4"],
+            ["Screenshot 2026-10-22 at 5.05.52 PM.png", "Result 5"],
+            ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Result 6"]
+          ])
+        ]
+      },
+      {
+        title: "2.6 Sampling from the UNet",
+        images: [partBDiagram("2_6.png", "Class-conditioned sampling algorithm")]
       }
     ];
 
