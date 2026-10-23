@@ -1218,13 +1218,13 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       {
         title: "Part 1.2.2",
         images: partBScreenshotImages("1_2_2", [
-          ["Screenshot 2026-10-22 at 4.16.00 PM.png", "Screenshot · 4:16 PM"],
-          ["Screenshot 2026-10-22 at 4.16.12 PM.png", "Screenshot · 4:16 PM"],
-          ["Screenshot 2026-10-22 at 4.16.43 PM.png", "Screenshot · 4:16 PM"],
-          ["Screenshot 2026-10-22 at 4.17.00 PM.png", "Screenshot · 4:17 PM"],
-          ["Screenshot 2026-10-22 at 4.17.20 PM.png", "Screenshot · 4:17 PM"],
-          ["Screenshot 2026-10-22 at 4.17.29 PM.png", "Screenshot · 4:17 PM"],
-          ["Screenshot 2026-10-22 at 4.17.37 PM.png", "Screenshot · 4:17 PM"]
+          ["Screenshot 2026-10-22 at 4.16.00 PM.png", "Result 1"],
+          ["Screenshot 2026-10-22 at 4.16.12 PM.png", "Result 2"],
+          ["Screenshot 2026-10-22 at 4.16.43 PM.png", "Result 3"],
+          ["Screenshot 2026-10-22 at 4.17.00 PM.png", "Result 4"],
+          ["Screenshot 2026-10-22 at 4.17.20 PM.png", "Result 5"],
+          ["Screenshot 2026-10-22 at 4.17.29 PM.png", "Result 6"],
+          ["Screenshot 2026-10-22 at 4.17.37 PM.png", "Result 7"]
         ])
       },
       {
@@ -1232,12 +1232,12 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         images: partBScreenshotImages("1_2_3", [
           ["e1.png", "Epoch 1"],
           ["e5.png", "Epoch 5"],
-          ["Screenshot 2026-10-22 at 4.33.25 PM.png", "Result screenshot · 4:33 PM"]
+          ["Screenshot 2026-10-22 at 4.33.25 PM.png", "Result"]
         ])
       },
       {
         title: "Part 2.2",
-        images: partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Result screenshot · 4:44 PM"]])
+        images: partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Result"]])
       },
       {
         title: "Part 2.3",
@@ -1250,12 +1250,12 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       {
         title: "Part 2.5",
         images: partBScreenshotImages("2_5", [
-          ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Screenshot · 5:04 PM"],
-          ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Screenshot · 5:05 PM"],
-          ["Screenshot 2026-10-22 at 5.05.27 PM.png", "Screenshot · 5:05 PM"],
-          ["Screenshot 2026-10-22 at 5.05.38 PM.png", "Screenshot · 5:05 PM"],
-          ["Screenshot 2026-10-22 at 5.05.52 PM.png", "Screenshot · 5:05 PM"],
-          ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Screenshot · 5:06 PM"]
+          ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Result 1"],
+          ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Result 2"],
+          ["Screenshot 2026-10-22 at 5.05.27 PM.png", "Result 3"],
+          ["Screenshot 2026-10-22 at 5.05.38 PM.png", "Result 4"],
+          ["Screenshot 2026-10-22 at 5.05.52 PM.png", "Result 5"],
+          ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Result 6"]
         ])
       }
     ];
