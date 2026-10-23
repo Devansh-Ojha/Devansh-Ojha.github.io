@@ -1155,16 +1155,17 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
 
   if (projectId === "proj3") {
     const partASections = [
-      { title: "Part 1.1", images: ["1_1.png"] },
-      { title: "Part 1.2", images: ["1_2a.png", "1_2b.png", "1_2c.png"] },
-      { title: "Part 1.3", images: ["1_3.png", "1_3b.png", "1_3c.png"] },
-      { title: "Part 1.4", images: ["1_4Original.png", "1_4a.png", "1_4b.png", "1_4c.png"] },
-      { title: "Part 1.5", images: ["1_5a.png", "1_5b.png"] },
-      { title: "Part 1.6", images: ["1_6.png"] },
-      { title: "Part 2.1", images: ["2_1.png"] },
-      { title: "Part 3.1", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png", "3_1d_web.png"] },
-      { title: "Part 3.2", images: ["3_2.png", "3_2a.png", "3_2b.png"] },
-      { title: "Additional images", images: ["Screenshot 2026-10-22 at 1.38.43 PM.png", "Screenshot 2026-10-22 at 1.38.58 PM.png", "Screenshot 2026-10-22 at 1.39.11 PM.png", "p.png"] }
+      { title: "1.1 Constructing Noisy Training Inputs", images: ["1_1.png", "p.png"] },
+      { title: "1.2 Classical Denoising", images: ["1_2a.png", "1_2b.png", "1_2c.png"] },
+      { title: "1.3 One-Step Denoising", images: ["1_3.png", "1_3b.png", "1_3c.png", "Screenshot 2026-10-22 at 1.38.43 PM.png", "Screenshot 2026-10-22 at 1.38.58 PM.png", "Screenshot 2026-10-22 at 1.39.11 PM.png"] },
+      { title: "1.4 Visualizing Velocity", images: ["1_4Original.png", "1_4a.png", "1_4b.png", "1_4c.png"] },
+      { title: "1.5 Iterative Denoising with Euler Sampling", images: ["1_5a.png", "1_5b.png"] },
+      { title: "1.6 Generating Images from Noise", images: ["1_6.png"] },
+      { title: "2.1 Classifier-Free Guidance (CFG)", images: ["2_1.png"] },
+      { title: "3.1 Image-to-Image Editing", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png", "3_1d_web.png"] },
+      { title: "3.2 Text-Guided Image Editing", images: ["3_2.png", "3_2a.png", "3_2b.png"] },
+      { title: "3.3 Visual Anagrams", images: [] },
+      { title: "3.4 Hybrid Images", images: [] }
     ];
     const partAImageLabels = {
       "1_1.png": "Figure 1.1",
@@ -1197,14 +1198,14 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
     }));
     const partBSections = [
       {
-        title: "Part 1.2",
+        title: "1.2 Using the UNet to Train a Denoiser",
         images: ["0.0", "0.2", "0.4", "0.5", "0.6", "0.8", "1.0"].map((sigma) => ({
           src: `/proj3b/part1_2/sigma-${sigma}.png`,
           label: `σ = ${sigma}`
         }))
       },
       {
-        title: "Part 1.2.1",
+        title: "1.2.1 Training",
         images: partBScreenshotImages("1_2_1", [
           ["epoch1.png", "Epoch 1"],
           ["epoch5.png", "Epoch 5"],
@@ -1212,7 +1213,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         ])
       },
       {
-        title: "Part 1.2.2",
+        title: "1.2.2 Out-of-Distribution Testing",
         images: partBScreenshotImages("1_2_2", [
           ["Screenshot 2026-10-22 at 4.16.00 PM.png", "Result 1"],
           ["Screenshot 2026-10-22 at 4.16.12 PM.png", "Result 2"],
@@ -1224,7 +1225,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         ])
       },
       {
-        title: "Part 1.2.3",
+        title: "1.2.3 Denoising Pure Noise",
         images: partBScreenshotImages("1_2_3", [
           ["e1.png", "Epoch 1"],
           ["e5.png", "Epoch 5"],
@@ -1232,11 +1233,11 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         ])
       },
       {
-        title: "Part 2.2",
+        title: "2.2 Training the UNet",
         images: partBScreenshotImages("2_2", [["Screenshot 2026-10-22 at 4.44.06 PM.png", "Result"]])
       },
       {
-        title: "Part 2.3",
+        title: "2.3 Sampling from the UNet",
         images: partBScreenshotImages("2_2/2_3", [
           ["ep1.png", "Epoch 1"],
           ["ep2.png", "Epoch 2"],
@@ -1244,7 +1245,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         ])
       },
       {
-        title: "Part 2.5",
+        title: "2.5 Training the UNet",
         images: partBScreenshotImages("2_5", [
           ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Result 1"],
           ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Result 2"],
