@@ -1164,7 +1164,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       { title: "2.1 Classifier-Free Guidance (CFG)", images: ["2_1.png"] },
       { title: "3.1 Image-to-Image Editing", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png", "3_1d_web.png"] },
       { title: "3.2 Text-Guided Image Editing", images: ["3_2.png", "3_2a.png", "3_2b.png"] },
-      { title: "3.3 Visual Anagrams", images: ["3_3a.png", "3_3b.png"] },
+      { title: "3.3 Visual Anagrams", images: ["3_3a.png", "3_3b.png", "3_3c.png", "3_3d.png"] },
       { title: "3.4 Hybrid Images", images: [] }
     ];
     const partAImageLabels = {
@@ -1192,7 +1192,9 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       "3_2a.png": "Figure 3.2(a)",
       "3_2b.png": "Figure 3.2(b)",
       "3_3a.png": "Figure 3.3(a)",
-      "3_3b.png": "Figure 3.3(b)"
+      "3_3b.png": "Figure 3.3(b)",
+      "3_3c.png": "Figure 3.3(c)",
+      "3_3d.png": "Figure 3.3(d)"
     };
     const partBScreenshotImages = (folder, labels) => labels.map(([fileName, label]) => ({
       src: `/proj3b/${folder}/${encodeURIComponent(fileName)}`,
@@ -1317,8 +1319,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                       <div className="min-h-32" aria-label={`Writeup space for ${title}`} />
                       <div className="space-y-8">
                         {images.map((fileName) => (
-                          <figure key={fileName} className="w-full max-w-3xl mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center">
-                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName] || "additional image"}`} className="block w-full max-h-[32rem] object-contain rounded" loading="lazy" />
+                          <figure key={fileName} className={`${fileName === "3_3c.png" || fileName === "3_3d.png" ? "w-fit" : "w-full max-w-3xl"} mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center`}>
+                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName] || "additional image"}`} className={`${fileName === "3_3c.png" || fileName === "3_3d.png" ? "w-16 h-16" : "block w-full max-h-[32rem]"} object-contain rounded`} loading="lazy" />
                             {partAImageLabels[fileName] && <figcaption className="mt-2 text-xs text-slate-500 italic">{partAImageLabels[fileName]}</figcaption>}
                           </figure>
                         ))}
