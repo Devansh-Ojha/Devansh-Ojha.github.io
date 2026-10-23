@@ -1194,6 +1194,46 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       "3_3a.png": "Figure 3.3(a)",
       "3_3b.png": "Figure 3.3(b)"
     };
+    const partAIntro = <p>For Part A of the project, I used the pretrained flow model provided to us. The goal is to learn how velocity can transform noise into an image on a natural manifold. We go from <i>t</i> = 0, which is pure noise, to <i>t</i> = 1, which is a clean image. In Part A, we use the pretrained model, so no training was needed. I wrote the code for the Euler step, interpolation, and CFG, which I then used to denoise and generate the images presented.</p>;
+    const partAWriteups = {
+      "1.1 Constructing Noisy Training Inputs": <p>For this part, we interpolate a clean image and noise using the formula <i>x</i><sub>t</sub> = (1 − <i>t</i>)<i>e</i> + <i>t x</i><sub>1</sub>. I observed that at <i>t</i> = 0.25, the noise is dominant in the image, making it hard to figure out what the image is. At 0.75, it gets a little grainy with noise and has a little less contrast. This makes sense according to the formula: the noise power would decrease as we increase <i>t</i>. The color looked washed out because there is “less of the real image” left after processing, so it looks bland.</p>,
+      "1.2 Classical Denoising": <p>One thing to note from the result is that at <i>t</i> = 0.25 with σ = 8, we get almost nothing, and the image of the parrot is almost unrecognizable. It is better at <i>t</i> = 0.75 with σ = 2. At <i>t</i> = 0.50 and σ = 4, it is a transition, and the features and overall structure look soft. The more noise there is, the worse the blur makes the image look. You can’t see any proper details of the parrot when there is more noise; only when there is less noise does the blur still show any solid structure of the parrot.</p>,
+      "1.3 One-Step Denoising": <p>One thing I saw was that at <i>t</i> = 0.75, the one-step result is clean and really close to the original. Looking at <i>t</i> = 0.25 and 0.50, though, the images look like they came from Pokémon and are super smooth and blurred. The fine details are gone. The reason they look smooth is that one prediction is trying to jump to a clean image, which makes it uncanny. At <i>t</i> = 0.25, it is the average of every possibility for the image, so the details are not picked. At a later stage, like 0.75, we don’t have this problem, and there is a velocity toward the actual cleaner image.</p>,
+      "1.4 Visualizing Velocity": <p>The outlines in the RGB RMS were clearly visible at <i>t</i> = 0.25, faded a little at <i>t</i> = 0.50, and were much less visible at <i>t</i> = 0.75. What remained was primarily the railing, a few features, and the feet. This is what I expected because less noise would mean a better prediction by the model.</p>,
+      "1.5 Iterative Denoising with Euler Sampling": <p>What I saw here was that at <i>t</i> = 0.50, the image was very noisy, but it slowly got better, and at <i>t</i> = 1.0, it was clean. The fine details started coming through around <i>t</i> = 0.9. Compared with the blur and one-step results, the Euler result is the sharpest and has better texture, I feel.</p>,
+      "1.6 Generating Images from Noise": <p>The generic prompt primarily favors white race portraits of humans, showing only their upper bodies. Most of them look uncanny, and some even have distorted faces. Most are also facing away from the screen, and most wear plain T-shirts (such as white and black).</p>,
+      "2.1 Classifier-Free Guidance (CFG)": <p>From this section, I noticed that the CFG images are better and cleaner. They look mostly natural, with small defects. The images are also facing us rather than away from us. The quality is better, but most of them look similar (like the morphism lecture we talked about).</p>,
+      "3.1 Image-to-Image Editing": <div className="space-y-4">
+        <p><strong>Image-to-image editing</strong></p>
+        <p><strong>Campanile:</strong> At <i>t</i> = 0.02, only a pale white shape is left. From 0.04 to 0.10, there is a tower, but in a totally different landscape. From <i>t</i> = 0.14 on, it is close to the original, and by 0.25 to 0.50, the clock and arches are back in the result.</p>
+        <p><strong>My image 1 (parrot):</strong> At <i>t</i> = 0.02, the parrot is gone completely, and it has turned into a smiling man (this was kind of funny, lol). From 0.04 to 0.10, there is a weird mix of distorted shapes. The parrot comes back around <i>t</i> = 0.14 and is almost identical to the original by 0.25 to 0.50. Also, at <i>t</i> = 0.25, it looks like a Pokémon (just wanted to mention this).</p>
+        <p><strong>My image 2 (lighthouse/tower scene):</strong> At <i>t</i> = 0.02, it turned into a person holding something cubical, and from 0.04 to 0.06, it became a mountain landscape. Around <i>t</i> = 0.10, a tower shows up, like the one in Seattle, in the mountains, and from 0.14 on, it gets close to my original photo.</p>
+        <p><strong>Web:</strong> For the web image, I picked an image of an emoji that looks as if it is whistling. In the result at <i>t</i> = 0.06, the eyes were distorted into some letters. Later, it seems the lines on the emoji were gone, and it was a smoother, lighter variation of blue compared with the starting point.</p>
+        <p><strong>Hand-drawn image 1:</strong> I made an image of a sprouting plant. It was quite interesting to see that at iteration <i>t</i> = 0.02, it turned into some kind of iPad/tablet structure, and at <i>t</i> = 0.06, into a laptop with a charger. At <i>t</i> = 0.10, it looks just a bit realistic, though not completely, with weird symbols at the bottom.</p>
+        <p><strong>Hand-drawn image 2:</strong> I made a blue drawing of a bowling ball. It was interesting to see that it was first transformed into a woman with an Afro-like hairstyle and, at <i>t</i> = 0.06, into something like carrom board pieces, which look a bit realistic. Again, at <i>t</i> = 0.10, it looks the best, according to me.</p>
+      </div>,
+      "3.2 Text-Guided Image Editing": <div className="space-y-4">
+        <ul className="list-disc pl-6 space-y-2">
+          <li>For the Campanile, at <i>t</i> = 0.02 to 0.04, it is a rocket on a launch pad. From <i>t</i> = 0.06 to 0.14, the tower turns into a white rocket but keeps the same framing. By 0.25 to 0.50, it is mostly just the tower again.</li>
+          <li>For the parrots, at least you get a clear toucan. At <i>t</i> = 0.14, it is a toucan-parrot mix that keeps the original colors. At 0.25 to 0.50, it is the parrot with a less “painty” look, but at <i>t</i> = 0.50, it is a bit distorted at the beak. The prompt I used was “a painting of a toucan on a branch.”</li>
+          <li>For the lighthouse image, at low <i>t</i>, it is a lighthouse in a desert. At mid <i>t</i>, it is a lighthouse with the original’s trees and layout. By 0.50, it is again almost the original scene.</li>
+        </ul>
+        <p>I noticed that when <i>t</i> is lower, the result follows the prompt. When <i>t</i> is higher, the original is more visible, and mid <i>t</i> (around 0.06 to 0.14) is where the best mix of both worlds is.</p>
+      </div>,
+      "3.3 Visual Anagrams": <div className="space-y-4">
+        <p>For this part, my prompts were as follows:</p>
+        <ol className="list-decimal pl-6 space-y-2">
+          <li>For the first image, the upright prompt was “an oil painting of a vintage red pickup truck,” and the rotated prompt was “an oil painting of a red wooden barn.”</li>
+          <li>For the second image, the upright prompt was “an oil painting of a stag with antlers,” and the rotated prompt was “an oil painting of an oak tree in winter.”</li>
+        </ol>
+        <p>The truck and barn one was a decent result, and I could easily see the barn and the vintage truck. The brown liquid at the bottom of the car acts as the roof when flipped, and the red color of the barn works well when flipped, creating the illusion. I think the only weird part was the entrance, as that didn’t translate that well. The stag and tree one worked beautifully: the antlers became branches, and the face became the trunk. I think this one was the best result, as the empty branches work well as antlers.</p>
+      </div>,
+      "3.4 Hybrid Images": <div className="space-y-4">
+        <div><p><strong>Image 1</strong></p><p>Hybrid image prompts:</p><ul className="list-disc pl-6"><li>Close: “a lithograph of a wolf howling”</li><li>Far away: “a lithograph of a skull”</li></ul><p>When I looked at the image, the wolf was howling. When I looked at it from afar, it looked like a skull.</p></div>
+        <div><p><strong>Image 2</strong></p><p>Hybrid image prompts:</p><ul className="list-disc pl-6"><li>Close up: “an oil painting of a pigeon”</li><li>Far away: “an oil painting of a mountain peak with snow”</li></ul><p>The image looks like a pigeon up close, and then it looks like a snowy mountain peak.</p></div>
+        <p>What I noticed was that it was important to have similar shapes, because I tried doing a cow face and forest, but it didn’t come out so well. To create a hybrid, I kept the low frequencies of one prompt’s velocity and added the high frequencies of the other (its prediction minus its blur). I then used that combined velocity in the update. So the image looks like the low-frequency prompt from far away and the high-frequency prompt up close.</p>
+      </div>
+    };
     const partBScreenshotImages = (folder, labels) => labels.map(([fileName, label]) => ({
       src: `/proj3b/${folder}/${encodeURIComponent(fileName)}`,
       label
@@ -1309,21 +1349,27 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
               {["A", "B"].map((part) => (
                 <section key={part} className="py-4">
                   <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-8 pb-3 border-b border-slate-200">Part {part}</h2>
+              {part === "A" && <div className="mb-8 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">{partAIntro}</div>}
               {part === "A" ? (
                 <div className="space-y-10">
                   {partASections.map(({ title, images }, index) => (
                     <section key={title} className={index > 0 ? "border-t border-slate-200 pt-8" : ""}>
                       <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">{title}</h3>
-                      <div className="min-h-32" aria-label={`Writeup space for ${title}`} />
+                      <div className="mb-6 text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">{partAWriteups[title]}</div>
                       <div className="space-y-8">
                         {title === "3.4 Hybrid Images" ? [
                           ["3_4a.png", "3_4a_64.png", "Figure 3.4(a)"],
                           ["3_4b.png", "3_4b_64.png", "Figure 3.4(b)"]
                         ].map(([original, small, label]) => (
-                          <figure key={original} className="w-full max-w-5xl mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center">
-                            <div className="flex items-center justify-center gap-4">
-                              <img src={`/project3a/${original}`} alt={`Project 3A: ${label} original image`} className="block w-full max-w-3xl max-h-[32rem] object-contain rounded" loading="lazy" />
-                              <img src={`/project3a/${small}`} alt={`Project 3A: ${label} 64 by 64 image`} className="block w-16 h-16 shrink-0 object-contain rounded" loading="lazy" />
+                          <figure key={original} className="w-full max-w-5xl mx-auto bg-white p-4 rounded-lg border border-slate-300 text-center">
+                            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+                              <div className="min-w-0 rounded-md border border-slate-200 bg-slate-50 p-2">
+                                <img src={`/project3a/${original}`} alt={`Project 3A: ${label} original image`} className="block w-full max-h-[32rem] object-contain rounded" loading="lazy" />
+                              </div>
+                              <div className="flex flex-col items-center gap-2 rounded-md border border-slate-200 bg-slate-50 p-2">
+                                <img src={`/project3a/${small}`} alt={`Project 3A: ${label} 64 by 64 image`} className="block w-16 h-16 object-contain border border-slate-300 rounded bg-white" loading="lazy" />
+                                <span className="text-[10px] text-slate-500">64 × 64</span>
+                              </div>
                             </div>
                             <figcaption className="mt-2 text-xs text-slate-500 italic">{label}</figcaption>
                           </figure>
