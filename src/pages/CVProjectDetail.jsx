@@ -1164,7 +1164,7 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       { title: "2.1 Classifier-Free Guidance (CFG)", images: ["2_1.png"] },
       { title: "3.1 Image-to-Image Editing", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png", "3_1d_web.png"] },
       { title: "3.2 Text-Guided Image Editing", images: ["3_2.png", "3_2a.png", "3_2b.png"] },
-      { title: "3.3 Visual Anagrams", images: [] },
+      { title: "3.3 Visual Anagrams", images: ["3_3a.png", "3_3b.png"] },
       { title: "3.4 Hybrid Images", images: [] }
     ];
     const partAImageLabels = {
@@ -1190,7 +1190,9 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       "3_1d_web.png": "Figure 3.1(d): Web result",
       "3_2.png": "Figure 3.2",
       "3_2a.png": "Figure 3.2(a)",
-      "3_2b.png": "Figure 3.2(b)"
+      "3_2b.png": "Figure 3.2(b)",
+      "3_3a.png": "Figure 3.3(a)",
+      "3_3b.png": "Figure 3.3(b)"
     };
     const partBScreenshotImages = (folder, labels) => labels.map(([fileName, label]) => ({
       src: `/proj3b/${folder}/${encodeURIComponent(fileName)}`,
