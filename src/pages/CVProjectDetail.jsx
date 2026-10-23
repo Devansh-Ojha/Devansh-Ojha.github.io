@@ -1165,7 +1165,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       { title: "3.1 Image-to-Image Editing", images: ["3_1a.png", "3_1b.png", "3_1c.png", "3_1dHandDrawn1.png", "3_1d_web.png"] },
       { title: "3.2 Text-Guided Image Editing", images: ["3_2.png", "3_2a.png", "3_2b.png"] },
       { title: "3.3 Visual Anagrams", images: ["3_3a.png", "3_3b.png"] },
-      { title: "3.4 Hybrid Images", images: [] }
+      { title: "3.4 Hybrid Images", images: [] },
+      { title: "Reflection", images: [] }
     ];
     const partAImageLabels = {
       "1_1.png": "Figure 1.1",
@@ -1232,7 +1233,8 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
         <div className="rounded-lg border border-slate-200 bg-white p-4 sm:p-5"><p className="mb-3 text-sm font-semibold text-slate-900"><strong>Image 1</strong></p><p className="text-xs font-medium uppercase tracking-[0.16em] text-blue-600">Hybrid image prompts:</p><ul className="my-2 space-y-1 border-l-2 border-blue-200 pl-4"><li>Close: “a lithograph of a wolf howling”</li><li>Far away: “a lithograph of a skull”</li></ul><p className="mt-3">When I looked at the image, the wolf was howling. When I looked at it from afar, it looked like a skull.</p></div>
         <div className="rounded-lg border border-slate-200 bg-white p-4 sm:p-5"><p className="mb-3 text-sm font-semibold text-slate-900"><strong>Image 2</strong></p><p className="text-xs font-medium uppercase tracking-[0.16em] text-blue-600">Hybrid image prompts:</p><ul className="my-2 space-y-1 border-l-2 border-blue-200 pl-4"><li>Close up: “an oil painting of a pigeon”</li><li>Far away: “an oil painting of a mountain peak with snow”</li></ul><p className="mt-3">The image looks like a pigeon up close, and then it looks like a snowy mountain peak.</p></div>
         <p className="rounded-lg border-l-2 border-blue-300 bg-white px-4 py-3">What I noticed was that it was important to have similar shapes, because I tried doing a cow face and forest, but it didn’t come out so well. To create a hybrid, I kept the low frequencies of one prompt’s velocity and added the high frequencies of the other (its prediction minus its blur). I then used that combined velocity in the update. So the image looks like the low-frequency prompt from far away and the high-frequency prompt up close.</p>
-      </div>
+      </div>,
+      "Reflection": <p>For Part A the image editing stuff was super cool, it was interesting to see my images become the randomest object and how different it showed various different images. I also noticed that CFG made the portraits cleaner, but they all started looking the same though. The hybrids and anagrams took the most trial and error. They only worked when the two prompts had  possibly similar shapes.</p>
     };
     const partBScreenshotImages = (folder, labels) => labels.map(([fileName, label]) => ({
       src: `/proj3b/${folder}/${encodeURIComponent(fileName)}`,
