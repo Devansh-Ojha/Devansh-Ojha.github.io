@@ -1261,30 +1261,31 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
     ];
 
     return (
-      <main className="relative min-h-screen max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors mb-10">
-          <ArrowLeft size={16} /> Back to Computer Vision projects
-        </Link>
-        <header className="mb-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-3">Project 3</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight">Proje3</h1>
-        </header>
-        <div className="space-y-12">
-          {["A", "B"].map((part) => (
-            <section key={part} className="bg-white/75 backdrop-blur-sm border border-slate-200/60 rounded-xl p-5 sm:p-8 shadow-sm">
-              <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-2">Part {part}</p>
-              <h2 className="text-2xl font-bold text-slate-900">Part {part}</h2>
+      <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-light text-slate-600 hover:text-blue-600 transition-colors mb-10">
+            <ArrowLeft size={16} /> Back to Computer Vision projects
+          </Link>
+          <article className="max-w-5xl">
+            <header className="mb-10 pb-6 border-b border-slate-200">
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">03 / Project 3</p>
+              <h1 className="mt-2 text-[clamp(2.25rem,4vw,4.5rem)] font-light leading-[1.0] tracking-[-0.05em] text-slate-800">Proje3</h1>
+            </header>
+            <div className="space-y-10">
+              {["A", "B"].map((part) => (
+                <section key={part} className="py-4">
+                  <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-light tracking-[-0.04em] leading-[1.1] text-slate-900 mb-8 pb-3 border-b border-slate-200">Part {part}</h2>
               {part === "A" ? (
-                <div className="mt-8 space-y-10">
+                <div className="space-y-10">
                   {partASections.map(({ title, images }, index) => (
-                    <section key={title} className={`${index > 0 ? "border-t border-slate-200 pt-8" : ""}`}>
-                      <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
-                      <div className="min-h-32 mt-3" aria-label={`Writeup space for ${title}`} />
+                    <section key={title} className={index > 0 ? "border-t border-slate-200 pt-8" : ""}>
+                      <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">{title}</h3>
+                      <div className="min-h-32" aria-label={`Writeup space for ${title}`} />
                       <div className="space-y-8">
                         {images.map((fileName) => (
-                          <figure key={fileName} className="w-full max-w-3xl mx-auto">
-                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="block w-full max-h-[32rem] object-contain rounded-lg border border-slate-200" loading="lazy" />
-                            <figcaption className="text-xs text-slate-500 mt-2">{partAImageLabels[fileName]}</figcaption>
+                          <figure key={fileName} className="w-full max-w-3xl mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center">
+                            <img src={`/project3a/${encodeURIComponent(fileName)}`} alt={`Project 3A: ${partAImageLabels[fileName]}`} className="block w-full max-h-[32rem] object-contain rounded" loading="lazy" />
+                            <figcaption className="mt-2 text-xs text-slate-500 italic">{partAImageLabels[fileName]}</figcaption>
                           </figure>
                         ))}
                       </div>
@@ -1292,15 +1293,15 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   ))}
                 </div>
               ) : (
-                <div className="mt-8 space-y-10">
+                <div className="space-y-10">
                   {partBSections.map(({ title, images }, index) => (
-                    <section key={title} className={`${index > 0 ? "border-t border-slate-200 pt-8" : ""}`}>
-                      <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
-                      <div className="min-h-32 mt-3" aria-label={`Writeup space for ${title}`} />
+                    <section key={title} className={index > 0 ? "border-t border-slate-200 pt-8" : ""}>
+                      <h3 className="text-[clamp(1.25rem,1.8vw,1.75rem)] font-light tracking-[-0.03em] leading-[1.2] text-slate-900 mb-4">{title}</h3>
+                      <div className="min-h-32" aria-label={`Writeup space for ${title}`} />
                       <div className="space-y-8">
                         {images.map(({ src, label }) => (
-                          <figure key={src} className="w-full max-w-3xl mx-auto">
-                            <img src={src} alt={`${title}: ${label}`} className="block w-full max-h-[32rem] object-contain rounded-lg border border-slate-200" loading="lazy" />
+                          <figure key={src} className="w-full max-w-3xl mx-auto bg-white p-3 rounded-lg border border-slate-200 text-center">
+                            <img src={src} alt={`${title}: ${label}`} className="block w-full max-h-[32rem] object-contain rounded" loading="lazy" />
                           </figure>
                         ))}
                       </div>
@@ -1308,8 +1309,10 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
                   ))}
                 </div>
               )}
-            </section>
-          ))}
+                </section>
+              ))}
+            </div>
+          </article>
         </div>
       </main>
     );
