@@ -1315,21 +1315,22 @@ bultinstuff = convolve2d(image, bFilter, mode='full')`}</code>
       },
       {
         title: "2.5 Training the UNet",
-        images: [
-          partBDiagram("2_5.png", "Class-conditioned training algorithm"),
-          ...partBScreenshotImages("2_5", [
-            ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Result 1"],
-            ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Result 2"],
-            ["Screenshot 2026-10-22 at 5.05.27 PM.png", "Result 3"],
-            ["Screenshot 2026-10-22 at 5.05.38 PM.png", "Result 4"],
-            ["Screenshot 2026-10-22 at 5.05.52 PM.png", "Result 5"],
-            ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Result 6"]
-          ])
-        ]
+        images: partBScreenshotImages("2_5", [
+          ["Screenshot 2026-10-22 at 5.04.51 PM.png", "Class-conditioned UNet loss"]
+        ])
       },
       {
         title: "2.6 Sampling from the UNet",
-        images: [partBDiagram("2_6.png", "Class-conditioned sampling algorithm")]
+        images: [
+          partBDiagram("2_6.png", "Class-conditioned sampling algorithm"),
+          ...partBScreenshotImages("2_5", [
+            ["Screenshot 2026-10-22 at 5.05.12 PM.png", "Class no Scheduler loss rate"],
+            ["Screenshot 2026-10-22 at 5.05.27 PM.png", "CUNet: Epoch 1"],
+            ["Screenshot 2026-10-22 at 5.05.38 PM.png", "CUNet: Epoch 5"],
+            ["Screenshot 2026-10-22 at 5.05.52 PM.png", "CUNet: Epoch 10"],
+            ["Screenshot 2026-10-22 at 5.06.02 PM.png", "Final results: No Scheduler"]
+          ])
+        ]
       }
     ];
 
