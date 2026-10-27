@@ -24,6 +24,11 @@ const projectDetails = {
     label: "Project 3",
     title: "Fun with Flow Models",
     description: ""
+  },
+  "proj4-part-a": {
+    label: "Project 4 · Part A",
+    title: "Project 4 Part A",
+    description: "Computer Vision Project 4, Part A."
   }
 };
 
@@ -103,6 +108,33 @@ const CVProjectDetail = () => {
         </div>
 
         <div className="mt-10 pt-5 border-t border-slate-200 text-sm text-slate-500"><span className="font-semibold text-slate-700">Tools:</span> Smartphone camera, zoom, still-image sequence, animated GIF</div>
+      </main>
+    );
+  }
+
+  if (projectId === "proj4-part-a") {
+    return (
+      <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-light text-slate-600 hover:text-blue-600 transition-colors mb-10">
+            <ArrowLeft size={16} /> Back to Computer Vision projects
+          </Link>
+
+          <article className="max-w-5xl">
+            <header className="mb-10 pb-6 border-b border-slate-200">
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">Project 4 · Part A</p>
+              <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
+                Project 4 Part A
+              </h1>
+            </header>
+
+            <section className="py-2">
+              <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
+                Computer Vision Project 4, Part A.
+              </p>
+            </section>
+          </article>
+        </div>
       </main>
     );
   }

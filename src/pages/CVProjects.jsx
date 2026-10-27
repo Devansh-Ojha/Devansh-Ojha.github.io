@@ -26,6 +26,12 @@ const projects = [
     description: "Part A and Part B",
     tech: [],
     to: "/cvproj/proj3"
+  },
+  {
+    title: "Project 4 Part A",
+    description: "Computer Vision Project 4, Part A.",
+    tech: [],
+    to: "/cvproj/proj4-part-a"
   }
 ];
 
