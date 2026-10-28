@@ -130,28 +130,28 @@ const CVProjectDetail = () => {
 
   if (projectId === "proj4-part-a") {
     const photoSets = [
-      { title: "Set 1 · Academic building", images: [["building-1.webp", "First view of the Undergraduate Academic Building", "View 1"], ["building-2.webp", "Overlapping second view of the Undergraduate Academic Building", "View 2"]] },
-      { title: "Set 2 · Church exterior", images: [["church-1.webp", "First view of the church exterior", "View 1"], ["church-2.webp", "Overlapping second view of the church exterior", "View 2"]] },
-      { title: "Set 3 · Interior", images: [["interior-1.webp", "First view of an interior lounge and storefront", "View 1"], ["interior-2.webp", "Overlapping second view of the interior lounge and storefront", "View 2"]] }
+      { title: "Set 1 · Church-like structure", images: [["church-1.webp", "First view of the church-like structure covered in graffiti and paintings", "View 1"], ["church-2.webp", "Overlapping second view of the church-like structure covered in graffiti and paintings", "View 2"]] },
+      { title: "Set 2 · Undergraduate and Pimentel-like buildings", images: [["building-1.webp", "First view of the newly constructed Undergraduate Academic Building and nearby Pimentel-like building", "View 1"], ["building-2.webp", "Overlapping second view of the newly constructed Undergraduate Academic Building and nearby Pimentel-like building", "View 2"]] },
+      { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", images: [["interior-1.webp", "First view from the Unit 3 courtyard, Priestley Hall, and Bear Market photo set", "View 1"], ["interior-2.webp", "Overlapping second view from the Unit 3 courtyard, Priestley Hall, and Bear Market photo set", "View 2"]] }
     ];
     const correspondenceSets = [
-      { title: "Academic building · 13 matches", images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
       { title: "Church exterior · 18 matches", images: [["church-matches-a.webp", "Church image with numbered point correspondences", "Reference image"], ["church-matches-b.webp", "Second church image with matching numbered point correspondences", "Image to align"]] },
+      { title: "Academic building · 13 matches", images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
       { title: "Interior · 17 matches", images: [["interior-matches-a.webp", "Interior reference image with numbered point correspondences", "Reference image"], ["interior-matches-b.webp", "Second interior image with matching numbered point correspondences", "Image to align"]] }
     ];
     const homographies = [
-      { title: "Building", direction: "IMG_2092 → IMG_2091", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
       { title: "Church", direction: "IMG_2078 → IMG_2077", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
+      { title: "Building", direction: "IMG_2092 → IMG_2091", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
       { title: "Interior", direction: "IMG_2115 → IMG_2114", rows: ["1.666145  -0.094733  -909.098111", "0.335535   1.435024  -262.845469", "0.000538  -0.000049  1.000000"] }
     ];
     const rectifications = [
-      { title: "Poster wall", source: ["rectification-poster-source.webp", "Poster wall before rectification"], nearest: ["poster-nearest.webp", "Poster wall rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.webp", "Poster wall rectified with bilinear interpolation"] },
-      { title: "Accessibility sign", source: ["rectification-sign-source.webp", "Accessibility sign before rectification"], nearest: ["sign-nearest.webp", "Accessibility sign rectified with nearest-neighbor interpolation"], bilinear: ["sign-bilinear.webp", "Accessibility sign rectified with bilinear interpolation"] }
+      { title: "Poster in my room", source: ["rectification-poster-source.webp", "Poster in Devansh's room before rectification"], nearest: ["poster-nearest.webp", "Poster in Devansh's room rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.webp", "Poster in Devansh's room rectified with bilinear interpolation"] },
+      { title: "Wheelchair sign next to the elevator", source: ["rectification-sign-source.webp", "Wheelchair sign next to the elevator before rectification"], nearest: ["sign-nearest.webp", "Wheelchair sign next to the elevator rectified with nearest-neighbor interpolation"], bilinear: ["sign-bilinear.webp", "Wheelchair sign next to the elevator rectified with bilinear interpolation"] }
     ];
     const mosaics = [
-      { title: "Mosaic 1 · Academic building", sources: [["building-1.webp", "Academic building source photograph, view 1", "Source 1"], ["building-2.webp", "Academic building source photograph, view 2", "Source 2"]], result: ["mosaic-building.webp", "Blended mosaic of the Undergraduate Academic Building"] },
-      { title: "Mosaic 2 · Church exterior", sources: [["church-1.webp", "Church source photograph, view 1", "Source 1"], ["church-2.webp", "Church source photograph, view 2", "Source 2"]], result: ["mosaic-church.webp", "Blended mosaic of the church exterior"] },
-      { title: "Mosaic 3 · Interior", sources: [["interior-1.webp", "Interior source photograph, view 1", "Source 1"], ["interior-2.webp", "Interior source photograph, view 2", "Source 2"]], result: ["mosaic-interior.webp", "Blended mosaic of the interior lounge and storefront"] }
+      { title: "Mosaic 1 · Church-like structure", sources: [["church-1.webp", "Church source photograph, view 1", "Source 1"], ["church-2.webp", "Church source photograph, view 2", "Source 2"]], result: ["mosaic-church.webp", "Blended mosaic of the church-like structure covered in graffiti and paintings"] },
+      { title: "Mosaic 2 · Undergraduate and Pimentel-like buildings", sources: [["building-1.webp", "Undergraduate building source photograph, view 1", "Source 1"], ["building-2.webp", "Undergraduate building source photograph, view 2", "Source 2"]], result: ["mosaic-building.webp", "Blended mosaic of the Undergraduate Academic Building and neighboring building"] },
+      { title: "Mosaic 3 · Unit 3 courtyard", sources: [["interior-1.webp", "Unit 3 courtyard source photograph, view 1", "Source 1"], ["interior-2.webp", "Unit 3 courtyard source photograph, view 2", "Source 2"]], result: ["mosaic-interior.webp", "Blended mosaic of the Unit 3 courtyard at night"] }
     ];
     return (
       <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
@@ -181,9 +181,11 @@ const CVProjectDetail = () => {
                 <div className="mb-5">
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.1 / Photograph pairs</p>
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Overlapping views</h2>
-                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
-                    Three overlapping image pairs provide projective views of the same scenes. Each pair is shown together so the shared details are easy to compare.
-                  </p>
+                  <div className="mt-2 max-w-3xl space-y-2 text-sm font-light leading-[1.7] text-slate-600">
+                    <p>In my first image set, I took pictures of a church-like structure covered in graffiti and paintings. For my second set, it shows the newly constructed undergraduate building next to a Pimentel lookalike building.</p>
+                    <p>For the third set of pictures, it shows Unit 3 courtyard at nighttime, and I took pictures of Priestley Hall and the Bear Market.</p>
+                    <p>To capture all the images, I kept the camera’s center of projection fixed and rotated it between shots, with the amount of overlap between the pictures as recommended in the spec (mine is around 50–65%). This allows me to capture the transformation for each pair as a homography.</p>
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
                   {photoSets.map(({ title, images }) => (
@@ -237,7 +239,7 @@ const CVProjectDetail = () => {
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.3 / Warp the images</p>
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Rectification and resampling</h2>
                   <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
-                    Inverse warping maps each output pixel back to the source image. Nearest-neighbor sampling is fast but can look blocky; bilinear sampling combines four neighbors for smoother edges, with a little more computation. The pairs below compare both methods on two planar scenes.
+                    For the rectification, I picked two images: one is from a poster in my room, and the other is the wheelchair sign next to the elevator.
                   </p>
                 </div>
                 <div className="space-y-5">
@@ -252,15 +254,25 @@ const CVProjectDetail = () => {
                     </div>
                   ))}
                 </div>
+                <div className="mt-5 rounded-lg border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
+                  <h3 className="text-sm font-medium text-slate-800">Interpolation trade-off</h3>
+                  <div className="mt-3 space-y-3 text-sm font-light leading-[1.7] text-slate-600">
+                    <p>In terms of what it seems like, bilinear produces better results for me. It was smoother and much cleaner.</p>
+                    <p>With nearest neighbor, you could see jagged stuff in the images because every output pixel copies a single source pixel. This is not a problem with bilinear blends because it uses the four neighbors, which removes most of that aliasing. But it is a bit slower and looks a bit softer in comparison.</p>
+                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, it took about 15.6 seconds versus 8.2 seconds for nearest neighbor (approximately 2× slower). For the second rectified image, it was around 151 seconds versus 130 seconds for nearest neighbor.</p>
+                  </div>
+                </div>
               </section>
 
               <section id="proj4-a4" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
                 <div className="mb-5">
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.4 / Blend the images</p>
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Three image mosaics</h2>
-                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
-                    Each result aligns a pair of photographs and blends their overlap with a Laplacian pyramid to soften visible seams. The source pair is included beside every mosaic.
-                  </p>
+                  <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
+                    <p>To do the mosaic part of the project, I first computed a homography, H, from the correspondences. One image is the reference and stays unwarped, and then I warp the other into the reference’s frame with bilinear inverse warping. This is because, as I noticed from the previous part, bilinear, even though slower, produced better results for my images, which were without jagged edges.</p>
+                    <p>I then computed the size of the combined canvas from the warped images’ bounding box and the reference image’s extent, and then placed both on it, based on the offsets I got from my computation.</p>
+                    <p>I then blended with an 8-level Laplacian pyramid using the warped images’ mask as the blend mask. The mask is then downsampled along with the images so that the low frequencies blend over a wider part of the images and high frequency over a narrower one, just like we did in Project 2. This helped me smoothen the edges for the image.</p>
+                  </div>
                 </div>
                 <div className="space-y-5">
                   {mosaics.map(({ title, sources: pair, result }) => (
