@@ -32,7 +32,7 @@ const projectDetails = {
   }
 };
 
-const Project4Image = ({ file, alt, caption, imageClassName = "aspect-[4/3]" }) => (
+const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64" }) => (
   <figure className="overflow-hidden rounded-lg border border-slate-200 bg-white">
     <a href={`/cvproj/proj4-part-a/${file}`} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${alt}`}>
       <img
@@ -187,12 +187,12 @@ const CVProjectDetail = () => {
                     <p>To capture all the images, I kept the camera’s center of projection fixed and rotated it between shots, with the amount of overlap between the pictures as recommended in the spec (mine is around 50–65%). This allows me to capture the transformation for each pair as a homography.</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-4">
                   {photoSets.map(({ title, images }) => (
                     <div key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                       <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
-                      <div className="grid grid-cols-2 gap-2">
-                        {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-36 sm:h-40" />)}
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" />)}
                       </div>
                     </div>
                   ))}
@@ -223,7 +223,7 @@ const CVProjectDetail = () => {
                     <div key={title} className="rounded-lg border border-slate-200 p-3 sm:p-4">
                       <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
                       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                        {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="aspect-[4/3]" />)}
+                        {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" />)}
                       </div>
                     </div>
                   ))}
@@ -273,9 +273,9 @@ const CVProjectDetail = () => {
                     <div key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4">
                       <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                        <Project4Image file={source[0]} alt={source[1]} caption="Input" imageClassName="h-56 sm:h-52" />
-                        <Project4Image file={nearest[0]} alt={nearest[1]} caption="Nearest neighbor" imageClassName="h-56 sm:h-52" />
-                        <Project4Image file={bilinear[0]} alt={bilinear[1]} caption="Bilinear" imageClassName="h-56 sm:h-52" />
+                        <Project4Image file={source[0]} alt={source[1]} caption="Input" imageClassName="h-56 sm:h-64" />
+                        <Project4Image file={nearest[0]} alt={nearest[1]} caption="Nearest neighbor" imageClassName="h-56 sm:h-64" />
+                        <Project4Image file={bilinear[0]} alt={bilinear[1]} caption="Bilinear" imageClassName="h-56 sm:h-64" />
                       </div>
                     </div>
                   ))}
@@ -302,14 +302,12 @@ const CVProjectDetail = () => {
                 </div>
                 <div className="space-y-5">
                   {mosaics.map(({ title, sources: pair, result }) => (
-                    <article key={title} className="grid gap-4 rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center">
-                      <div>
-                        <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
-                        <div className="grid grid-cols-2 gap-2">
-                          {pair.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-32 sm:h-36" />)}
-                        </div>
+                    <article key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4">
+                      <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                        {pair.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" />)}
+                        <Project4Image file={result[0]} alt={result[1]} caption="Blended result" imageClassName="h-56 sm:h-64" />
                       </div>
-                      <Project4Image file={result[0]} alt={result[1]} caption="Blended result" imageClassName="h-52 sm:h-60" />
                     </article>
                   ))}
                 </div>
