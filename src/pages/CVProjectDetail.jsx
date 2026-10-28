@@ -137,7 +137,7 @@ const CVProjectDetail = () => {
     const correspondenceSets = [
       { title: "Church exterior · 18 matches", images: [["church-matches-a.webp", "Church image with numbered point correspondences", "Reference image"], ["church-matches-b.webp", "Second church image with matching numbered point correspondences", "Image to align"]] },
       { title: "Academic building · 13 matches", images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
-      { title: "Interior · 17 matches", images: [["interior-matches-a.webp", "Interior reference image with numbered point correspondences", "Reference image"], ["interior-matches-b.webp", "Second interior image with matching numbered point correspondences", "Image to align"]] }
+      { title: "Unit 3 courtyard · marked correspondences", images: [["interior-matches-a.webp", "Unit 3 courtyard image with manually marked point correspondences", "Reference image"], ["interior-matches-b.webp", "Second Unit 3 courtyard image with manually marked point correspondences", "Image to align"]] }
     ];
     const homographies = [
       { title: "Church", direction: "IMG_2078 → IMG_2077", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
