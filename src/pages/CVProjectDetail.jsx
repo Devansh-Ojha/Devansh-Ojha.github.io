@@ -298,7 +298,7 @@ const CVProjectDetail = () => {
                   <div className="mt-3 space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In terms of what it seems like, bilinear produces better results for me. It was smoother and much cleaner.</p>
                     <p>With nearest neighbor, you could see jagged stuff in the images because every output pixel copies a single source pixel. This is not a problem with bilinear blends because it uses the four neighbors, which removes most of that aliasing. But it is a bit slower and looks a bit softer in comparison.</p>
-                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, bilinear took about 15.6 seconds versus 8.2 seconds for nearest neighbor (approximately 2× slower). For the wheelchair sign, nearest neighbor took 10.6 seconds, while bilinear took 29.89491271100087 seconds.</p>
+                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, bilinear took about 15.6 seconds versus 8.2 seconds for nearest neighbor (approximately 2× slower). For the wheelchair sign, nearest neighbor took 10.6 seconds versus 29.9 seconds for bilinear, about 2.8× slower.</p>
                   </div>
                 </div>
               </section>
