@@ -207,11 +207,15 @@ const CVProjectDetail = () => {
                     Numbered labels identify the same feature in both images. Each point pair contributes two equations for the eight free homography parameters; the overdetermined systems are solved by least squares, with the final matrix entry fixed to 1.
                   </p>
                 </div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Linear system</p>
-                  <div className="mt-3 grid gap-3 text-sm text-slate-700 md:grid-cols-[auto_1fr] md:items-center">
-                    <span className="font-mono text-base font-medium">A h = b</span>
-                    <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-2 text-[11px] leading-relaxed text-slate-100">{`h = [h₁₁ h₁₂ h₁₃ h₂₁ h₂₂ h₂₃ h₃₁ h₃₂]ᵀ\n[x y 1 0 0 0 -ux -uy] h = u\n[0 0 0 x y 1 -vx -vy] h = v`}</pre>
+                <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">How computeH works</p>
+                  <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">
+                    In this project, we were asked to write the <code className="rounded bg-white px-1 py-0.5 font-mono text-xs text-slate-800">computeH</code> function. It takes two lists of corresponding points, one from each image, and returns a 3 × 3 homography matrix H. For a point (x, y) and its match (x′, y′), each pair gives two linear equations:
+                  </p>
+                  <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[11px] leading-[1.8] text-slate-100 sm:text-xs">{`[ x  y  1  0  0  0  -x·x′  -y·x′ ] · h = x′\n[ 0  0  0  x  y  1  -x·y′  -y·y′ ] · h = y′\nh = [a  b  c  d  e  f  g  h]ᵀ`}</pre>
+                  <div className="mt-3 space-y-2 text-sm font-light leading-[1.7] text-slate-600">
+                    <p>Then, when I stack these equations for the points, I get a matrix A (2n rows with 8 columns) and b, a vector with 2n entries. The system is Ah = b.</p>
+                    <p>The key detail here is to choose enough points so the system is overdetermined and then we can get the best result (thanks EECS 127). We then solve for h = (AᵀA)⁻¹Aᵀb. The values in h form H = [[a, b, c], [d, e, f], [g, h, 1]].</p>
                   </div>
                 </div>
                 <div className="mt-5 space-y-5">
@@ -231,6 +235,28 @@ const CVProjectDetail = () => {
                       <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.8] text-slate-100 sm:text-[11px]">{`H = [\n ${rows[0]}\n ${rows[1]}\n ${rows[2]}\n]`}</pre>
                     </div>
                   ))}
+                </div>
+                <div className="mt-5 rounded-lg border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
+                  <div className="mb-3">
+                    <h3 className="text-sm font-medium text-slate-800">Rectification example</h3>
+                    <p className="mt-1 text-xs font-light leading-relaxed text-slate-500">Four source corners are mapped to a 600 × 400 rectangle.</p>
+                  </div>
+                  <div className="grid gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+                    <div className="min-w-0">
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">A (8 rows × 8 columns)</p>
+                      <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[9px] leading-[1.7] text-slate-100 sm:text-[10px]">{`[[  278   902  1    0    0  0        0        0]\n [    0     0  0  278  902  1        0        0]\n [ 3273   181  1    0    0  0 -1963800  -108600]\n [    0     0  0 3273  181  1        0        0]\n [ 3142  4033  1    0    0  0 -1885200 -2419800]\n [    0     0  0 3142 4033  1 -1256800 -1613200]\n [  285  2979  1    0    0  0        0        0]\n [    0     0  0  285 2979  1  -114000 -1191600]]`}</pre>
+                    </div>
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">b (8 entries)</p>
+                        <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.7] text-slate-100">{`[0  0  600  0  600  400  0  400]`}</pre>
+                      </div>
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Recovered homography H</p>
+                        <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.7] text-slate-100">{`[[ 0.40407  -0.00136  -111.10205]\n [ 0.04843   0.20119  -194.94176]\n [ 0.00031  -0.00001    1.00000]]`}</pre>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </section>
 
