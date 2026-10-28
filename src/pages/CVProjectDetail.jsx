@@ -135,14 +135,14 @@ const CVProjectDetail = () => {
       { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", images: [["interior-1.webp", "First view from the Unit 3 courtyard, Priestley Hall, and Bear Market photo set", "View 1"], ["interior-2.webp", "Overlapping second view from the Unit 3 courtyard, Priestley Hall, and Bear Market photo set", "View 2"]] }
     ];
     const correspondenceSets = [
-      { title: "Church exterior · 18 matches", images: [["church-matches-a.webp", "Church image with numbered point correspondences", "Reference image"], ["church-matches-b.webp", "Second church image with matching numbered point correspondences", "Image to align"]] },
-      { title: "Academic building · 13 matches", images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
-      { title: "Unit 3 courtyard · marked correspondences", images: [["interior-matches-a.webp", "Unit 3 courtyard image with manually marked point correspondences", "Reference image"], ["interior-matches-b.webp", "Second Unit 3 courtyard image with manually marked point correspondences", "Image to align"]] }
+      { title: "Set 1 · Church-like structure", matches: 18, images: [["church-matches-a.webp", "Church image with numbered point correspondences", "Reference image"], ["church-matches-b.webp", "Second church image with matching numbered point correspondences", "Image to align"]] },
+      { title: "Set 2 · Undergraduate and Pimentel-like buildings", matches: 13, images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
+      { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", matches: 17, images: [["interior-matches-a.webp", "Unit 3 courtyard image with manually marked point correspondences", "Reference image"], ["interior-matches-b.webp", "Second Unit 3 courtyard image with manually marked point correspondences", "Image to align"]] }
     ];
     const homographies = [
-      { title: "Church", direction: "IMG_2078 → IMG_2077", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
-      { title: "Building", direction: "IMG_2092 → IMG_2091", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
-      { title: "Interior", direction: "IMG_2115 → IMG_2114", rows: ["1.666145  -0.094733  -909.098111", "0.335535   1.435024  -262.845469", "0.000538  -0.000049  1.000000"] }
+      { title: "Set 1 · Church-like structure", direction: "IMG_2078 → IMG_2077", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
+      { title: "Set 2 · Undergraduate and Pimentel-like buildings", direction: "IMG_2092 → IMG_2091", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
+      { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", direction: "IMG_2115 → IMG_2114", rows: ["1.666145  -0.094733  -909.098111", "0.335535   1.435024  -262.845469", "0.000538  -0.000049  1.000000"] }
     ];
     const rectifications = [
       { title: "Poster in my room", source: ["rectification-poster-source.webp", "Poster in Devansh's room before rectification"], nearest: ["poster-nearest.webp", "Poster in Devansh's room rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.webp", "Poster in Devansh's room rectified with bilinear interpolation"] },
@@ -219,9 +219,12 @@ const CVProjectDetail = () => {
                   </div>
                 </div>
                 <div className="mt-5 space-y-5">
-                  {correspondenceSets.map(({ title, images }) => (
+                  {correspondenceSets.map(({ title, matches, images }) => (
                     <div key={title} className="rounded-lg border border-slate-200 p-3 sm:p-4">
-                      <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
+                      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                        <h3 className="text-sm font-medium text-slate-800">{title}</h3>
+                        <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-500">{matches} matches</span>
+                      </div>
                       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                         {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" />)}
                       </div>
@@ -231,7 +234,8 @@ const CVProjectDetail = () => {
                 <div className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-3">
                   {homographies.map(({ title, direction, rows }) => (
                     <div key={title} className="min-w-0 rounded-lg border border-slate-200 bg-slate-50/70 p-3">
-                      <h3 className="text-sm font-medium text-slate-800">{title} <span className="font-normal text-slate-500">· {direction}</span></h3>
+                      <h3 className="text-sm font-medium leading-snug text-slate-800">{title}</h3>
+                      <p className="mt-1 text-xs text-slate-500">{direction}</p>
                       <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.8] text-slate-100 sm:text-[11px]">{`H = [\n ${rows[0]}\n ${rows[1]}\n ${rows[2]}\n]`}</pre>
                     </div>
                   ))}
@@ -285,7 +289,7 @@ const CVProjectDetail = () => {
                   <div className="mt-3 space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In terms of what it seems like, bilinear produces better results for me. It was smoother and much cleaner.</p>
                     <p>With nearest neighbor, you could see jagged stuff in the images because every output pixel copies a single source pixel. This is not a problem with bilinear blends because it uses the four neighbors, which removes most of that aliasing. But it is a bit slower and looks a bit softer in comparison.</p>
-                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, it took about 15.6 seconds versus 8.2 seconds for nearest neighbor (approximately 2× slower). For the second rectified image, it was around 151 seconds versus 130 seconds for nearest neighbor.</p>
+                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, bilinear took about 15.6 seconds versus 8.2 seconds for nearest neighbor (approximately 2× slower). For the wheelchair sign, nearest neighbor took 10.622112217000904 seconds, while bilinear took 29.89491271100087 seconds.</p>
                   </div>
                 </div>
               </section>
