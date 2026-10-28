@@ -29,8 +29,8 @@ const projects = [
   },
   {
     title: "Project 4 Part A",
-    description: "Computer Vision Project 4, Part A.",
-    tech: [],
+    description: "Image alignment, perspective warping, mosaics, and resampling.",
+    tech: ["Computer Vision", "Image Mosaics"],
     to: "/cvproj/proj4-part-a"
   }
 ];

@@ -32,6 +32,22 @@ const projectDetails = {
   }
 };
 
+const Project4Image = ({ file, alt, caption, imageClassName = "aspect-[4/3]" }) => (
+  <figure className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+    <a href={`/cvproj/proj4-part-a/${file}`} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${alt}`}>
+      <img
+        src={`/cvproj/proj4-part-a/${file}`}
+        alt={alt}
+        loading="lazy"
+        className={`w-full ${imageClassName} object-contain bg-slate-50 p-2`}
+      />
+    </a>
+    <figcaption className="border-t border-slate-100 px-3 py-2.5 text-xs leading-relaxed text-slate-500 sm:px-4">
+      {caption}
+    </figcaption>
+  </figure>
+);
+
 const CVProjectDetail = () => {
   const { projectId } = useParams();
   const project = projectDetails[projectId];
@@ -113,6 +129,20 @@ const CVProjectDetail = () => {
   }
 
   if (projectId === "proj4-part-a") {
+    const sourceImages = [
+      ["source-building-a.webp", "Undergraduate Academic Building photographed from the front", "Academic building · view 1"],
+      ["source-building-b.webp", "Undergraduate Academic Building photographed from a wider angle", "Academic building · view 2"],
+      ["source-church-a.webp", "Church photographed from across the street", "Church · view 1"],
+      ["source-church-b.webp", "Church photographed from a second angle", "Church · view 2"],
+      ["source-accessibility-sign.webp", "Accessibility sign beside a building entrance", "Accessibility sign"],
+      ["source-poster-wall.webp", "Wall covered with colorful illustrated posters", "Poster wall"]
+    ];
+    const mosaicImages = [
+      ["panorama-building.webp", "Wide image alignment result around the academic building", "Academic building · aligned view"],
+      ["panorama-church.webp", "Wide image alignment result around the church", "Church · aligned view"],
+      ["mosaic-building-evening.webp", "Evening building scene assembled into a mosaic", "Evening scene · mosaic 1"],
+      ["mosaic-building-evening-alt.webp", "Alternate evening building scene mosaic", "Evening scene · mosaic 2"]
+    ];
     return (
       <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -126,13 +156,76 @@ const CVProjectDetail = () => {
               <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
                 Project 4 Part A
               </h1>
+              <p className="mt-5 max-w-3xl text-[clamp(0.98rem,1.2vw,1.1rem)] font-light leading-[1.7] text-slate-600">
+                Image alignment and mosaic experiments, from choosing matching points to comparing warped views and resampling methods.
+              </p>
             </header>
 
-            <section className="py-2">
-              <p className="text-[clamp(0.95rem,1.2vw,1.1rem)] font-light leading-[1.6] text-slate-600">
-                Computer Vision Project 4, Part A.
-              </p>
-            </section>
+            <div className="space-y-8 sm:space-y-10">
+              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">01 / Inputs</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Source scenes</h2>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    A small set of building, street, and poster scenes used throughout the experiments. Select any image to open it at full size.
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+                  {sourceImages.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="aspect-[4/3]" />)}
+                </div>
+              </section>
+
+              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">02 / Alignment</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Point correspondences</h2>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    Matching locations are marked across the building views. These pairs show the points used to relate one image to another.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <Project4Image file="correspondences-building.webp" alt="Building image with selected point correspondences" caption="Building correspondence set · view 1" imageClassName="aspect-[4/3]" />
+                  <Project4Image file="correspondences-building-alt.webp" alt="Alternate building image with selected point correspondences" caption="Building correspondence set · view 2" imageClassName="aspect-[4/3]" />
+                </div>
+              </section>
+
+              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">03 / Results</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Warped views and mosaics</h2>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    The wide views show aligned scene content, followed by two mosaic results from an evening building scene.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  {mosaicImages.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="aspect-[16/10]" />)}
+                </div>
+              </section>
+
+              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">04 / Comparison</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Nearest-neighbor and bilinear sampling</h2>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    These paired results make the interpolation difference easy to inspect on both a poster image and a sign.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                  {[
+                    { title: "Poster", nearest: ["nearest-poster.webp", "Poster image resized with nearest-neighbor sampling"], bilinear: ["bilinear-poster.webp", "Poster image resized with bilinear sampling"] },
+                    { title: "Accessibility sign", nearest: ["nearest-sign.webp", "Accessibility sign resized with nearest-neighbor sampling"], bilinear: ["bilinear-sign.webp", "Accessibility sign resized with bilinear sampling"] }
+                  ].map(({ title, nearest, bilinear }) => (
+                    <div key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4">
+                      <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
+                      <div className="grid grid-cols-2 gap-3">
+                        <Project4Image file={nearest[0]} alt={nearest[1]} caption="Nearest neighbor" imageClassName="aspect-[4/3]" />
+                        <Project4Image file={bilinear[0]} alt={bilinear[1]} caption="Bilinear" imageClassName="aspect-[4/3]" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
           </article>
         </div>
       </main>
