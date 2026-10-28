@@ -27,7 +27,7 @@ const projectDetails = {
   },
   "proj4-part-a": {
     label: "Project 4 · Part A",
-    title: "Project 4 Part A",
+    title: "Image Warping and Mosaicing",
     description: "Computer Vision Project 4, Part A."
   }
 };
@@ -129,19 +129,29 @@ const CVProjectDetail = () => {
   }
 
   if (projectId === "proj4-part-a") {
-    const sourceImages = [
-      ["source-building-a.webp", "Undergraduate Academic Building photographed from the front", "Academic building · view 1"],
-      ["source-building-b.webp", "Undergraduate Academic Building photographed from a wider angle", "Academic building · view 2"],
-      ["source-church-a.webp", "Church photographed from across the street", "Church · view 1"],
-      ["source-church-b.webp", "Church photographed from a second angle", "Church · view 2"],
-      ["source-accessibility-sign.webp", "Accessibility sign beside a building entrance", "Accessibility sign"],
-      ["source-poster-wall.webp", "Wall covered with colorful illustrated posters", "Poster wall"]
+    const photoSets = [
+      { title: "Set 1 · Academic building", images: [["building-1.webp", "First view of the Undergraduate Academic Building", "View 1"], ["building-2.webp", "Overlapping second view of the Undergraduate Academic Building", "View 2"]] },
+      { title: "Set 2 · Church exterior", images: [["church-1.webp", "First view of the church exterior", "View 1"], ["church-2.webp", "Overlapping second view of the church exterior", "View 2"]] },
+      { title: "Set 3 · Interior", images: [["interior-1.webp", "First view of an interior lounge and storefront", "View 1"], ["interior-2.webp", "Overlapping second view of the interior lounge and storefront", "View 2"]] }
     ];
-    const mosaicImages = [
-      ["panorama-building.webp", "Wide image alignment result around the academic building", "Academic building · aligned view"],
-      ["panorama-church.webp", "Wide image alignment result around the church", "Church · aligned view"],
-      ["mosaic-building-evening.webp", "Evening building scene assembled into a mosaic", "Evening scene · mosaic 1"],
-      ["mosaic-building-evening-alt.webp", "Alternate evening building scene mosaic", "Evening scene · mosaic 2"]
+    const correspondenceSets = [
+      { title: "Academic building · 13 matches", images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
+      { title: "Church exterior · 18 matches", images: [["church-matches-a.webp", "Church image with numbered point correspondences", "Reference image"], ["church-matches-b.webp", "Second church image with matching numbered point correspondences", "Image to align"]] },
+      { title: "Interior · 17 matches", images: [["interior-matches-a.webp", "Interior reference image with numbered point correspondences", "Reference image"], ["interior-matches-b.webp", "Second interior image with matching numbered point correspondences", "Image to align"]] }
+    ];
+    const homographies = [
+      { title: "Building", direction: "IMG_2092 → IMG_2091", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
+      { title: "Church", direction: "IMG_2078 → IMG_2077", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
+      { title: "Interior", direction: "IMG_2115 → IMG_2114", rows: ["1.666145  -0.094733  -909.098111", "0.335535   1.435024  -262.845469", "0.000538  -0.000049  1.000000"] }
+    ];
+    const rectifications = [
+      { title: "Poster wall", source: ["rectification-poster-source.webp", "Poster wall before rectification"], nearest: ["poster-nearest.webp", "Poster wall rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.webp", "Poster wall rectified with bilinear interpolation"] },
+      { title: "Accessibility sign", source: ["rectification-sign-source.webp", "Accessibility sign before rectification"], nearest: ["sign-nearest.webp", "Accessibility sign rectified with nearest-neighbor interpolation"], bilinear: ["sign-bilinear.webp", "Accessibility sign rectified with bilinear interpolation"] }
+    ];
+    const mosaics = [
+      { title: "Mosaic 1 · Academic building", sources: [["building-1.webp", "Academic building source photograph, view 1", "Source 1"], ["building-2.webp", "Academic building source photograph, view 2", "Source 2"]], result: ["mosaic-building.webp", "Blended mosaic of the Undergraduate Academic Building"] },
+      { title: "Mosaic 2 · Church exterior", sources: [["church-1.webp", "Church source photograph, view 1", "Source 1"], ["church-2.webp", "Church source photograph, view 2", "Source 2"]], result: ["mosaic-church.webp", "Blended mosaic of the church exterior"] },
+      { title: "Mosaic 3 · Interior", sources: [["interior-1.webp", "Interior source photograph, view 1", "Source 1"], ["interior-2.webp", "Interior source photograph, view 2", "Source 2"]], result: ["mosaic-interior.webp", "Blended mosaic of the interior lounge and storefront"] }
     ];
     return (
       <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
@@ -154,74 +164,115 @@ const CVProjectDetail = () => {
             <header className="mb-10 pb-6 border-b border-slate-200">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">Project 4 · Part A</p>
               <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
-                Project 4 Part A
+                Image Warping and Mosaicing
               </h1>
               <p className="mt-5 max-w-3xl text-[clamp(0.98rem,1.2vw,1.1rem)] font-light leading-[1.7] text-slate-600">
-                Image alignment and mosaic experiments, from choosing matching points to comparing warped views and resampling methods.
+                I estimate projective transforms from image correspondences, rectify planar scenes, and combine overlapping photographs into panoramas.
               </p>
+              <nav aria-label="Project sections" className="mt-6 flex flex-wrap gap-2 text-xs font-medium text-slate-600">
+                {["A.1 Photograph pairs", "A.2 Homographies", "A.3 Warping", "A.4 Mosaics"].map((label, index) => (
+                  <a key={label} href={`#proj4-a${index + 1}`} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 transition-colors hover:border-blue-300 hover:text-blue-700">{label}</a>
+                ))}
+              </nav>
             </header>
 
             <div className="space-y-8 sm:space-y-10">
-              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+              <section id="proj4-a1" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
                 <div className="mb-5">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">01 / Inputs</p>
-                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Source scenes</h2>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.1 / Photograph pairs</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Overlapping views</h2>
                   <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
-                    A small set of building, street, and poster scenes used throughout the experiments. Select any image to open it at full size.
+                    Three overlapping image pairs provide projective views of the same scenes. Each pair is shown together so the shared details are easy to compare.
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
-                  {sourceImages.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="aspect-[4/3]" />)}
-                </div>
-              </section>
-
-              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
-                <div className="mb-5">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">02 / Alignment</p>
-                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Point correspondences</h2>
-                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
-                    Matching locations are marked across the building views. These pairs show the points used to relate one image to another.
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <Project4Image file="correspondences-building.webp" alt="Building image with selected point correspondences" caption="Building correspondence set · view 1" imageClassName="aspect-[4/3]" />
-                  <Project4Image file="correspondences-building-alt.webp" alt="Alternate building image with selected point correspondences" caption="Building correspondence set · view 2" imageClassName="aspect-[4/3]" />
-                </div>
-              </section>
-
-              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
-                <div className="mb-5">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">03 / Results</p>
-                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Warped views and mosaics</h2>
-                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
-                    The wide views show aligned scene content, followed by two mosaic results from an evening building scene.
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  {mosaicImages.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="aspect-[16/10]" />)}
-                </div>
-              </section>
-
-              <section className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
-                <div className="mb-5">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">04 / Comparison</p>
-                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Nearest-neighbor and bilinear sampling</h2>
-                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
-                    These paired results make the interpolation difference easy to inspect on both a poster image and a sign.
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                  {[
-                    { title: "Poster", nearest: ["nearest-poster.webp", "Poster image resized with nearest-neighbor sampling"], bilinear: ["bilinear-poster.webp", "Poster image resized with bilinear sampling"] },
-                    { title: "Accessibility sign", nearest: ["nearest-sign.webp", "Accessibility sign resized with nearest-neighbor sampling"], bilinear: ["bilinear-sign.webp", "Accessibility sign resized with bilinear sampling"] }
-                  ].map(({ title, nearest, bilinear }) => (
-                    <div key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+                  {photoSets.map(({ title, images }) => (
+                    <div key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                       <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
-                      <div className="grid grid-cols-2 gap-3">
-                        <Project4Image file={nearest[0]} alt={nearest[1]} caption="Nearest neighbor" imageClassName="aspect-[4/3]" />
-                        <Project4Image file={bilinear[0]} alt={bilinear[1]} caption="Bilinear" imageClassName="aspect-[4/3]" />
+                      <div className="grid grid-cols-2 gap-2">
+                        {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-36 sm:h-40" />)}
                       </div>
                     </div>
+                  ))}
+                </div>
+              </section>
+
+              <section id="proj4-a2" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.2 / Recover homographies</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Matched points and projective transforms</h2>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    Numbered labels identify the same feature in both images. Each point pair contributes two equations for the eight free homography parameters; the overdetermined systems are solved by least squares, with the final matrix entry fixed to 1.
+                  </p>
+                </div>
+                <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Linear system</p>
+                  <div className="mt-3 grid gap-3 text-sm text-slate-700 md:grid-cols-[auto_1fr] md:items-center">
+                    <span className="font-mono text-base font-medium">A h = b</span>
+                    <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-2 text-[11px] leading-relaxed text-slate-100">{`h = [h₁₁ h₁₂ h₁₃ h₂₁ h₂₂ h₂₃ h₃₁ h₃₂]ᵀ\n[x y 1 0 0 0 -ux -uy] h = u\n[0 0 0 x y 1 -vx -vy] h = v`}</pre>
+                  </div>
+                </div>
+                <div className="mt-5 space-y-5">
+                  {correspondenceSets.map(({ title, images }) => (
+                    <div key={title} className="rounded-lg border border-slate-200 p-3 sm:p-4">
+                      <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
+                      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                        {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="aspect-[4/3]" />)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-3">
+                  {homographies.map(({ title, direction, rows }) => (
+                    <div key={title} className="min-w-0 rounded-lg border border-slate-200 bg-slate-50/70 p-3">
+                      <h3 className="text-sm font-medium text-slate-800">{title} <span className="font-normal text-slate-500">· {direction}</span></h3>
+                      <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.8] text-slate-100 sm:text-[11px]">{`H = [\n ${rows[0]}\n ${rows[1]}\n ${rows[2]}\n]`}</pre>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section id="proj4-a3" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.3 / Warp the images</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Rectification and resampling</h2>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    Inverse warping maps each output pixel back to the source image. Nearest-neighbor sampling is fast but can look blocky; bilinear sampling combines four neighbors for smoother edges, with a little more computation. The pairs below compare both methods on two planar scenes.
+                  </p>
+                </div>
+                <div className="space-y-5">
+                  {rectifications.map(({ title, source, nearest, bilinear }) => (
+                    <div key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4">
+                      <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                        <Project4Image file={source[0]} alt={source[1]} caption="Input" imageClassName="h-56 sm:h-52" />
+                        <Project4Image file={nearest[0]} alt={nearest[1]} caption="Nearest neighbor" imageClassName="h-56 sm:h-52" />
+                        <Project4Image file={bilinear[0]} alt={bilinear[1]} caption="Bilinear" imageClassName="h-56 sm:h-52" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section id="proj4-a4" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.4 / Blend the images</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Three image mosaics</h2>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    Each result aligns a pair of photographs and blends their overlap with a Laplacian pyramid to soften visible seams. The source pair is included beside every mosaic.
+                  </p>
+                </div>
+                <div className="space-y-5">
+                  {mosaics.map(({ title, sources: pair, result }) => (
+                    <article key={title} className="grid gap-4 rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center">
+                      <div>
+                        <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
+                        <div className="grid grid-cols-2 gap-2">
+                          {pair.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-32 sm:h-36" />)}
+                        </div>
+                      </div>
+                      <Project4Image file={result[0]} alt={result[1]} caption="Blended result" imageClassName="h-52 sm:h-60" />
+                    </article>
                   ))}
                 </div>
               </section>
