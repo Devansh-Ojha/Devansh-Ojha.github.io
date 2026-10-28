@@ -222,10 +222,10 @@ const CVProjectDetail = () => {
                       <pre className="overflow-x-auto font-mono text-[11px] leading-[1.9] text-slate-100 sm:text-xs">{`x·d + y·e + f\n− x·y′·g − y·y′·h = y′`}</pre>
                     </div>
                   </div>
-                  <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">The unknown parameter vector is <span className="font-mono text-xs text-slate-800">q = [a, b, c, d, e, f, g, h]ᵀ</span>. Stacking the two rows from every matched point gives the system below.</p>
+                  <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">The unknown parameter vector is <span className="font-mono text-xs text-slate-800">h = [a, b, c, d, e, f, g, h]ᵀ</span>. Stacking the two rows from every matched point gives the system below.</p>
                   <div className="mt-3 space-y-2 text-sm font-light leading-[1.7] text-slate-600">
-                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system A q = b.</p>
-                    <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate q = (AᵀA)⁻¹Aᵀb (thanks EECS 127). We then place those eight values into H = [[a, b, c], [d, e, f], [g, h, 1]].</p>
+                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system Ah = b.</p>
+                    <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate h = (AᵀA)⁻¹Aᵀb (thanks EECS 127). We then place those eight values into H = [[a, b, c], [d, e, f], [g, h, 1]].</p>
                   </div>
                 </div>
                 <div className="mt-5 space-y-5">
