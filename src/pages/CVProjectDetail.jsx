@@ -224,7 +224,7 @@ const CVProjectDetail = () => {
                   </div>
                   <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">The unknown parameter vector is <span className="font-mono text-xs text-slate-800">h = [a, b, c, d, e, f, g, h]ᵀ</span>. Stacking the two rows from every matched point gives the system below.</p>
                   <div className="mt-3 space-y-2 text-sm font-light leading-[1.7] text-slate-600">
-                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system Ah = b.</p>
+                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system Ah = b, where h is the vector of the eight unknowns and b is the vector of target coordinates.</p>
                     <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate h = (AᵀA)⁻¹Aᵀb (thanks EECS 127). We then place those eight values into H = [[a, b, c], [d, e, f], [g, h, 1]].</p>
                   </div>
                 </div>
