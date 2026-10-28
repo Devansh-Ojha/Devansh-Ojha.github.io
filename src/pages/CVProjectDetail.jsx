@@ -140,9 +140,9 @@ const CVProjectDetail = () => {
       { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", matches: 17, images: [["interior-matches-a.webp", "Unit 3 courtyard image with manually marked point correspondences", "Reference image"], ["interior-matches-b.webp", "Second Unit 3 courtyard image with manually marked point correspondences", "Image to align"]] }
     ];
     const homographies = [
-      { title: "Set 1 · Church-like structure", direction: "IMG_2078 → IMG_2077", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
-      { title: "Set 2 · Undergraduate and Pimentel-like buildings", direction: "IMG_2092 → IMG_2091", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
-      { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", direction: "IMG_2115 → IMG_2114", rows: ["1.666145  -0.094733  -909.098111", "0.335535   1.435024  -262.845469", "0.000538  -0.000049  1.000000"] }
+      { title: "Set 1 · Church-like structure", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
+      { title: "Set 2 · Undergraduate and Pimentel-like buildings", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
+      { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", rows: ["1.666145  -0.094733  -909.098111", "0.335535   1.435024  -262.845469", "0.000538  -0.000049  1.000000"] }
     ];
     const rectifications = [
       { title: "Poster in my room", source: ["rectification-poster-source.webp", "Poster in Devansh's room before rectification"], nearest: ["poster-nearest.webp", "Poster in Devansh's room rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.webp", "Poster in Devansh's room rectified with bilinear interpolation"] },
@@ -210,12 +210,22 @@ const CVProjectDetail = () => {
                 <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
                   <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">How computeH works</p>
                   <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">
-                    In this project, we were asked to write the <code className="rounded bg-white px-1 py-0.5 font-mono text-xs text-slate-800">computeH</code> function. It takes two lists of corresponding points, one from each image, and returns a 3 × 3 homography matrix H. For a point (x, y) and its match (x′, y′), each pair gives two linear equations:
+                    The <code className="rounded bg-white px-1 py-0.5 font-mono text-xs text-slate-800">computeH</code> function takes matching point lists from the two images and returns the 3 × 3 homography H. For a source point (x, y) and its match (x′, y′), the mapping is written as two linear equations in the eight unknown homography parameters:
                   </p>
-                  <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[11px] leading-[1.8] text-slate-100 sm:text-xs">{`[ x  y  1  0  0  0  -x·x′  -y·x′ ] · h = x′\n[ 0  0  0  x  y  1  -x·y′  -y·y′ ] · h = y′\nh = [a  b  c  d  e  f  g  h]ᵀ`}</pre>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-md bg-slate-900 p-3 sm:p-4">
+                      <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Horizontal coordinate</p>
+                      <pre className="overflow-x-auto font-mono text-[11px] leading-[1.9] text-slate-100 sm:text-xs">{`x·a + y·b + c\n− x·x′·g − y·x′·h = x′`}</pre>
+                    </div>
+                    <div className="rounded-md bg-slate-900 p-3 sm:p-4">
+                      <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Vertical coordinate</p>
+                      <pre className="overflow-x-auto font-mono text-[11px] leading-[1.9] text-slate-100 sm:text-xs">{`x·d + y·e + f\n− x·y′·g − y·y′·h = y′`}</pre>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">The unknown parameter vector is <span className="font-mono text-xs text-slate-800">q = [a, b, c, d, e, f, g, h]ᵀ</span>. Stacking the two rows from every matched point gives the system below.</p>
                   <div className="mt-3 space-y-2 text-sm font-light leading-[1.7] text-slate-600">
-                    <p>Then, when I stack these equations for the points, I get a matrix A (2n rows with 8 columns) and b, a vector with 2n entries. The system is Ah = b.</p>
-                    <p>The key detail here is to choose enough points so the system is overdetermined and then we can get the best result (thanks EECS 127). We then solve for h = (AᵀA)⁻¹Aᵀb. The values in h form H = [[a, b, c], [d, e, f], [g, h, 1]].</p>
+                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system A q = b.</p>
+                    <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate q = (AᵀA)⁻¹Aᵀb (thanks EECS 127). We then place those eight values into H = [[a, b, c], [d, e, f], [g, h, 1]].</p>
                   </div>
                 </div>
                 <div className="mt-5 space-y-5">
@@ -232,10 +242,9 @@ const CVProjectDetail = () => {
                   ))}
                 </div>
                 <div className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-3">
-                  {homographies.map(({ title, direction, rows }) => (
+                  {homographies.map(({ title, rows }) => (
                     <div key={title} className="min-w-0 rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                       <h3 className="text-sm font-medium leading-snug text-slate-800">{title}</h3>
-                      <p className="mt-1 text-xs text-slate-500">{direction}</p>
                       <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.8] text-slate-100 sm:text-[11px]">{`H = [\n ${rows[0]}\n ${rows[1]}\n ${rows[2]}\n]`}</pre>
                     </div>
                   ))}
