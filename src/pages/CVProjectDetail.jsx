@@ -154,13 +154,13 @@ const CVProjectDetail = () => {
       { title: "Mosaic 3 · Unit 3 courtyard", sources: [["interior-1.webp", "Unit 3 courtyard source photograph, view 1", "Source 1"], ["interior-2.webp", "Unit 3 courtyard source photograph, view 2", "Source 2"]], result: ["mosaic-interior.webp", "Blended mosaic of the Unit 3 courtyard at night"] }
     ];
     return (
-      <main className="relative min-h-screen bg-[#f8f8f8] text-slate-800">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <main id="project4-top" className="project4-page relative min-h-screen">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
           <Link to="/cvproj" className="inline-flex items-center gap-2 text-sm font-light text-slate-600 hover:text-blue-600 transition-colors mb-10">
             <ArrowLeft size={16} /> Back to Computer Vision projects
           </Link>
 
-          <article className="max-w-5xl">
+          <article className="max-w-none">
             <header className="mb-10 pb-6 border-b border-slate-200">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">Project 4 · Part A</p>
               <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
@@ -169,15 +169,15 @@ const CVProjectDetail = () => {
               <p className="mt-5 max-w-3xl text-[clamp(0.98rem,1.2vw,1.1rem)] font-light leading-[1.7] text-slate-600">
                 I estimate projective transforms from image correspondences, rectify planar scenes, and combine overlapping photographs into panoramas.
               </p>
-              <nav aria-label="Project sections" className="mt-6 flex flex-wrap gap-2 text-xs font-medium text-slate-600">
-                {["A.1 Photograph pairs", "A.2 Homographies", "A.3 Warping", "A.4 Mosaics"].map((label, index) => (
-                  <a key={label} href={`#proj4-a${index + 1}`} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 transition-colors hover:border-blue-300 hover:text-blue-700">{label}</a>
-                ))}
-              </nav>
             </header>
+            <nav aria-label="Project sections" className="project4-nav -mx-4 mb-8 flex flex-wrap gap-2 px-4 py-3 text-xs font-medium sm:-mx-6 sm:px-6">
+              {["A.1 Photograph pairs", "A.2 Homographies", "A.3 Warping", "A.4 Mosaics"].map((label, index) => (
+                <a key={label} href={`#proj4-a${index + 1}`} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 transition-colors hover:border-blue-300 hover:text-blue-700">{label}</a>
+              ))}
+            </nav>
 
             <div className="space-y-8 sm:space-y-10">
-              <section id="proj4-a1" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+              <section id="proj4-a1" className="project4-section scroll-mt-24 rounded-xl border p-4 sm:p-6">
                 <div className="mb-5">
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.1 / Photograph pairs</p>
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Overlapping views</h2>
@@ -199,7 +199,7 @@ const CVProjectDetail = () => {
                 </div>
               </section>
 
-              <section id="proj4-a2" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+              <section id="proj4-a2" className="project4-section scroll-mt-24 rounded-xl border p-4 sm:p-6">
                 <div className="mb-5">
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.2 / Recover homographies</p>
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Matched points and projective transforms</h2>
@@ -249,31 +249,32 @@ const CVProjectDetail = () => {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 rounded-lg border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
+                <div className="project4-subsection mt-5 rounded-lg border p-4 sm:p-5">
                   <div className="mb-3">
                     <h3 className="text-sm font-medium text-slate-800">Rectification example</h3>
                     <p className="mt-1 text-xs font-light leading-relaxed text-slate-500">Four source corners are mapped to a 600 × 400 rectangle.</p>
                   </div>
-                  <div className="grid gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
-                    <div className="min-w-0">
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">A (8 rows × 8 columns)</p>
-                      <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[9px] leading-[1.7] text-slate-100 sm:text-[10px]">{`[[  278   902  1    0    0  0        0        0]\n [    0     0  0  278  902  1        0        0]\n [ 3273   181  1    0    0  0 -1963800  -108600]\n [    0     0  0 3273  181  1        0        0]\n [ 3142  4033  1    0    0  0 -1885200 -2419800]\n [    0     0  0 3142 4033  1 -1256800 -1613200]\n [  285  2979  1    0    0  0        0        0]\n [    0     0  0  285 2979  1  -114000 -1191600]]`}</pre>
-                    </div>
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                  <details className="project4-details">
+                    <summary>Show A and b matrices</summary>
+                    <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+                      <div className="min-w-0">
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">A (8 rows × 8 columns)</p>
+                        <pre className="project4-matrix px-3 py-3 text-[9px] leading-[1.7] sm:text-[10px]">{`[[  278   902  1    0    0  0        0        0]\n [    0     0  0  278  902  1        0        0]\n [ 3273   181  1    0    0  0 -1963800  -108600]\n [    0     0  0 3273  181  1        0        0]\n [ 3142  4033  1    0    0  0 -1885200 -2419800]\n [    0     0  0 3142 4033  1 -1256800 -1613200]\n [  285  2979  1    0    0  0        0        0]\n [    0     0  0  285 2979  1  -114000 -1191600]]`}</pre>
+                      </div>
                       <div>
                         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">b (8 entries)</p>
-                        <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.7] text-slate-100">{`[0  0  600  0  600  400  0  400]`}</pre>
-                      </div>
-                      <div>
-                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Recovered homography H</p>
-                        <pre className="overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.7] text-slate-100">{`[[ 0.40407  -0.00136  -111.10205]\n [ 0.04843   0.20119  -194.94176]\n [ 0.00031  -0.00001    1.00000]]`}</pre>
+                        <pre className="project4-matrix px-3 py-3 text-[10px] leading-[1.7]">{`[0  0  600  0  600  400  0  400]`}</pre>
                       </div>
                     </div>
+                  </details>
+                  <div className="mt-4 max-w-md">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Recovered homography H</p>
+                    <pre className="project4-matrix px-3 py-3 text-[10px] leading-[1.7]">{`[[ 0.40407  -0.00136  -111.10205]\n [ 0.04843   0.20119  -194.94176]\n [ 0.00031  -0.00001    1.00000]]`}</pre>
                   </div>
                 </div>
               </section>
 
-              <section id="proj4-a3" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+              <section id="proj4-a3" className="project4-section scroll-mt-24 rounded-xl border p-4 sm:p-6">
                 <div className="mb-5">
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.3 / Warp the images</p>
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Rectification and resampling</h2>
@@ -293,17 +294,29 @@ const CVProjectDetail = () => {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 rounded-lg border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
-                  <h3 className="text-sm font-medium text-slate-800">Interpolation trade-off</h3>
-                  <div className="mt-3 space-y-3 text-sm font-light leading-[1.7] text-slate-600">
+                <div className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
+                  <h3 className="text-lg font-medium tracking-tight">Nearest neighbor vs. bilinear interpolation</h3>
+                  <div className="mt-4 grid gap-5 lg:grid-cols-[minmax(0,1.25fr)_minmax(260px,0.75fr)] lg:items-start">
+                  <div className="space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In terms of what it seems like, bilinear produces better results for me. It was smoother and much cleaner.</p>
                     <p>With nearest neighbor, you could see jagged stuff in the images because every output pixel copies a single source pixel. This is not a problem with bilinear blends because it uses the four neighbors, which removes most of that aliasing. But it is a bit slower and looks a bit softer in comparison.</p>
                     <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, bilinear took about 15.6 seconds versus 8.2 seconds for nearest neighbor (approximately 2× slower). For the wheelchair sign, nearest neighbor took 10.6 seconds versus 29.9 seconds for bilinear, about 2.8× slower.</p>
                   </div>
+                  <div className="overflow-x-auto">
+                    <table className="project4-timing w-full text-left text-sm">
+                      <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Rectification timing</caption>
+                      <thead><tr><th scope="col">Image</th><th scope="col">Nearest neighbor</th><th scope="col">Bilinear</th></tr></thead>
+                      <tbody>
+                        <tr><th scope="row">Poster</th><td>8.2 seconds</td><td>15.6 seconds</td></tr>
+                        <tr><th scope="row">Wheelchair sign</th><td>10.6 seconds</td><td>29.9 seconds</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  </div>
                 </div>
               </section>
 
-              <section id="proj4-a4" className="scroll-mt-8 rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm sm:p-6">
+              <section id="proj4-a4" className="project4-section scroll-mt-24 rounded-xl border p-4 sm:p-6">
                 <div className="mb-5">
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">A.4 / Blend the images</p>
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Three image mosaics</h2>
@@ -317,14 +330,19 @@ const CVProjectDetail = () => {
                   {mosaics.map(({ title, sources: pair, result }) => (
                     <article key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4">
                       <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
-                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         {pair.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" />)}
-                        <Project4Image file={result[0]} alt={result[1]} caption="Blended result" imageClassName="h-56 sm:h-64" />
+                      </div>
+                      <div className="mt-3 sm:mx-auto sm:max-w-3xl">
+                        <Project4Image file={result[0]} alt={result[1]} caption="Blended result" imageClassName="h-64 sm:h-80" />
                       </div>
                     </article>
                   ))}
                 </div>
               </section>
+            </div>
+            <div className="mt-8 flex justify-end">
+              <a href="#project4-top" className="project4-toplink text-sm font-medium">Back to top ↑</a>
             </div>
           </article>
         </div>
