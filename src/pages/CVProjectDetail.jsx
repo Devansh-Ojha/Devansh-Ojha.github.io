@@ -452,6 +452,7 @@ const CVProjectDetail = () => {
                   <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>To do the mosaic part of the project, I first computed a homography, H, from the correspondences. One image is the reference and stays unwarped, and then I warp the other into the reference’s frame with bilinear inverse warping. This is because, as I noticed from the previous part, bilinear, even though slower, produced better results for my images, which were without jagged edges.</p>
                     <p>I then computed the size of the combined canvas from the warped images’ bounding box and the reference image’s extent, and then placed both on it, based on the offsets I got from my computation.</p>
+                    <p>Along with that, before doing blending, I filled any empty pixels in one image with the pixels from the other image. This makes sure the black empty area wouldn’t get blurred in and darken the seam.</p>
                     <p>I then blended with an 8-level Laplacian pyramid using the warped images’ mask as the blend mask. The mask is then downsampled along with the images so that the low frequencies blend over a wider part of the images and high frequency over a narrower one, like the multiresolution blending from Project 2. This helped me smoothen the edges for the image.</p>
                     <Project4PyramidEquations />
                   </div>
