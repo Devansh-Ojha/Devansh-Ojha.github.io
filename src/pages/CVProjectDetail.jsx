@@ -176,6 +176,64 @@ const Project4RectificationAnalysis = ({ data }) => (
   </article>
 );
 
+const Project4PyramidEquations = () => {
+  const groups = [
+    {
+      title: "Gaussian pyramids (A, B, and mask M), k = 0,…,7",
+      latex: String.raw`\begin{aligned}
+        G^A_0 &= A\\
+        G^B_0 &= B\\
+        M_0 &= M\\
+        G^A_{k+1} &= \mathrm{down}(G^A_k)\\
+        G^B_{k+1} &= \mathrm{down}(G^B_k)\\
+        M_{k+1} &= \mathrm{down}(M_k)
+      \end{aligned}`,
+      fallback: "G^A_0 = A\nG^B_0 = B\nM_0 = M\nG^A_{k+1} = down(G^A_k)\nG^B_{k+1} = down(G^B_k)\nM_{k+1} = down(M_k)"
+    },
+    {
+      title: "Laplacian pyramids, k = 0,…,7",
+      latex: String.raw`\begin{aligned}
+        L^A_k &= G^A_k - \mathrm{up}(G^A_{k+1})\\
+        L^B_k &= G^B_k - \mathrm{up}(G^B_{k+1})
+      \end{aligned}`,
+      fallback: "L^A_k = G^A_k - up(G^A_{k+1})\nL^B_k = G^B_k - up(G^B_{k+1})"
+    },
+    {
+      title: "Low-pass residual",
+      latex: String.raw`\begin{aligned}
+        L^A_8 &= G^A_8\\
+        L^B_8 &= G^B_8
+      \end{aligned}`,
+      fallback: "L^A_8 = G^A_8\nL^B_8 = G^B_8"
+    },
+    {
+      title: "Blend each level, k = 0,…,8",
+      latex: String.raw`L_k = M_k\,L^A_k + (1 - M_k)\,L^B_k`,
+      fallback: "L_k = M_k L^A_k + (1 - M_k) L^B_k"
+    },
+    {
+      title: "Collapse",
+      latex: String.raw`\begin{aligned}
+        R_8 &= L_8\\
+        R_k &= L_k + \mathrm{up}(R_{k+1}),\quad k=7,\ldots,0\\
+        \text{mosaic} &= R_0
+      \end{aligned}`,
+      fallback: "R_8 = L_8\nR_k = L_k + up(R_{k+1}), k = 7,...,0\nmosaic = R_0"
+    }
+  ];
+
+  return (
+    <div className="project4-pyramid-equations mt-4 space-y-3 rounded-lg border p-3 sm:p-4">
+      {groups.map(({ title, latex, fallback }) => (
+        <section key={title} className="project4-pyramid-group">
+          <h4 className="mb-1 text-xs font-semibold tracking-wide text-slate-600">{title}</h4>
+          <Project4MathBlock className="project4-pyramid-formula" latex={latex} fallback={fallback} />
+        </section>
+      ))}
+    </div>
+  );
+};
+
 const CVProjectDetail = () => {
   const { projectId } = useParams();
   const project = projectDetails[projectId];
@@ -439,49 +497,7 @@ const CVProjectDetail = () => {
                     <p>To do the mosaic part of the project, I first computed a homography, H, from the correspondences. One image is the reference and stays unwarped, and then I warp the other into the reference’s frame with bilinear inverse warping. This is because, as I noticed from the previous part, bilinear, even though slower, produced better results for my images, which were without jagged edges.</p>
                     <p>I then computed the size of the combined canvas from the warped images’ bounding box and the reference image’s extent, and then placed both on it, based on the offsets I got from my computation.</p>
                     <p>I then blended with an 8-level Laplacian pyramid using the warped images’ mask as the blend mask. The mask is then downsampled along with the images so that the low frequencies blend over a wider part of the images and high frequency over a narrower one, like the multiresolution blending from Project 2. This helped me smoothen the edges for the image.</p>
-                    <Project4MathBlock
-                      className="project4-pyramid-equations"
-                      latex={String.raw`
-                        \begin{aligned}
-                        \text{Gaussian pyramids (A, B, and mask M), } k=0,\ldots,7\\
-                        G^A_0 &= A,\quad G^B_0 = B,\quad M_0 = M\\
-                        G^A_{k+1} &= \mathrm{down}(G^A_k)\\
-                        G^B_{k+1} &= \mathrm{down}(G^B_k)\\
-                        M_{k+1} &= \mathrm{down}(M_k)\\[0.5em]
-                        \text{Laplacian pyramids, } k=0,\ldots,7\\
-                        L^A_k &= G^A_k - \mathrm{up}(G^A_{k+1})\\
-                        L^B_k &= G^B_k - \mathrm{up}(G^B_{k+1})\\[0.5em]
-                        \text{Low-pass residual}\\
-                        L^A_8 &= G^A_8,\quad L^B_8 = G^B_8\\[0.5em]
-                        \text{Blend each level, } k=0,\ldots,8\\
-                        L_k &= M_k\,L^A_k + (1-M_k)\,L^B_k\\[0.5em]
-                        \text{Collapse}\\
-                        R_8 &= L_8,\\
-                        R_k &= L_k + \mathrm{up}(R_{k+1}),\quad k=7,\ldots,0\\
-                        \text{mosaic} &= R_0
-                        \end{aligned}
-                      `}
-                      fallback={`Gaussian pyramids (A, B, and mask M), k = 0,...,7
-G^A_0 = A,  G^B_0 = B,  M_0 = M
-G^A_{k+1} = down(G^A_k)
-G^B_{k+1} = down(G^B_k)
-M_{k+1} = down(M_k)
-
-Laplacian pyramids, k = 0,...,7
-L^A_k = G^A_k - up(G^A_{k+1})
-L^B_k = G^B_k - up(G^B_{k+1})
-
-Low-pass residual
-L^A_8 = G^A_8,  L^B_8 = G^B_8
-
-Blend each level, k = 0,...,8
-L_k = M_k L^A_k + (1 - M_k) L^B_k
-
-Collapse
-R_8 = L_8
-R_k = L_k + up(R_{k+1}),  k = 7,...,0
-mosaic = R_0`}
-                    />
+                    <Project4PyramidEquations />
                   </div>
                 </div>
                 <div className="space-y-5">
