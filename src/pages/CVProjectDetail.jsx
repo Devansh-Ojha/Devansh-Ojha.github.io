@@ -104,7 +104,7 @@ const homographyLatex = (H) => `H = \\begin{bmatrix} ${H.map((row) => row.join("
 const Project4SystemMatrix = ({ label, text }) => (
   <div className="min-w-0">
     <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">{label}</p>
-    <pre className="project4-matrix project4-matrix-light project4-data-matrix overflow-x-auto rounded-lg px-3 py-3 text-[10px] leading-[1.7] sm:text-xs">{text}</pre>
+    <pre className="project4-matrix project4-matrix-light project4-data-matrix overflow-x-auto rounded-lg px-3 py-3 text-[11px] leading-[1.7] sm:text-[13px]">{text}</pre>
   </div>
 );
 
@@ -343,10 +343,7 @@ const CVProjectDetail = () => {
                     The <code className="rounded bg-white px-1 py-0.5 font-mono text-xs text-slate-800">computeH</code> function takes matching point lists from the two images and returns the 3 × 3 homography H. For a source point (x, y) and its match (x′, y′), the mapping is written as two linear equations in the eight unknown homography parameters:
                   </p>
                   <div className="mt-4 space-y-4 text-sm font-light leading-[1.7] text-slate-600">
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <Project4MathBlock className="project4-equation" latex="x a + y b + c - x x' g - y x' h = x'" fallback="x a + y b + c − x x′ g − y x′ h = x′" />
-                      <Project4MathBlock className="project4-equation" latex="x d + y e + f - x y' g - y y' h = y'" fallback="x d + y e + f − x y′ g − y y′ h = y′" />
-                    </div>
+                    <Project4MathBlock className="project4-equation" latex="\begin{aligned} x a + y b + c - x x' g - y x' h &= x' \\ x d + y e + f - x y' g - y y' h &= y' \end{aligned}" fallback="x a + y b + c − x x′ g − y x′ h = x′\nx d + y e + f − x y′ g − y y′ h = y′" />
                     <p>The unknown parameter vector is:</p>
                     <Project4MathBlock latex="\mathbf{h} = [a, b, c, d, e, f, g, h]^T" fallback="h = [a, b, c, d, e, f, g, h]ᵀ" />
                     <p>Stacking the two rows from every matched point gives the system below.</p>

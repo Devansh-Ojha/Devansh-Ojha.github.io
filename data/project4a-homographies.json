@@ -3,7 +3,7 @@
     {
       "title": "Set 1 · Church-like structure",
       "matches": 18,
-      "direction": "H maps IMG_2078 → IMG_2077",
+      "direction": "H maps church-like structure view to the church reference image",
       "src": [
         [
           392,
@@ -173,7 +173,7 @@
     {
       "title": "Set 2 · Undergraduate and Pimentel-like buildings",
       "matches": 13,
-      "direction": "H maps IMG_2092 → IMG_2091",
+      "direction": "H maps the undergraduate/Pimentel building view to the building reference image",
       "src": [
         [
           186,
@@ -303,7 +303,7 @@
     {
       "title": "Set 3 · Unit 3 courtyard",
       "matches": 17,
-      "direction": "H maps IMG_2115 → IMG_2114",
+      "direction": "H maps the Unit 3 courtyard view to its reference image",
       "src": [
         [
           996,
