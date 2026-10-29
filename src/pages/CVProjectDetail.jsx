@@ -308,6 +308,7 @@ const CVProjectDetail = () => {
                     <p>In my first image set, I took pictures of a church-like structure covered in graffiti and paintings. For my second set, it shows the newly constructed undergraduate building next to a Pimentel lookalike building.</p>
                     <p>For the third set of pictures, it shows Unit 3 courtyard at nighttime, and I took pictures of Priestley Hall and the Bear Market.</p>
                     <p>To capture all the images, I kept the camera’s center of projection fixed and rotated it between shots, with the amount of overlap between the pictures as recommended in the spec (mine is around 50–65%). This allows me to capture the transformation for each pair as a homography.</p>
+                    <p>I also made sure to shoot the photos close together in time so the lighting stayed similar.</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
@@ -328,6 +329,9 @@ const CVProjectDetail = () => {
                   <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Matched points and projective transforms</h2>
                   <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
                     Numbered labels identify the same feature in both images. Each point pair contributes two equations for the eight free homography parameters; the overdetermined systems are solved by least squares, with the final matrix entry fixed to 1.
+                  </p>
+                  <p className="mt-2 max-w-3xl text-sm font-light leading-relaxed text-slate-600">
+                    I picked more than the minimum number of points (18, 13, and 17) because, when there are fewer points, a couple of pixels of error in a point can change H a lot.
                   </p>
                 </div>
                 <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
@@ -406,12 +410,14 @@ const CVProjectDetail = () => {
                     </div>
                   ))}
                 </div>
+                <p className="mt-5 max-w-3xl text-sm font-light leading-[1.7] text-slate-600">
+                  For bilinear and nearest-neighbor interpolation, I made sure to use inverse warping. This means that for every pixel in the output, I use H<sup>−1</sup> and then use that to find where it came from in the source. This ensures that there are no holes in the final image. Also, the pixels that go outside the source image get an alpha of 0.
+                </p>
                 <div className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">Nearest neighbor vs. bilinear interpolation</h3>
                   <div className="mt-4 space-y-3 text-sm font-light leading-[1.7] text-slate-600">
-                    <p>In terms of what it seems like, bilinear produces better results for me. It was smoother and much cleaner.</p>
-                    <p>With nearest neighbor, you could see jagged stuff in the images because every output pixel copies a single source pixel. This is not a problem with bilinear blends because it uses the four neighbors, which removes most of that aliasing. But it is a bit slower and looks a bit softer in comparison.</p>
-                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, nearest neighbor took 7.74 seconds versus 12.42 seconds for bilinear (about 1.6× slower). For the wheelchair sign, nearest neighbor took 10.67 seconds versus 21.85 seconds for bilinear (about 2.0× slower).</p>
+                    <p>When I looked at bilinear, it gave better-looking results. This is because it averages the four pixels around a point. This gets rid of jagged-looking edges, but it makes the result look a bit soft. In nearest neighbor, every output pixel copies a single source pixel, so straight edges (as seen in the close-ups of the signs and the poster) come out jagged and uneven.</p>
+                    <p>In terms of speed, nearest neighbor was faster because it uses one lookup per output pixel, and bilinear was slower because it needs four lookups and a weighted sum per color channel. For my images, it took 7.74 s versus 12.42 s for bilinear on the poster (about 1.6× slower), and 10.67 s versus 21.85 s on the sign (about 2.0× slower). For the next part in mosaic reconstruction, I chose to go with bilinear for this reason.</p>
                   </div>
                   <table className="project4-timing mt-4 w-full table-fixed text-left text-sm">
                     <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Rectification timing</caption>
@@ -432,7 +438,50 @@ const CVProjectDetail = () => {
                   <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>To do the mosaic part of the project, I first computed a homography, H, from the correspondences. One image is the reference and stays unwarped, and then I warp the other into the reference’s frame with bilinear inverse warping. This is because, as I noticed from the previous part, bilinear, even though slower, produced better results for my images, which were without jagged edges.</p>
                     <p>I then computed the size of the combined canvas from the warped images’ bounding box and the reference image’s extent, and then placed both on it, based on the offsets I got from my computation.</p>
-                    <p>I then blended with an 8-level Laplacian pyramid using the warped images’ mask as the blend mask. The mask is then downsampled along with the images so that the low frequencies blend over a wider part of the images and high frequency over a narrower one, just like we did in Project 2. This helped me smoothen the edges for the image.</p>
+                    <p>I then blended with an 8-level Laplacian pyramid using the warped images’ mask as the blend mask. The mask is then downsampled along with the images so that the low frequencies blend over a wider part of the images and high frequency over a narrower one, like the multiresolution blending from Project 2. This helped me smoothen the edges for the image.</p>
+                    <Project4MathBlock
+                      className="project4-pyramid-equations"
+                      latex={String.raw`
+                        \begin{aligned}
+                        \text{Gaussian pyramids (A, B, and mask M), } k=0,\ldots,7\\
+                        G^A_0 &= A,\quad G^B_0 = B,\quad M_0 = M\\
+                        G^A_{k+1} &= \mathrm{down}(G^A_k)\\
+                        G^B_{k+1} &= \mathrm{down}(G^B_k)\\
+                        M_{k+1} &= \mathrm{down}(M_k)\\[0.5em]
+                        \text{Laplacian pyramids, } k=0,\ldots,7\\
+                        L^A_k &= G^A_k - \mathrm{up}(G^A_{k+1})\\
+                        L^B_k &= G^B_k - \mathrm{up}(G^B_{k+1})\\[0.5em]
+                        \text{Low-pass residual}\\
+                        L^A_8 &= G^A_8,\quad L^B_8 = G^B_8\\[0.5em]
+                        \text{Blend each level, } k=0,\ldots,8\\
+                        L_k &= M_k\,L^A_k + (1-M_k)\,L^B_k\\[0.5em]
+                        \text{Collapse}\\
+                        R_8 &= L_8,\\
+                        R_k &= L_k + \mathrm{up}(R_{k+1}),\quad k=7,\ldots,0\\
+                        \text{mosaic} &= R_0
+                        \end{aligned}
+                      `}
+                      fallback={`Gaussian pyramids (A, B, and mask M), k = 0,...,7
+G^A_0 = A,  G^B_0 = B,  M_0 = M
+G^A_{k+1} = down(G^A_k)
+G^B_{k+1} = down(G^B_k)
+M_{k+1} = down(M_k)
+
+Laplacian pyramids, k = 0,...,7
+L^A_k = G^A_k - up(G^A_{k+1})
+L^B_k = G^B_k - up(G^B_{k+1})
+
+Low-pass residual
+L^A_8 = G^A_8,  L^B_8 = G^B_8
+
+Blend each level, k = 0,...,8
+L_k = M_k L^A_k + (1 - M_k) L^B_k
+
+Collapse
+R_8 = L_8
+R_k = L_k + up(R_{k+1}),  k = 7,...,0
+mosaic = R_0`}
+                    />
                   </div>
                 </div>
                 <div className="space-y-5">
