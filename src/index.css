@@ -152,18 +152,8 @@ h6 {
 .project4-page .project4-pyramid-equations {
   border-color: var(--p4-border);
   background: var(--p4-raised);
-}
-
-.project4-page .project4-pyramid-formula {
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  padding: 0.15rem 0.35rem;
-  text-align: left;
-}
-
-.project4-page .project4-pyramid-formula .katex-display {
-  text-align: left;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.92rem;
 }
 
 .project4-page .project4-data-matrix {

@@ -177,60 +177,16 @@ const Project4RectificationAnalysis = ({ data }) => (
 );
 
 const Project4PyramidEquations = () => {
-  const groups = [
-    {
-      title: "Gaussian pyramids (A, B, and mask M), k = 0,…,7",
-      latex: String.raw`\begin{aligned}
-        G^A_0 &= A\\
-        G^B_0 &= B\\
-        M_0 &= M\\
-        G^A_{k+1} &= \mathrm{down}(G^A_k)\\
-        G^B_{k+1} &= \mathrm{down}(G^B_k)\\
-        M_{k+1} &= \mathrm{down}(M_k)
-      \end{aligned}`,
-      fallback: "G^A_0 = A\nG^B_0 = B\nM_0 = M\nG^A_{k+1} = down(G^A_k)\nG^B_{k+1} = down(G^B_k)\nM_{k+1} = down(M_k)"
-    },
-    {
-      title: "Laplacian pyramids, k = 0,…,7",
-      latex: String.raw`\begin{aligned}
-        L^A_k &= G^A_k - \mathrm{up}(G^A_{k+1})\\
-        L^B_k &= G^B_k - \mathrm{up}(G^B_{k+1})
-      \end{aligned}`,
-      fallback: "L^A_k = G^A_k - up(G^A_{k+1})\nL^B_k = G^B_k - up(G^B_{k+1})"
-    },
-    {
-      title: "Low-pass residual",
-      latex: String.raw`\begin{aligned}
-        L^A_8 &= G^A_8\\
-        L^B_8 &= G^B_8
-      \end{aligned}`,
-      fallback: "L^A_8 = G^A_8\nL^B_8 = G^B_8"
-    },
-    {
-      title: "Blend each level, k = 0,…,8",
-      latex: String.raw`L_k = M_k\,L^A_k + (1 - M_k)\,L^B_k`,
-      fallback: "L_k = M_k L^A_k + (1 - M_k) L^B_k"
-    },
-    {
-      title: "Collapse",
-      latex: String.raw`\begin{aligned}
-        R_8 &= L_8\\
-        R_k &= L_k + \mathrm{up}(R_{k+1}),\quad k=7,\ldots,0\\
-        \text{mosaic} &= R_0
-      \end{aligned}`,
-      fallback: "R_8 = L_8\nR_k = L_k + up(R_{k+1}), k = 7,...,0\nmosaic = R_0"
-    }
-  ];
-
   return (
-    <div className="project4-pyramid-equations mt-4 space-y-3 rounded-lg border p-3 sm:p-4">
-      {groups.map(({ title, latex, fallback }) => (
-        <section key={title} className="project4-pyramid-group">
-          <h4 className="mb-1 text-xs font-semibold tracking-wide text-slate-600">{title}</h4>
-          <Project4MathBlock className="project4-pyramid-formula" latex={latex} fallback={fallback} />
-        </section>
-      ))}
-    </div>
+    <Project4MathBlock
+      className="project4-pyramid-equations mt-4"
+      latex={String.raw`\begin{aligned}
+        L_k &= M_k \, L^A_k + (1 - M_k) \, L^B_k, \qquad k = 0,\dots,8\\
+        R_8 &= L_8, \qquad R_k = L_k + \mathrm{up}(R_{k+1}), \qquad \text{mosaic} = R_0
+      \end{aligned}`}
+      fallback={`L_k = M_k L^A_k + (1 - M_k) L^B_k,  k = 0,...,8
+R_8 = L_8,  R_k = L_k + up(R_{k+1}),  mosaic = R_0`}
+    />
   );
 };
 
