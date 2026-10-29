@@ -130,17 +130,10 @@ const Project4MosaicAnalysis = ({ data }) => (
     </details>
     <div className="mt-5">
       <h5 className="mb-3 text-sm font-semibold text-slate-800">System of equations</h5>
-      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(180px,0.7fr)]">
-        <Project4SystemMatrix label="First six rows of A and vertical ellipsis" text={data.previewAText} />
-        <Project4SystemMatrix label="First six entries of b and vertical ellipsis" text={data.previewBText} />
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.7fr)_minmax(180px,0.7fr)]">
+        <Project4SystemMatrix label={`Full A (${data.A.length} × 8)`} text={data.AText} />
+        <Project4SystemMatrix label={`Full b (${data.b.length} entries)`} text={data.bText} />
       </div>
-      <details className="project4-data-details mt-4">
-        <summary>Show full A and b</summary>
-        <div className="mt-3 grid gap-4 lg:grid-cols-[minmax(0,1.7fr)_minmax(180px,0.7fr)]">
-          <Project4SystemMatrix label={`Full A (${data.A.length} × 8)`} text={data.AText} />
-          <Project4SystemMatrix label={`Full b (${data.b.length} entries)`} text={data.bText} />
-        </div>
-      </details>
     </div>
     <div className="mt-5">
       <p className="mb-2 text-sm font-semibold text-slate-800">Recovered homography H</p>

@@ -64,13 +64,10 @@ function formatMatrix(matrix) {
 }
 
 function withDisplayData(system) {
-  const ellipsisRow = Array(system.A[0].length).fill('⋮');
   return {
     ...system,
     AText: formatMatrix(system.A),
-    bText: formatMatrix(system.b.map((value) => [value])),
-    previewAText: formatMatrix([...system.A.slice(0, 6), ellipsisRow]),
-    previewBText: formatMatrix([...system.b.slice(0, 6).map((value) => [value]), ['⋮']])
+    bText: formatMatrix(system.b.map((value) => [value]))
   };
 }
 
