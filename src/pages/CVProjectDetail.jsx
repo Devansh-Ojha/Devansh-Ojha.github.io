@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
@@ -30,6 +31,55 @@ const projectDetails = {
     title: "Image Warping and Mosaicing",
     description: "Computer Vision Project 4, Part A."
   }
+};
+
+const Project4MathBlock = ({ latex, fallback, className = "", display = true }) => {
+  const fallbackRef = useRef(null);
+  const sourceRef = useRef(null);
+
+  useEffect(() => {
+    let rendered = false;
+    let rendering = false;
+    const renderMath = async () => {
+      if (rendered || rendering || !sourceRef.current || !fallbackRef.current) return;
+      const stylesheet = document.querySelector("link[data-katex-css]");
+      if (!window.katex || !window.renderMathInElement || !stylesheet?.sheet) return;
+      rendering = true;
+      try {
+        if (document.fonts?.load) await document.fonts.load("1em KaTeX_Main");
+        if (document.fonts?.check && !document.fonts.check("1em KaTeX_Main")) return;
+        window.renderMathInElement(sourceRef.current, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+        sourceRef.current.hidden = false;
+        fallbackRef.current.hidden = true;
+        rendered = true;
+      } catch {
+        // Keep the readable text fallback visible if KaTeX cannot render.
+      } finally {
+        rendering = false;
+      }
+    };
+
+    window.addEventListener("katex-ready", renderMath);
+    window.addEventListener("load", renderMath);
+    renderMath();
+    return () => {
+      window.removeEventListener("katex-ready", renderMath);
+      window.removeEventListener("load", renderMath);
+    };
+  }, [latex]);
+
+  return (
+    <div className={`project4-math-block ${className}`} role="math" aria-label={fallback}>
+      <span ref={fallbackRef} className="project4-math-fallback">{fallback}</span>
+      <span ref={sourceRef} hidden>{display ? `$$${latex}$$` : `$${latex}$`}</span>
+    </div>
+  );
 };
 
 const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64" }) => (
@@ -212,20 +262,20 @@ const CVProjectDetail = () => {
                   <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">
                     The <code className="rounded bg-white px-1 py-0.5 font-mono text-xs text-slate-800">computeH</code> function takes matching point lists from the two images and returns the 3 × 3 homography H. For a source point (x, y) and its match (x′, y′), the mapping is written as two linear equations in the eight unknown homography parameters:
                   </p>
-                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-md bg-slate-900 p-3 sm:p-4">
+                  <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <div className="project4-equation-card min-w-0 rounded-md border p-3 sm:p-4">
                       <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Horizontal coordinate</p>
-                      <pre className="overflow-x-auto font-mono text-[11px] leading-[1.9] text-slate-100 sm:text-xs">{`x·a + y·b + c\n− x·x′·g − y·x′·h = x′`}</pre>
+                      <Project4MathBlock className="project4-equation" latex="x a + y b + c - x x' g - y x' h = x'" fallback="x a + y b + c − x x′ g − y x′ h = x′" />
                     </div>
-                    <div className="rounded-md bg-slate-900 p-3 sm:p-4">
+                    <div className="project4-equation-card min-w-0 rounded-md border p-3 sm:p-4">
                       <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Vertical coordinate</p>
-                      <pre className="overflow-x-auto font-mono text-[11px] leading-[1.9] text-slate-100 sm:text-xs">{`x·d + y·e + f\n− x·y′·g − y·y′·h = y′`}</pre>
+                      <Project4MathBlock className="project4-equation" latex="x d + y e + f - x y' g - y y' h = y'" fallback="x d + y e + f − x y′ g − y y′ h = y′" />
                     </div>
                   </div>
-                  <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">The unknown parameter vector is <span className="font-mono text-xs text-slate-800">h = [a, b, c, d, e, f, g, h]ᵀ</span>. Stacking the two rows from every matched point gives the system below.</p>
+                  <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">The unknown parameter vector is <Project4MathBlock className="project4-inline-math" display={false} latex="\mathbf{h} = [a, b, c, d, e, f, g, h]^T" fallback="h = [a, b, c, d, e, f, g, h]ᵀ" />. Stacking the two rows from every matched point gives the system below.</p>
                   <div className="mt-3 space-y-2 text-sm font-light leading-[1.7] text-slate-600">
-                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system Ah = b, where h is the vector of the eight unknowns and b is the vector of target coordinates.</p>
-                    <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate h = (AᵀA)⁻¹Aᵀb (thanks EECS 127). We then place those eight values into H = [[a, b, c], [d, e, f], [g, h, 1]].</p>
+                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system <Project4MathBlock className="project4-inline-math" display={false} latex="A\mathbf{h} = \mathbf{b}" fallback="A h = b" />, where h is the vector of the eight unknowns and b is the vector of target coordinates.</p>
+                    <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate <Project4MathBlock className="project4-inline-math" display={false} latex="\mathbf{h} = (A^T A)^{-1} A^T \mathbf{b}" fallback="h = (AᵀA)⁻¹Aᵀb" /> (thanks EECS 127). We then place those eight values into <Project4MathBlock className="project4-inline-math" display={false} latex="H = \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & 1 \end{bmatrix}" fallback="H = [[a, b, c], [d, e, f], [g, h, 1]]" />.</p>
                   </div>
                 </div>
                 <div className="mt-5 space-y-5">
@@ -241,11 +291,11 @@ const CVProjectDetail = () => {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-3">
+                <div className="mt-5 space-y-3">
                   {homographies.map(({ title, rows }) => (
                     <div key={title} className="min-w-0 rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                       <h3 className="text-sm font-medium leading-snug text-slate-800">{title}</h3>
-                      <pre className="mt-3 overflow-x-auto rounded-md bg-slate-900 px-3 py-3 font-mono text-[10px] leading-[1.8] text-slate-100 sm:text-[11px]">{`H = [\n ${rows[0]}\n ${rows[1]}\n ${rows[2]}\n]`}</pre>
+                      <Project4MathBlock className="mt-3" latex={`H = \\begin{bmatrix} ${rows.map((row) => row.trim().split(/\s+/).join(" & ")).join(" \\\\ ")} \\end{bmatrix}`} fallback={`H = [ ${rows.join(" ; ")} ]`} />
                     </div>
                   ))}
                 </div>
@@ -254,22 +304,22 @@ const CVProjectDetail = () => {
                     <h3 className="text-sm font-medium text-slate-800">Rectification example</h3>
                     <p className="mt-1 text-xs font-light leading-relaxed text-slate-500">Four source corners are mapped to a 600 × 400 rectangle.</p>
                   </div>
-                  <details className="project4-details">
+                  <details open className="project4-details">
                     <summary>Show A and b matrices</summary>
                     <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
                       <div className="min-w-0">
                         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">A (8 rows × 8 columns)</p>
-                        <pre className="project4-matrix px-3 py-3 text-[9px] leading-[1.7] sm:text-[10px]">{`[[  278   902  1    0    0  0        0        0]\n [    0     0  0  278  902  1        0        0]\n [ 3273   181  1    0    0  0 -1963800  -108600]\n [    0     0  0 3273  181  1        0        0]\n [ 3142  4033  1    0    0  0 -1885200 -2419800]\n [    0     0  0 3142 4033  1 -1256800 -1613200]\n [  285  2979  1    0    0  0        0        0]\n [    0     0  0  285 2979  1  -114000 -1191600]]`}</pre>
+                        <pre className="project4-matrix project4-matrix-light px-3 py-3 text-[9px] leading-[1.7] sm:text-[10px]">{`[[  278   902  1    0    0  0        0        0]\n [    0     0  0  278  902  1        0        0]\n [ 3273   181  1    0    0  0 -1963800  -108600]\n [    0     0  0 3273  181  1        0        0]\n [ 3142  4033  1    0    0  0 -1885200 -2419800]\n [    0     0  0 3142 4033  1 -1256800 -1613200]\n [  285  2979  1    0    0  0        0        0]\n [    0     0  0  285 2979  1  -114000 -1191600]]`}</pre>
                       </div>
                       <div>
                         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">b (8 entries)</p>
-                        <pre className="project4-matrix px-3 py-3 text-[10px] leading-[1.7]">{`[0  0  600  0  600  400  0  400]`}</pre>
+                        <pre className="project4-matrix project4-matrix-light px-3 py-3 text-[10px] leading-[1.7]">{`[0  0  600  0  600  400  0  400]`}</pre>
                       </div>
                     </div>
                   </details>
                   <div className="mt-4 max-w-md">
                     <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Recovered homography H</p>
-                    <pre className="project4-matrix px-3 py-3 text-[10px] leading-[1.7]">{`[[ 0.40407  -0.00136  -111.10205]\n [ 0.04843   0.20119  -194.94176]\n [ 0.00031  -0.00001    1.00000]]`}</pre>
+                    <Project4MathBlock className="mt-3" latex={String.raw`H = \begin{bmatrix} 0.40407 & -0.00136 & -111.10205 \\ 0.04843 & 0.20119 & -194.94176 \\ 0.00031 & -0.00001 & 1.00000 \end{bmatrix}`} fallback="H = [[ 0.40407  -0.00136  -111.10205] ; [ 0.04843  0.20119  -194.94176] ; [ 0.00031  -0.00001  1.00000 ]]" />
                   </div>
                 </div>
               </section>

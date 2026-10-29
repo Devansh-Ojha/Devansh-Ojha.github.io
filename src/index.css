@@ -134,6 +134,77 @@ h6 {
   border-color: var(--p4-border);
 }
 
+.project4-page .project4-equation-card {
+  background: var(--p4-raised);
+  border-color: var(--p4-border);
+}
+
+.project4-page .project4-equation-card .text-slate-400 {
+  color: var(--p4-muted);
+}
+
+.project4-page .project4-math-block {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--p4-border);
+  border-radius: 0.5rem;
+  background: var(--p4-raised);
+  color: var(--p4-text);
+  padding: 0.7rem 0.9rem;
+  text-align: center;
+  font-size: 1.05rem;
+  scrollbar-color: #718096 transparent;
+}
+
+.project4-page .project4-math-block .katex-display {
+  width: max-content;
+  min-width: 100%;
+  margin: 0.1em 0;
+  text-align: center;
+}
+
+.project4-page .project4-math-block .katex {
+  color: var(--p4-text);
+}
+
+.project4-page .project4-math-fallback {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.project4-page .project4-math-fallback[hidden],
+.project4-page .project4-math-block > [hidden] {
+  display: none !important;
+}
+
+.project4-page .project4-math-block.project4-inline-math {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1em;
+  line-height: inherit;
+}
+
+.project4-page .project4-inline-math .project4-math-fallback {
+  display: inline;
+  width: auto;
+  font-family: inherit;
+}
+
 .project4-page .project4-matrix,
 .project4-page pre {
   max-width: 100%;
@@ -142,6 +213,12 @@ h6 {
   color: var(--p4-code-text);
   border-radius: 0.5rem;
   scrollbar-color: #718096 transparent;
+}
+
+.project4-page .project4-matrix-light {
+  border: 1px solid var(--p4-border);
+  background: var(--p4-raised);
+  color: var(--p4-text);
 }
 
 .project4-page .project4-nav {
@@ -280,5 +357,12 @@ h6 {
 
   .project4-page .shadow-sm {
     box-shadow: 0 5px 20px rgb(0 0 0 / 18%);
+  }
+}
+
+@media (max-width: 699px) {
+  .project4-page .project4-math-block {
+    font-size: 0.88rem;
+    padding: 0.65rem 0.7rem;
   }
 }
