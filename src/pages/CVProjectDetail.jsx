@@ -169,13 +169,13 @@ const Project4RectificationAnalysis = ({ data }) => (
         </div>
       ))}
     </div>
-    <details open className="project4-data-details mt-4">
-      <summary>Show full A and b</summary>
+    <div className="project4-data-details mt-4">
+      <p className="text-sm font-semibold text-slate-700">A and b system</p>
       <div className="mt-3 grid gap-4 lg:grid-cols-[minmax(0,1.7fr)_minmax(180px,0.7fr)]">
         <Project4SystemMatrix label="A (8 × 8)" text={data.AText} />
         <Project4SystemMatrix label="b (8 entries)" text={data.bText} />
       </div>
-    </details>
+    </div>
     <div className="mt-5">
       <p className="mb-2 text-sm font-semibold text-slate-800">Recovered homography H</p>
       <Project4MathBlock className="project4-homography-data" latex={homographyLatex(data.H)} fallback={`H = [ ${data.H.map((row) => row.join("  ")).join(" ; ")} ]`} />
