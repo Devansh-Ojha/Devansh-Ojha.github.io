@@ -365,7 +365,9 @@ h6 {
 .project4-page .project4-timing {
   border-collapse: collapse;
   color: var(--p4-text);
-  min-width: 430px;
+  min-width: 0;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .project4-page .project4-timing caption {
@@ -377,6 +379,7 @@ h6 {
   border-bottom: 1px solid var(--p4-border);
   padding: 0.65rem 0.55rem;
   vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
 .project4-page .project4-timing thead th {

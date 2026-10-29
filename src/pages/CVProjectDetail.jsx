@@ -275,8 +275,8 @@ const CVProjectDetail = () => {
       { images: [["interior-matches-a.webp", "Unit 3 courtyard image with manually marked point correspondences", "Reference image"], ["interior-matches-b.webp", "Second Unit 3 courtyard image with manually marked point correspondences", "Image to align"]] }
     ];
     const rectifications = [
-      { title: "Poster in my room", source: ["rectification-poster-source.webp", "Poster in Devansh's room before rectification"], nearest: ["poster-nearest.webp", "Poster in Devansh's room rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.webp", "Poster in Devansh's room rectified with bilinear interpolation"] },
-      { title: "Wheelchair sign next to the elevator", source: ["rectification-sign-source.webp", "Wheelchair sign next to the elevator before rectification"], nearest: ["sign-nearest.webp", "Wheelchair sign next to the elevator rectified with nearest-neighbor interpolation"], bilinear: ["sign-bilinear.webp", "Wheelchair sign next to the elevator rectified with bilinear interpolation"] }
+      { title: "Poster in my room", source: ["rectification-poster-source.webp", "Poster in Devansh's room before rectification"], nearest: ["poster-nearest.png", "Poster in Devansh's room rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.png", "Poster in Devansh's room rectified with bilinear interpolation"], points: ["poster-points.png", "Poster with the four selected corner points marked"], nearestCloseup: ["poster-nearest-closeup.png", "Poster rectification detail using nearest-neighbor interpolation"], bilinearCloseup: ["poster-bilinear-closeup.png", "Poster rectification detail using bilinear interpolation"] },
+      { title: "Wheelchair sign next to the elevator", source: ["rectification-sign-source.webp", "Wheelchair sign next to the elevator before rectification"], nearest: ["sign-nearest.png", "Wheelchair sign next to the elevator rectified with nearest-neighbor interpolation"], bilinear: ["sign-bilinear.png", "Wheelchair sign next to the elevator rectified with bilinear interpolation"], points: ["wheelchair-points.png", "Wheelchair sign with the four selected corner points marked"], nearestCloseup: ["sign-nearest-closeup.png", "Wheelchair sign rectification detail using nearest-neighbor interpolation"], bilinearCloseup: ["sign-bilinear-closeup.png", "Wheelchair sign rectification detail using bilinear interpolation"] }
     ];
     const mosaics = [
       { title: "Mosaic 1 · Church-like structure", sources: [["church-1.webp", "Church source photograph, view 1", "Source 1"], ["church-2.webp", "Church source photograph, view 2", "Source 2"]], result: ["mosaic-church.webp", "Blended mosaic of the church-like structure covered in graffiti and paintings"] },
@@ -392,7 +392,7 @@ const CVProjectDetail = () => {
                   </p>
                 </div>
                 <div className="space-y-5">
-                  {rectifications.map(({ title, source, nearest, bilinear }) => (
+                  {rectifications.map(({ title, source, nearest, bilinear, points, nearestCloseup, bilinearCloseup }) => (
                     <div key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 sm:p-4">
                       <h3 className="mb-3 text-sm font-medium text-slate-800">{title}</h3>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -400,28 +400,38 @@ const CVProjectDetail = () => {
                         <Project4Image file={nearest[0]} alt={nearest[1]} caption="Nearest neighbor" imageClassName="h-56 sm:h-64" />
                         <Project4Image file={bilinear[0]} alt={bilinear[1]} caption="Bilinear" imageClassName="h-56 sm:h-64" />
                       </div>
+                      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(220px,0.8fr)_minmax(0,1.2fr)]">
+                        <div>
+                          <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Selected corner points</h4>
+                          <Project4Image file={points[0]} alt={points[1]} caption="Points used for rectification" imageClassName="h-72 sm:h-80" />
+                        </div>
+                        <div>
+                          <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Interpolation close-ups</h4>
+                          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                            <Project4Image file={nearestCloseup[0]} alt={nearestCloseup[1]} caption="Nearest neighbor close-up" imageClassName="h-48 sm:h-60" />
+                            <Project4Image file={bilinearCloseup[0]} alt={bilinearCloseup[1]} caption="Bilinear close-up" imageClassName="h-48 sm:h-60" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
                 <div className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">Nearest neighbor vs. bilinear interpolation</h3>
-                  <div className="mt-4 grid gap-5 lg:grid-cols-[minmax(0,1.25fr)_minmax(260px,0.75fr)] lg:items-start">
-                  <div className="space-y-3 text-sm font-light leading-[1.7] text-slate-600">
+                  <div className="mt-4 space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In terms of what it seems like, bilinear produces better results for me. It was smoother and much cleaner.</p>
                     <p>With nearest neighbor, you could see jagged stuff in the images because every output pixel copies a single source pixel. This is not a problem with bilinear blends because it uses the four neighbors, which removes most of that aliasing. But it is a bit slower and looks a bit softer in comparison.</p>
                     <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, nearest neighbor took 7.74 seconds versus 12.42 seconds for bilinear (about 1.6× slower). For the wheelchair sign, nearest neighbor took 10.67 seconds versus 21.85 seconds for bilinear (about 2.0× slower).</p>
                   </div>
-                  <div className="overflow-x-auto">
-                    <table className="project4-timing w-full text-left text-sm">
-                      <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Rectification timing</caption>
-                      <thead><tr><th scope="col">Image</th><th scope="col">Nearest neighbor</th><th scope="col">Bilinear</th></tr></thead>
-                      <tbody>
-                        <tr><th scope="row">Poster</th><td>7.74 seconds</td><td>12.42 seconds</td></tr>
-                        <tr><th scope="row">Wheelchair sign</th><td>10.67 seconds</td><td>21.85 seconds</td></tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  </div>
+                  <table className="project4-timing mt-4 w-full table-fixed text-left text-sm">
+                    <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Rectification timing</caption>
+                    <colgroup><col className="w-[34%]" /><col className="w-[33%]" /><col className="w-[33%]" /></colgroup>
+                    <thead><tr><th scope="col">Image</th><th scope="col">Nearest neighbor</th><th scope="col">Bilinear</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Poster</th><td>7.74 seconds</td><td>12.42 seconds</td></tr>
+                      <tr><th scope="row">Wheelchair sign</th><td>10.67 seconds</td><td>21.85 seconds</td></tr>
+                    </tbody>
+                  </table>
                 </div>
               </section>
 
