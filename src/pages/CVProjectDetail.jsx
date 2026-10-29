@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import project4Data from "../data/project4a-derived.json";
 
 const projectDetails = {
   proj0: {
@@ -98,6 +99,90 @@ const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64" }) 
   </figure>
 );
 
+const homographyLatex = (H) => `H = \\begin{bmatrix} ${H.map((row) => row.join(" & ")).join(" \\\\ ")} \\end{bmatrix}`;
+
+const Project4SystemMatrix = ({ label, text }) => (
+  <div className="min-w-0">
+    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">{label}</p>
+    <pre className="project4-matrix project4-matrix-light project4-data-matrix overflow-x-auto rounded-lg px-3 py-3 text-[10px] leading-[1.7] sm:text-xs">{text}</pre>
+  </div>
+);
+
+const Project4MosaicAnalysis = ({ data }) => (
+  <article className="project4-data-card mt-4 rounded-lg border p-4 sm:p-5">
+    <header className="flex flex-wrap items-start justify-between gap-3">
+      <div>
+        <h4 className="text-base font-semibold tracking-tight text-slate-800">{data.title}</h4>
+        <p className="mt-1 text-sm text-slate-600">{data.matches} correspondences · A is {data.A.length} × 8</p>
+        <p className="mt-1 text-sm font-medium text-slate-600">{data.direction}</p>
+      </div>
+    </header>
+    <details className="project4-data-details mt-4">
+      <summary>Show clicked points</summary>
+      <div className="mt-3 overflow-x-auto rounded-lg border border-slate-200">
+        <table className="project4-data-table w-full text-left text-sm">
+          <thead><tr><th scope="col">#</th><th scope="col">Source (x, y)</th><th scope="col">Destination (x′, y′)</th></tr></thead>
+          <tbody>{data.src.map((point, index) => (
+            <tr key={index}><th scope="row">{index + 1}</th><td>({point[0]}, {point[1]})</td><td>({data.dst[index][0]}, {data.dst[index][1]})</td></tr>
+          ))}</tbody>
+        </table>
+      </div>
+    </details>
+    <div className="mt-5">
+      <h5 className="mb-3 text-sm font-semibold text-slate-800">System of equations</h5>
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(180px,0.7fr)]">
+        <Project4SystemMatrix label="First six rows of A and vertical ellipsis" text={data.previewAText} />
+        <Project4SystemMatrix label="First six entries of b and vertical ellipsis" text={data.previewBText} />
+      </div>
+      <details className="project4-data-details mt-4">
+        <summary>Show full A and b</summary>
+        <div className="mt-3 grid gap-4 lg:grid-cols-[minmax(0,1.7fr)_minmax(180px,0.7fr)]">
+          <Project4SystemMatrix label={`Full A (${data.A.length} × 8)`} text={data.AText} />
+          <Project4SystemMatrix label={`Full b (${data.b.length} entries)`} text={data.bText} />
+        </div>
+      </details>
+    </div>
+    <div className="mt-5">
+      <p className="mb-2 text-sm font-semibold text-slate-800">Recovered homography H</p>
+      <Project4MathBlock className="project4-homography-data" latex={homographyLatex(data.H)} fallback={`H = [ ${data.H.map((row) => row.join("  ")).join(" ; ")} ]`} />
+    </div>
+  </article>
+);
+
+const Project4RectificationAnalysis = ({ data }) => (
+  <article className="project4-data-card rounded-lg border p-4 sm:p-5">
+    <header className="mb-4 flex flex-wrap items-center justify-between gap-3">
+      <h4 className="text-base font-semibold tracking-tight text-slate-800">{data.title}</h4>
+      <span className="text-sm text-slate-600">4 correspondences · A is 8 × 8</span>
+    </header>
+    <p className="mb-4 text-sm text-slate-600">Corners map to a {data.dimensions[0]} × {data.dimensions[1]} rectangle.</p>
+    <div className="grid gap-4 sm:grid-cols-2">
+      {[['Source corners', data.sourceCorners], ['Target corners', data.targetCorners]].map(([label, corners]) => (
+        <div key={label}>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">{label}</p>
+          <table className="project4-data-table w-full text-left text-sm">
+            <thead><tr><th scope="col">Corner</th><th scope="col">(x, y)</th></tr></thead>
+            <tbody>{['TL', 'TR', 'BR', 'BL'].map((corner, index) => (
+              <tr key={corner}><th scope="row">{corner}</th><td>({corners[index][0]}, {corners[index][1]})</td></tr>
+            ))}</tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+    <details open className="project4-data-details mt-4">
+      <summary>Show full A and b</summary>
+      <div className="mt-3 grid gap-4 lg:grid-cols-[minmax(0,1.7fr)_minmax(180px,0.7fr)]">
+        <Project4SystemMatrix label="A (8 × 8)" text={data.AText} />
+        <Project4SystemMatrix label="b (8 entries)" text={data.bText} />
+      </div>
+    </details>
+    <div className="mt-5">
+      <p className="mb-2 text-sm font-semibold text-slate-800">Recovered homography H</p>
+      <Project4MathBlock className="project4-homography-data" latex={homographyLatex(data.H)} fallback={`H = [ ${data.H.map((row) => row.join("  ")).join(" ; ")} ]`} />
+    </div>
+  </article>
+);
+
 const CVProjectDetail = () => {
   const { projectId } = useParams();
   const project = projectDetails[projectId];
@@ -185,14 +270,9 @@ const CVProjectDetail = () => {
       { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", images: [["interior-1.webp", "First view from the Unit 3 courtyard, Priestley Hall, and Bear Market photo set", "View 1"], ["interior-2.webp", "Overlapping second view from the Unit 3 courtyard, Priestley Hall, and Bear Market photo set", "View 2"]] }
     ];
     const correspondenceSets = [
-      { title: "Set 1 · Church-like structure", matches: 18, images: [["church-matches-a.webp", "Church image with numbered point correspondences", "Reference image"], ["church-matches-b.webp", "Second church image with matching numbered point correspondences", "Image to align"]] },
-      { title: "Set 2 · Undergraduate and Pimentel-like buildings", matches: 13, images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
-      { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", matches: 17, images: [["interior-matches-a.webp", "Unit 3 courtyard image with manually marked point correspondences", "Reference image"], ["interior-matches-b.webp", "Second Unit 3 courtyard image with manually marked point correspondences", "Image to align"]] }
-    ];
-    const homographies = [
-      { title: "Set 1 · Church-like structure", rows: ["0.550146   0.041104   479.043242", "-0.222709  0.835154   114.156419", "-0.000342 -0.000023  1.000000"] },
-      { title: "Set 2 · Undergraduate and Pimentel-like buildings", rows: ["0.396231   0.056311   631.071603", "-0.298208  0.807504   117.745857", "-0.000457 -0.000031  1.000000"] },
-      { title: "Set 3 · Unit 3 courtyard, Priestley Hall, and Bear Market", rows: ["1.666145  -0.094733  -909.098111", "0.335535   1.435024  -262.845469", "0.000538  -0.000049  1.000000"] }
+      { images: [["church-matches-a.webp", "Church image with numbered point correspondences", "Reference image"], ["church-matches-b.webp", "Second church image with matching numbered point correspondences", "Image to align"]] },
+      { images: [["building-matches-a.webp", "Academic building reference image with 13 numbered correspondences", "Reference image"], ["building-matches-b.webp", "Second academic building image with the same numbered correspondences", "Image to align"]] },
+      { images: [["interior-matches-a.webp", "Unit 3 courtyard image with manually marked point correspondences", "Reference image"], ["interior-matches-b.webp", "Second Unit 3 courtyard image with manually marked point correspondences", "Image to align"]] }
     ];
     const rectifications = [
       { title: "Poster in my room", source: ["rectification-poster-source.webp", "Poster in Devansh's room before rectification"], nearest: ["poster-nearest.webp", "Poster in Devansh's room rectified with nearest-neighbor interpolation"], bilinear: ["poster-bilinear.webp", "Poster in Devansh's room rectified with bilinear interpolation"] },
@@ -262,65 +342,44 @@ const CVProjectDetail = () => {
                   <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">
                     The <code className="rounded bg-white px-1 py-0.5 font-mono text-xs text-slate-800">computeH</code> function takes matching point lists from the two images and returns the 3 × 3 homography H. For a source point (x, y) and its match (x′, y′), the mapping is written as two linear equations in the eight unknown homography parameters:
                   </p>
-                  <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <div className="project4-equation-card min-w-0 rounded-md border p-3 sm:p-4">
-                      <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Horizontal coordinate</p>
+                  <div className="mt-4 space-y-4 text-sm font-light leading-[1.7] text-slate-600">
+                    <div className="grid gap-3 sm:grid-cols-2">
                       <Project4MathBlock className="project4-equation" latex="x a + y b + c - x x' g - y x' h = x'" fallback="x a + y b + c − x x′ g − y x′ h = x′" />
-                    </div>
-                    <div className="project4-equation-card min-w-0 rounded-md border p-3 sm:p-4">
-                      <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Vertical coordinate</p>
                       <Project4MathBlock className="project4-equation" latex="x d + y e + f - x y' g - y y' h = y'" fallback="x d + y e + f − x y′ g − y y′ h = y′" />
                     </div>
-                  </div>
-                  <p className="mt-3 text-sm font-light leading-[1.7] text-slate-600">The unknown parameter vector is <Project4MathBlock className="project4-inline-math" display={false} latex="\mathbf{h} = [a, b, c, d, e, f, g, h]^T" fallback="h = [a, b, c, d, e, f, g, h]ᵀ" />. Stacking the two rows from every matched point gives the system below.</p>
-                  <div className="mt-3 space-y-2 text-sm font-light leading-[1.7] text-slate-600">
-                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system <Project4MathBlock className="project4-inline-math" display={false} latex="A\mathbf{h} = \mathbf{b}" fallback="A h = b" />, where h is the vector of the eight unknowns and b is the vector of target coordinates.</p>
-                    <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate <Project4MathBlock className="project4-inline-math" display={false} latex="\mathbf{h} = (A^T A)^{-1} A^T \mathbf{b}" fallback="h = (AᵀA)⁻¹Aᵀb" /> (thanks EECS 127). We then place those eight values into <Project4MathBlock className="project4-inline-math" display={false} latex="H = \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & 1 \end{bmatrix}" fallback="H = [[a, b, c], [d, e, f], [g, h, 1]]" />.</p>
+                    <p>The unknown parameter vector is:</p>
+                    <Project4MathBlock latex="\mathbf{h} = [a, b, c, d, e, f, g, h]^T" fallback="h = [a, b, c, d, e, f, g, h]ᵀ" />
+                    <p>Stacking the two rows from every matched point gives the system below.</p>
+                    <p>Stacking the equations from n point pairs gives a matrix A with 2n rows and 8 columns, and a vector b with 2n entries. Together they form the linear system, where h is the vector of the eight unknowns and b is the vector of target coordinates.</p>
+                    <p>With more than four point pairs, the system is overdetermined, so we solve for the least-squares estimate (thanks EECS 127).</p>
+                    <Project4MathBlock latex="A\mathbf{h} = \mathbf{b}, \qquad A \in \mathbb{R}^{2n \times 8}, \quad \mathbf{b} \in \mathbb{R}^{2n}" fallback="A h = b,    A in R^(2n × 8),    b in R^(2n)" />
+                    <Project4MathBlock latex="\mathbf{h} = (A^T A)^{-1} A^T \mathbf{b}" fallback="h = (AᵀA)⁻¹Aᵀb" />
+                    <p>We then place those eight values into:</p>
+                    <Project4MathBlock latex="H = \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & 1 \end{bmatrix}" fallback="H = [[a, b, c], [d, e, f], [g, h, 1]]" />
                   </div>
                 </div>
-                <div className="mt-5 space-y-5">
-                  {correspondenceSets.map(({ title, matches, images }) => (
-                    <div key={title} className="rounded-lg border border-slate-200 p-3 sm:p-4">
-                      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                        <h3 className="text-sm font-medium text-slate-800">{title}</h3>
-                        <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-500">{matches} matches</span>
+                <div className="mt-5 space-y-6">
+                  {correspondenceSets.map(({ images }, index) => {
+                    const data = project4Data.mosaics[index];
+                    return (
+                      <div key={data.title}>
+                        <div className="rounded-lg border border-slate-200 p-3 sm:p-4">
+                          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                            <h3 className="text-sm font-medium text-slate-800">{data.title}</h3>
+                            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-500">{data.matches} correspondences</span>
+                          </div>
+                          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                            {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" />)}
+                          </div>
+                        </div>
+                        <Project4MosaicAnalysis data={data} />
                       </div>
-                      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                        {images.map(([file, alt, caption]) => <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" />)}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
-                <div className="mt-5 space-y-3">
-                  {homographies.map(({ title, rows }) => (
-                    <div key={title} className="min-w-0 rounded-lg border border-slate-200 bg-slate-50/70 p-3">
-                      <h3 className="text-sm font-medium leading-snug text-slate-800">{title}</h3>
-                      <Project4MathBlock className="mt-3" latex={`H = \\begin{bmatrix} ${rows.map((row) => row.trim().split(/\s+/).join(" & ")).join(" \\\\ ")} \\end{bmatrix}`} fallback={`H = [ ${rows.join(" ; ")} ]`} />
-                    </div>
-                  ))}
-                </div>
-                <div className="project4-subsection mt-5 rounded-lg border p-4 sm:p-5">
-                  <div className="mb-3">
-                    <h3 className="text-sm font-medium text-slate-800">Rectification example</h3>
-                    <p className="mt-1 text-xs font-light leading-relaxed text-slate-500">Four source corners are mapped to a 600 × 400 rectangle.</p>
-                  </div>
-                  <details open className="project4-details">
-                    <summary>Show A and b matrices</summary>
-                    <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
-                      <div className="min-w-0">
-                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">A (8 rows × 8 columns)</p>
-                        <pre className="project4-matrix project4-matrix-light px-3 py-3 text-[9px] leading-[1.7] sm:text-[10px]">{`[[  278   902  1    0    0  0        0        0]\n [    0     0  0  278  902  1        0        0]\n [ 3273   181  1    0    0  0 -1963800  -108600]\n [    0     0  0 3273  181  1        0        0]\n [ 3142  4033  1    0    0  0 -1885200 -2419800]\n [    0     0  0 3142 4033  1 -1256800 -1613200]\n [  285  2979  1    0    0  0        0        0]\n [    0     0  0  285 2979  1  -114000 -1191600]]`}</pre>
-                      </div>
-                      <div>
-                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">b (8 entries)</p>
-                        <pre className="project4-matrix project4-matrix-light px-3 py-3 text-[10px] leading-[1.7]">{`[0  0  600  0  600  400  0  400]`}</pre>
-                      </div>
-                    </div>
-                  </details>
-                  <div className="mt-4 max-w-md">
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Recovered homography H</p>
-                    <Project4MathBlock className="mt-3" latex={String.raw`H = \begin{bmatrix} 0.40407 & -0.00136 & -111.10205 \\ 0.04843 & 0.20119 & -194.94176 \\ 0.00031 & -0.00001 & 1.00000 \end{bmatrix}`} fallback="H = [[ 0.40407  -0.00136  -111.10205] ; [ 0.04843  0.20119  -194.94176] ; [ 0.00031  -0.00001  1.00000 ]]" />
-                  </div>
+                <div className="project4-subsection mt-6 space-y-5 rounded-lg border p-4 sm:p-5">
+                  <h3 className="text-base font-semibold tracking-tight text-slate-800">Rectification systems</h3>
+                  {project4Data.rectifications.map((data) => <Project4RectificationAnalysis key={data.title} data={data} />)}
                 </div>
               </section>
 
@@ -350,15 +409,15 @@ const CVProjectDetail = () => {
                   <div className="space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In terms of what it seems like, bilinear produces better results for me. It was smoother and much cleaner.</p>
                     <p>With nearest neighbor, you could see jagged stuff in the images because every output pixel copies a single source pixel. This is not a problem with bilinear blends because it uses the four neighbors, which removes most of that aliasing. But it is a bit slower and looks a bit softer in comparison.</p>
-                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, bilinear took about 15.6 seconds versus 8.2 seconds for nearest neighbor (approximately 2× slower). For the wheelchair sign, nearest neighbor took 10.6 seconds versus 29.9 seconds for bilinear, about 2.8× slower.</p>
+                    <p>Nearest neighbor is faster, with one lookup per pixel. Bilinear needs four lookups and a weighted sum per channel. On the poster, nearest neighbor took 7.74 seconds versus 12.42 seconds for bilinear (about 1.6× slower). For the wheelchair sign, nearest neighbor took 10.67 seconds versus 21.85 seconds for bilinear (about 2.0× slower).</p>
                   </div>
                   <div className="overflow-x-auto">
                     <table className="project4-timing w-full text-left text-sm">
                       <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Rectification timing</caption>
                       <thead><tr><th scope="col">Image</th><th scope="col">Nearest neighbor</th><th scope="col">Bilinear</th></tr></thead>
                       <tbody>
-                        <tr><th scope="row">Poster</th><td>8.2 seconds</td><td>15.6 seconds</td></tr>
-                        <tr><th scope="row">Wheelchair sign</th><td>10.6 seconds</td><td>29.9 seconds</td></tr>
+                        <tr><th scope="row">Poster</th><td>7.74 seconds</td><td>12.42 seconds</td></tr>
+                        <tr><th scope="row">Wheelchair sign</th><td>10.67 seconds</td><td>21.85 seconds</td></tr>
                       </tbody>
                     </table>
                   </div>

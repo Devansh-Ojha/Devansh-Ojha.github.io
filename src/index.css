@@ -143,6 +143,49 @@ h6 {
   color: var(--p4-muted);
 }
 
+.project4-page .project4-data-card {
+  border-color: var(--p4-border);
+  background: var(--p4-surface);
+  box-shadow: 0 3px 14px rgb(20 35 55 / 4%);
+}
+
+.project4-page .project4-data-matrix {
+  white-space: pre;
+}
+
+.project4-page .project4-data-table {
+  border-collapse: collapse;
+  color: var(--p4-text);
+}
+
+.project4-page .project4-data-table th,
+.project4-page .project4-data-table td {
+  border-bottom: 1px solid var(--p4-border);
+  padding: 0.55rem 0.7rem;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.project4-page .project4-data-table thead th {
+  background: var(--p4-raised);
+  color: var(--p4-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.project4-page .project4-data-table tbody th {
+  color: var(--p4-muted);
+  font-weight: 500;
+}
+
+.project4-page .project4-data-details summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--p4-accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 .project4-page .project4-math-block {
   box-sizing: border-box;
   width: 100%;

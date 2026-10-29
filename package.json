@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cp index.src.html index.html && vite",
-    "build": "cp index.src.html index.html && vite build",
+    "dev": "node scripts/build-project4a-data.mjs && cp index.src.html index.html && vite",
+    "build": "node scripts/build-project4a-data.mjs && cp index.src.html index.html && vite build && node scripts/prerender-project4a.mjs",
     "postbuild": "cp dist/index.html index.html && cp dist/index.html 404.html && cp -R dist/. .",
     "lint": "eslint .",
     "preview": "vite preview"
