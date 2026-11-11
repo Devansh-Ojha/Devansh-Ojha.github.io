@@ -83,10 +83,17 @@ const Project4MathBlock = ({ latex, fallback, className = "", display = true }) 
   );
 };
 
-const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a", lightbox = false, zoomOnHover = true }) => {
+const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a", lightbox = false, zoomOnHover = true, rowLabels = null }) => {
   const [isZoomed, setIsZoomed] = useState(false);
   const imagePath = `${basePath}/${file}`;
-  const image = (
+  const image = rowLabels ? (
+    <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-stretch gap-2 p-2 sm:grid-cols-[8rem_minmax(0,1fr)]">
+      <div className="flex flex-col justify-around py-1 text-right text-[0.68rem] font-medium leading-tight text-slate-600 sm:text-xs">
+        {rowLabels.map((label) => <span key={label}>{label}</span>)}
+      </div>
+      <img src={imagePath} alt={alt} loading="lazy" className="h-auto w-full bg-slate-50 object-contain" />
+    </div>
+  ) : (
     <img
       src={imagePath}
       alt={alt}
@@ -576,16 +583,35 @@ const CVProjectDetail = () => {
                       <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
                       <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
                     </div>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                      {Array.from({ length: 6 }, (_, index) => (
-                        <Project4Image
-                          key={index}
-                          file={`anms-points-${String(index + 1).padStart(2, "0")}.png`}
-                          alt={`ANMS corner points, image ${index + 1}`}
-                          caption={`ANMS points · Image ${index + 1}`}
-                          imageClassName="h-56 sm:h-64"
-                          basePath="/cvproj/proj4-part-b"
-                        />
+                    <div className="mt-4 space-y-5">
+                      {[
+                        ["Church Building", [
+                          ["Image 1", "anms-points-06.png", "strongest-500-church-01.png"],
+                          ["Image 2", "anms-points-05.png", "strongest-500-church-02.png"]
+                        ]],
+                        ["Undergraduate Building", [
+                          ["Image 1", "anms-points-03.png", "strongest-500-undergraduate-01.png"],
+                          ["Image 2", "anms-points-04.png", "strongest-500-undergraduate-02.png"]
+                        ]],
+                        ["BearMarket Unit 3 at night", [
+                          ["Image 1", "anms-points-01.png", "strongest-500-bear-market-01.png"],
+                          ["Image 2", "anms-points-02.png", "strongest-500-bear-market-02.png"]
+                        ]]
+                      ].map(([scene, views]) => (
+                        <section key={scene} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
+                          <h5 className="mb-3 text-sm font-medium text-slate-800">{scene}</h5>
+                          <div className="space-y-4">
+                            {views.map(([view, anmsFile, strongestFile]) => (
+                              <div key={view}>
+                                <h6 className="mb-2 text-center text-xs font-medium text-slate-600">{view}</h6>
+                                <div className="grid gap-3 sm:grid-cols-2">
+                                  <Project4Image file={anmsFile} alt={`${scene}, ${view}, ANMS 500 points`} caption="ANMS · 500 points" imageClassName="h-56 sm:h-64" basePath="/cvproj/proj4-part-b" />
+                                  <Project4Image file={strongestFile} alt={`${scene}, ${view}, strongest 500 points without ANMS`} caption="Strongest 500 · no ANMS" imageClassName="h-56 sm:h-64" basePath="/cvproj/proj4-part-b" />
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </section>
                       ))}
                     </div>
                   </div>
@@ -597,12 +623,12 @@ const CVProjectDetail = () => {
                   </p>
                   <div className="mt-4 space-y-4">
                     {[
-                      ["feature-descriptor-patches.png", "Feature descriptor patch examples", "Feature descriptor patches · Image 1"],
-                      ["feature-descriptor-patches-02.png", "Feature descriptor patch visualization, image 2", "Feature descriptor patches · Image 2"],
-                      ["feature-descriptor-patches-03.png", "Feature descriptor patch visualization, image 3", "Feature descriptor patches · Image 3"]
-                    ].map(([file, alt, caption]) => (
+                      ["Church Building", "feature-descriptor-patches.png"],
+                      ["Undergraduate Building", "feature-descriptor-patches-02.png"],
+                      ["BearMarket Unit 3 at night", "feature-descriptor-patches-03.png"]
+                    ].map(([scene, file]) => (
                       <div key={file} className="sm:mx-auto sm:max-w-4xl">
-                        <Project4Image file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" basePath="/cvproj/proj4-part-b" />
+                        <Project4Image file={file} alt={`${scene} feature descriptor examples`} caption={`${scene} · Feature descriptors`} rowLabels={["40×40 window", "8×8 descriptor"]} basePath="/cvproj/proj4-part-b" />
                       </div>
                     ))}
                   </div>
@@ -629,15 +655,15 @@ const CVProjectDetail = () => {
                     <table className="project4-timing w-full table-fixed text-left text-sm">
                       <thead><tr><th scope="col">Image pair</th><th scope="col">Matches</th></tr></thead>
                       <tbody>
-                        <tr><th scope="row">Church building</th><td>103 matches</td></tr>
+                        <tr><th scope="row">Church Building</th><td>103 matches</td></tr>
                         <tr><th scope="row">Undergraduate Building</th><td>82 matches</td></tr>
-                        <tr><th scope="row">BearMarket unit 3 in night</th><td>144 matches</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>144 matches</td></tr>
                       </tbody>
                     </table>
                   </div>
                   <div className="mt-4 space-y-4">
                     {[
-                      ["matches-church.png", "Church image feature matches", "Church · Feature matches"],
+                      ["matches-church.png", "Church Building feature matches", "Church Building · Feature matches"],
                       ["matches-undergraduate-building.png", "Undergraduate Building feature matches", "Undergraduate Building · Feature matches"],
                       ["matches-bear-market.png", "BearMarket Unit 3 at night feature matches", "BearMarket Unit 3 at night · Feature matches"]
                     ].map(([file, alt, caption]) => (
@@ -658,18 +684,18 @@ const CVProjectDetail = () => {
                     <table className="project4-timing w-full table-fixed text-left text-sm">
                       <thead><tr><th scope="col">Image pair</th><th scope="col">Inliers / matches</th><th scope="col">Inlier rate</th></tr></thead>
                       <tbody>
-                        <tr><th scope="row">Church building</th><td>89 of 103</td><td>86%</td></tr>
+                        <tr><th scope="row">Church Building</th><td>89 of 103</td><td>86%</td></tr>
                         <tr><th scope="row">Undergraduate Building</th><td>55 of 82</td><td>67%</td></tr>
-                        <tr><th scope="row">BearMarket unit 3 in night</th><td>94 of 144</td><td>65%</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>94 of 144</td><td>65%</td></tr>
                       </tbody>
                     </table>
                   </div>
-                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">In all the pairs, most matches were horizontal lines connecting the same point in both pictures. Most of the matches agreed with a single homography. RANSAC rejected the rest as outliers. As can be seen, the Church building pair had the highest inlier rate, so its matches were the cleanest.</p>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">In all the pairs, most matches were horizontal lines connecting the same point in both pictures. Most of the matches agreed with a single homography. RANSAC rejected the rest as outliers. As can be seen, the Church Building pair had the highest inlier rate, so its matches were the cleanest.</p>
                   <div className="mt-4 space-y-5">
                     {[
-                      ["Unit 3 courtyard", "auto-bear-market.png", "nonauto-bear-market.png"],
+                      ["Church Building", "auto-church.png", "nonauto-church.png"],
                       ["Undergraduate Building", "auto-undergraduate-building.png", "nonauto-undergraduate-building.png"],
-                      ["Church", "auto-church.png", "nonauto-church.png"]
+                      ["BearMarket Unit 3 at night", "auto-bear-market.png", "nonauto-bear-market.png"]
                     ].map(([title, autoFile, nonAutoFile]) => (
                       <section key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                         <h4 className="mb-3 text-sm font-medium text-slate-800">{title}</h4>
