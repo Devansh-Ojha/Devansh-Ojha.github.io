@@ -699,9 +699,12 @@ const CVProjectDetail = () => {
                     ].map(([title, autoFile, nonAutoFile]) => (
                       <section key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                         <h4 className="mb-3 text-sm font-medium text-slate-800">{title}</h4>
-                        <div className="space-y-4">
-                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto result" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
-                          <Project4Image file={nonAutoFile} alt={`${title}, Non-Auto result`} caption="Non-Auto result" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
+                        <div className="space-y-3">
+                          <Project4Image file={autoFile} alt={`${title}, AutoRANSAC mosaic`} caption="AutoRANSAC mosaic" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
+                          <div className="grid gap-3 sm:grid-cols-2">
+                            <Project4Image file={autoFile} alt={`${title}, Auto result comparison`} caption="Auto" imageClassName="h-64 sm:h-80" basePath="/cvproj/proj4-part-b" lightbox />
+                            <Project4Image file={nonAutoFile} alt={`${title}, Non-Auto result comparison`} caption="Non-Auto" imageClassName="h-64 sm:h-80" basePath="/cvproj/proj4-part-b" lightbox />
+                          </div>
                         </div>
                       </section>
                     ))}
