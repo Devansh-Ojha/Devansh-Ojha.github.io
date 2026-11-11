@@ -28,9 +28,9 @@ const projectDetails = {
     description: ""
   },
   "proj4-part-a": {
-    label: "Project 4 · Part A",
+    label: "Project 4 · Parts A & B",
     title: "Image Warping and Mosaicing",
-    description: "Computer Vision Project 4, Part A."
+    description: "Computer Vision Project 4, Parts A and B."
   }
 };
 
@@ -91,7 +91,7 @@ const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", ba
       src={imagePath}
       alt={alt}
       loading="lazy"
-      className={`w-full ${imageClassName} object-contain bg-slate-50 p-2${lightbox ? " cursor-zoom-in" : ""}`}
+      className={`w-full ${imageClassName} object-contain bg-slate-50 p-2${zoomOnHover || lightbox ? " cursor-zoom-in" : ""}`}
     />
   );
 
@@ -107,11 +107,11 @@ const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", ba
             {image}
           </a>
         )}
-        <figcaption className="border-t border-slate-100 px-3 py-2.5 text-xs leading-relaxed text-slate-500 sm:px-4">
+        <figcaption className="border-t border-slate-100 px-3 py-2.5 text-center text-xs font-medium leading-relaxed text-slate-600 sm:px-4">
           {caption}
         </figcaption>
         {zoomOnHover && (
-          <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[90] hidden items-center justify-center bg-slate-950/70 p-4 group-hover/zoom:flex sm:p-8">
+          <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[90] invisible flex items-center justify-center bg-slate-950/70 p-4 opacity-0 transition-opacity duration-150 delay-300 group-hover/zoom:visible group-hover/zoom:opacity-100 sm:p-8">
             <img src={imagePath} alt="" className="max-h-[90vh] max-w-[94vw] object-contain shadow-2xl" />
           </div>
         )}
@@ -332,7 +332,7 @@ const CVProjectDetail = () => {
 
           <article className="max-w-none">
             <header className="mb-10 pb-6 border-b border-slate-200">
-              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">Project 4 · Part A</p>
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-blue-600 mb-4">Project 4 · Parts A & B</p>
               <h1 className="mt-2 text-[clamp(2.25rem,4vw,5rem)] font-light leading-[0.92] tracking-[-0.06em] text-slate-800">
                 Image Warping and Mosaicing
               </h1>
@@ -341,8 +341,17 @@ const CVProjectDetail = () => {
               </p>
             </header>
             <nav aria-label="Project sections" className="project4-nav -mx-4 mb-8 flex flex-wrap gap-2 px-4 py-3 text-xs font-medium sm:-mx-6 sm:px-6">
-              {["A.1 Photograph pairs", "A.2 Homographies", "A.3 Warping", "A.4 Mosaics"].map((label, index) => (
-                <a key={label} href={`#proj4-a${index + 1}`} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 transition-colors hover:border-blue-300 hover:text-blue-700">{label}</a>
+              {[
+                ["A.1 Photograph pairs", "proj4-a1"],
+                ["A.2 Homographies", "proj4-a2"],
+                ["A.3 Warping", "proj4-a3"],
+                ["A.4 Mosaics", "proj4-a4"],
+                ["B.1 Harris corners", "proj4-b1"],
+                ["B.2 Feature descriptors", "proj4-b2"],
+                ["B.3 Feature matching", "proj4-b3"],
+                ["B.4 RANSAC", "proj4-b4"]
+              ].map(([label, sectionId]) => (
+                <a key={sectionId} href={`#${sectionId}`} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 transition-colors hover:border-blue-300 hover:text-blue-700">{label}</a>
               ))}
             </nav>
 
@@ -513,7 +522,7 @@ const CVProjectDetail = () => {
                     The overarching goal in this part of the project was to pick the points algorithmically or automatically using the paper “Multi-Image Matching using Multi-Scale Oriented Patches” and get better mosaic results for my images. This allows me to construct better mosaics, which are less prone to human error compared to Part A. I use Harris corner detection, feature descriptors, feature matching, and RANSAC to achieve this.
                   </p>
                 </div>
-                <div className="project4-subsection rounded-lg border p-4 sm:p-5">
+                <div id="proj4-b1" className="project4-subsection scroll-mt-24 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.1: Harris Corner Detection</h3>
                   <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
                     For the first task, I used the Python file called “Harris.py” given to us. The code computes the Harris corner response image using the scikit-image library to measure the strength of the corners. Then it keeps local maxima and discards corners within 20 pixels of the border. Harris corners near the edge are discarded, and the coordinates of the remaining corners are returned. A 2D array containing the H value of every pixel is also returned.
@@ -549,11 +558,17 @@ const CVProjectDetail = () => {
                     <h4 className="text-base font-medium tracking-tight">Adaptive Non-Maximal Suppression (ANMS)</h4>
                     <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                       <p>After this, I implemented the ANMS (Adaptive Non-Maximal Suppression) function, and the key idea behind it is that if I just keep the x amount of corners with the highest Harris strength, most of them will be in highly textured areas. This can be the tree in my image or the grid of windows. But the big, flat areas like the sky and the wall wouldn’t get anything, and this is important because I need them to be spread out; otherwise, they would be concentrated in an area and therefore result in a bad mosaic. To tackle this problem, the paper suggests that a corner should be kept if it is the strongest one in the region. The size is picked adaptively instead of being fixed. Using the formula from the paper:</p>
-                      <Project4MathBlock
-                        className="project4-equation"
-                        latex="r_i = \\min_{j:\\,f(x_i)<c_{\\mathrm{robust}}\\cdot f(x_j)} \\left|x_i-x_j\\right|"
-                        fallback="rᵢ = min over j satisfying f(xᵢ) < c_robust · f(xⱼ) of |xᵢ − xⱼ|"
-                      />
+                      <div className="project4-math-block project4-equation" role="math" aria-label="r sub i is the minimum distance from x sub i to x sub j, over j such that f of x sub i is less than c robust times f of x sub j">
+                        <div className="flex min-w-max flex-col items-center justify-center gap-1 font-serif text-lg text-slate-800 sm:text-xl">
+                          <div className="flex items-center justify-center gap-3">
+                            <span className="italic">r<sub>i</sub></span>
+                            <span>=</span>
+                            <span className="flex flex-col items-center leading-none"><span>min</span><sub className="-mt-0.5 text-xs not-italic">j</sub></span>
+                            <span className="italic">|x<sub>i</sub> − x<sub>j</sub>|</span>
+                          </div>
+                          <div className="text-center text-sm sm:text-base">where <i>f</i>(<i>x</i><sub>i</sub>) &lt; <i>c</i><sub>robust</sub> · <i>f</i>(<i>x</i><sub>j</sub>)</div>
+                        </div>
+                      </div>
                       <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
                       <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
                     </div>
@@ -571,7 +586,7 @@ const CVProjectDetail = () => {
                     </div>
                   </div>
                 </div>
-                <article className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
+                <article id="proj4-b2" className="project4-subsection mt-6 scroll-mt-24 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.2: Feature Descriptor Extraction</h3>
                   <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
                     Now, in this task, I take the ANMS corner and then blur the grayscale image with a Gaussian function, keeping sigma at 2. Then I take the 8 × 8 patch with spacing of 5 pixels, which covers the 40 × 40 window around the corner. The reason for the Gaussian blur is that sampling can cause aliasing, and it makes the descriptor less prone to that. Then, to complete the process, I use a mean of 0 and a standard deviation of 1, so it ignores the brightness and contrast changes (bias/gain) between the pictures.
@@ -588,15 +603,20 @@ const CVProjectDetail = () => {
                     ))}
                   </div>
                 </article>
-                <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
+                <article id="proj4-b3" className="project4-subsection mt-4 scroll-mt-24 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.3: Feature Matching</h3>
                   <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In this task, for each pair of pictures, I find the squared distance to every descriptor in the other image in the pair. I then find the nearest (1-NN) and second nearest (2-NN). I keep a match only if:</p>
-                    <Project4MathBlock
-                      className="project4-equation"
-                      latex="\\frac{e_{1\\mathrm{NN}}}{e_{2\\mathrm{NN}}} < t"
-                      fallback="e₁NN / e₂NN < t"
-                    />
+                    <div className="project4-math-block project4-equation" role="math" aria-label="e one nearest neighbor divided by e two nearest neighbors is less than t">
+                      <div className="flex items-center justify-center gap-3 font-serif text-xl text-slate-800 sm:text-2xl">
+                        <span className="inline-flex flex-col items-center leading-tight">
+                          <span><i>e</i><sub>1NN</sub></span>
+                          <span className="w-full border-t border-slate-500" />
+                          <span><i>e</i><sub>2NN</sub></span>
+                        </span>
+                        <span>&lt; <i>t</i></span>
+                      </div>
+                    </div>
                     <p>The threshold value I picked was 0.53. The 1-NN error alone is a poor test, because the paper shows that correct and incorrect matches overlap too much on it. The calculation works because a correct match should be much better than the next point.</p>
                     <p>In my observation, I noticed that the lines were mostly parallel because of the way we took pictures in Part A.1. The steep diagonals are wrong matches, mostly on repeated texture.</p>
                     <p>Match count was as follows:</p>
@@ -623,7 +643,7 @@ const CVProjectDetail = () => {
                     ))}
                   </div>
                 </article>
-                <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
+                <article id="proj4-b4" className="project4-subsection mt-4 scroll-mt-24 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.4: RANSAC for Robust Homography</h3>
                   <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In this task, I built a 4-point RANSAC algorithm that was taught in the lecture and discussion. From the previous test, there were a few wrong matches. Why do we care about this? Because a single bad match can ruin the homography.</p>
@@ -650,8 +670,8 @@ const CVProjectDetail = () => {
                       <section key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                         <h4 className="mb-3 text-sm font-medium text-slate-800">{title}</h4>
                         <div className="space-y-4">
-                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
-                          <Project4Image file={nonAutoFile} alt={`${title}, nonAuto result`} caption="nonAuto" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
+                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto result" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
+                          <Project4Image file={nonAutoFile} alt={`${title}, Non-Auto result`} caption="Non-Auto result" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
                         </div>
                       </section>
                     ))}

@@ -28,8 +28,8 @@ const projects = [
     to: "/cvproj/proj3"
   },
   {
-    title: "Project 4 Part A",
-    description: "Image alignment, perspective warping, mosaics, and resampling.",
+    title: "Project 4 Parts A & B",
+    description: "Image alignment, perspective warping, mosaics, feature matching, and autostitching.",
     tech: ["Computer Vision", "Image Mosaics"],
     to: "/cvproj/proj4-part-a"
   }
