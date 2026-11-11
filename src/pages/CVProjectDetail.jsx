@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import project4Data from "../data/project4a-derived.json";
@@ -83,21 +83,49 @@ const Project4MathBlock = ({ latex, fallback, className = "", display = true }) 
   );
 };
 
-const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a" }) => (
-  <figure className="overflow-hidden rounded-lg border border-slate-200 bg-white">
-    <a href={`${basePath}/${file}`} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${alt}`}>
-      <img
-        src={`${basePath}/${file}`}
-        alt={alt}
-        loading="lazy"
-        className={`w-full ${imageClassName} object-contain bg-slate-50 p-2`}
-      />
-    </a>
-    <figcaption className="border-t border-slate-100 px-3 py-2.5 text-xs leading-relaxed text-slate-500 sm:px-4">
-      {caption}
-    </figcaption>
-  </figure>
-);
+const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a", lightbox = false }) => {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const imagePath = `${basePath}/${file}`;
+  const image = (
+    <img
+      src={imagePath}
+      alt={alt}
+      loading="lazy"
+      className={`w-full ${imageClassName} object-contain bg-slate-50 p-2${lightbox ? " cursor-zoom-in" : ""}`}
+    />
+  );
+
+  return (
+    <>
+      <figure className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+        {lightbox ? (
+          <button type="button" onClick={() => setIsZoomed(true)} className="block w-full" aria-label={`Zoom image: ${alt}`}>
+            {image}
+          </button>
+        ) : (
+          <a href={imagePath} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${alt}`}>
+            {image}
+          </a>
+        )}
+        <figcaption className="border-t border-slate-100 px-3 py-2.5 text-xs leading-relaxed text-slate-500 sm:px-4">
+          {caption}
+        </figcaption>
+      </figure>
+      {lightbox && isZoomed && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Zoomed image: ${alt}`}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 sm:p-8"
+          onClick={() => setIsZoomed(false)}
+        >
+          <button type="button" onClick={() => setIsZoomed(false)} className="absolute right-4 top-4 rounded-full bg-white/15 px-3 py-1 text-2xl text-white hover:bg-white/25" aria-label="Close zoomed image">×</button>
+          <img src={imagePath} alt={alt} className="max-h-full max-w-full object-contain" />
+        </div>
+      )}
+    </>
+  );
+};
 
 const homographyLatex = (H) => `H = \\begin{bmatrix} ${H.map((row) => row.join(" & ")).join(" \\\\ ")} \\end{bmatrix}`;
 
@@ -525,7 +553,7 @@ const CVProjectDetail = () => {
                       <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
                     </div>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                      {Array.from({ length: 8 }, (_, index) => (
+                      {Array.from({ length: 6 }, (_, index) => (
                         <Project4Image
                           key={index}
                           file={`anms-points-${String(index + 1).padStart(2, "0")}.png`}
@@ -540,14 +568,16 @@ const CVProjectDetail = () => {
                 </div>
                 <article className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.2: Feature Descriptor Extraction</h3>
-                  <div className="mt-4 sm:mx-auto sm:max-w-3xl">
-                    <Project4Image
-                      file="feature-descriptor-patches.png"
-                      alt="Feature descriptor patch examples"
-                      caption="Feature descriptor patches"
-                      imageClassName="h-56 sm:h-64"
-                      basePath="/cvproj/proj4-part-b"
-                    />
+                  <div className="mt-4 space-y-4">
+                    {[
+                      ["feature-descriptor-patches.png", "Feature descriptor patch examples", "Feature descriptor patches · Image 1"],
+                      ["feature-descriptor-patches-02.png", "Feature descriptor patch visualization, image 2", "Feature descriptor patches · Image 2"],
+                      ["feature-descriptor-patches-03.png", "Feature descriptor patch visualization, image 3", "Feature descriptor patches · Image 3"]
+                    ].map(([file, alt, caption]) => (
+                      <div key={file} className="sm:mx-auto sm:max-w-4xl">
+                        <Project4Image file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" basePath="/cvproj/proj4-part-b" />
+                      </div>
+                    ))}
                   </div>
                 </article>
                 <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
@@ -575,8 +605,8 @@ const CVProjectDetail = () => {
                       <section key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                         <h4 className="mb-3 text-sm font-medium text-slate-800">{title}</h4>
                         <div className="grid gap-3 sm:grid-cols-2">
-                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto" imageClassName="h-64 sm:h-80" basePath="/cvproj/proj4-part-b" />
-                          <Project4Image file={nonAutoFile} alt={`${title}, nonAuto result`} caption="nonAuto" imageClassName="h-64 sm:h-80" basePath="/cvproj/proj4-part-b" />
+                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
+                          <Project4Image file={nonAutoFile} alt={`${title}, nonAuto result`} caption="nonAuto" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
                         </div>
                       </section>
                     ))}
