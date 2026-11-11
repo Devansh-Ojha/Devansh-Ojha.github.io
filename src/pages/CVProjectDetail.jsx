@@ -534,6 +534,9 @@ const CVProjectDetail = () => {
                   <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
                     For the first task, I used the Python file called “Harris.py” given to us. The code computes the Harris corner response image using the scikit-image library to measure the strength of the corners. Then it keeps local maxima and discards corners within 20 pixels of the border. Harris corners near the edge are discarded, and the coordinates of the remaining corners are returned. A 2D array containing the H value of every pixel is also returned.
                   </p>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
+                    What Harris does is get the image gradients around each pixel and fuse them. This gives us a corner-strength score. This score is higher when the image changes strongly in both directions and is low in flat regions of the input.
+                  </p>
                   <p className="mt-4 text-sm font-medium text-slate-700">Here are the images with Harris corners:</p>
                   <div className="mt-3 grid gap-3 sm:grid-cols-2">
                     {[
@@ -581,7 +584,7 @@ const CVProjectDetail = () => {
                         </div>
                       </div>
                       <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
-                      <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
+                      <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), which would thus ruin our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
                     </div>
                     <div className="mt-4 space-y-5">
                       {[
