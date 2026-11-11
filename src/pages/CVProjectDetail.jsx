@@ -664,31 +664,6 @@ const CVProjectDetail = () => {
                       </tbody>
                     </table>
                   </div>
-                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">The RANSAC kept the following inliers out of the matches that passed the test.</p>
-                  <div className="mt-3 overflow-x-auto">
-                    <table className="project4-timing w-full table-fixed text-left text-sm">
-                      <thead><tr><th scope="col">Image pair</th><th scope="col">Inliers / matches</th><th scope="col">Inlier rate</th></tr></thead>
-                      <tbody>
-                        <tr><th scope="row">Church Building</th><td>91 of 103</td><td>88%</td></tr>
-                        <tr><th scope="row">Undergraduate Building</th><td>56 of 82</td><td>68%</td></tr>
-                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>89 of 144</td><td>62%</td></tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">In all the pairs, most matches were horizontal lines connecting the same point in both pictures. Most of the matches agreed with a single homography. RANSAC rejected the rest as outliers. As can be seen, the Church Building pair had the highest inlier rate, so its matches were the cleanest.</p>
-                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">I also tried t = 0.65, which gave more matches but also less inlier rate with noticeably more wrong matches on all the image pairs.</p>
-                  <div className="mt-3 overflow-x-auto">
-                    <table className="project4-timing w-full table-fixed text-left text-sm">
-                      <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Results using t = 0.65</caption>
-                      <thead><tr><th scope="col">Pair</th><th scope="col">Matches</th><th scope="col">Inlier rate</th></tr></thead>
-                      <tbody>
-                        <tr><th scope="row">Church</th><td>127</td><td>78%</td></tr>
-                        <tr><th scope="row">Undergraduate Building</th><td>113</td><td>63%</td></tr>
-                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>175</td><td>58%</td></tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">Note: I had to reorient my Part A mosaics, so they may look different from how they appeared in Part A.</p>
                   <div className="mt-4 space-y-4">
                     {[
                       ["matches-church.png", "Church Building feature matches", "Church Building · Feature matches"],
@@ -707,7 +682,32 @@ const CVProjectDetail = () => {
                   <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                     <p>In this task, I built a 4-point RANSAC algorithm that was taught in the lecture and discussion. From the previous test, there were a few wrong matches. Why do we care about this? Because a single bad match can ruin the homography.</p>
                     <p>In my algorithm, in every iteration of 3000 runs, it picks 4 random matches and computes a homography on them. Then I use that to warp every image-1 point with that homography and measure its distance to its matched point in image 2 (for each mosaic pair). Then I count the matches within 4 pixels as my inliers, while trying to keep the homography with the most inliers. When the 3000 iterations finishes, I get the homography using all the inliers of the best one I found. I used a 4-pixel inlier threshold because Harris corners are only accurate to about 1 to 3 pixels. This means that a match does not land exactly on its partner, while matches off by more than a few pixels are likely wrong.</p>
+                    <p>The RANSAC kept the following inliers out of the matches that passed the test.</p>
                   </div>
+                  <div className="mt-4 overflow-x-auto">
+                    <table className="project4-timing w-full table-fixed text-left text-sm">
+                      <thead><tr><th scope="col">Image pair</th><th scope="col">Inliers / matches</th><th scope="col">Inlier rate</th></tr></thead>
+                      <tbody>
+                        <tr><th scope="row">Church Building</th><td>91 of 103</td><td>88%</td></tr>
+                        <tr><th scope="row">Undergraduate Building</th><td>56 of 82</td><td>68%</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>89 of 144</td><td>62%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">I also tried t = 0.65, which gave more matches but also less inlier rate with noticeably more wrong matches on all the image pairs.</p>
+                  <div className="mt-3 overflow-x-auto">
+                    <table className="project4-timing w-full table-fixed text-left text-sm">
+                      <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Results using t = 0.65</caption>
+                      <thead><tr><th scope="col">Pair</th><th scope="col">Matches</th><th scope="col">Inliers</th><th scope="col">Inlier rate</th></tr></thead>
+                      <tbody>
+                        <tr><th scope="row">Church</th><td>127</td><td>99</td><td>78%</td></tr>
+                        <tr><th scope="row">Undergraduate Building</th><td>113</td><td>71</td><td>63%</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>175</td><td>101</td><td>58%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">In all the pairs, most matches were horizontal lines connecting the same point in both pictures. Most of the matches agreed with a single homography. RANSAC rejected the rest as outliers. As can be seen, the Church Building pair had the highest inlier rate, so its matches were the cleanest.</p>
+                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">Note: I had to reorient my Part A mosaics, so they may look different from how they appeared in Part A.</p>
                   <div className="mt-4 space-y-5">
                     {[
                       ["Church Building", "auto-church.png", "nonauto-church.png"],
