@@ -707,6 +707,7 @@ const CVProjectDetail = () => {
                     </table>
                   </div>
                   <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">In all the pairs, most matches were horizontal lines connecting the same point in both pictures. Most of the matches agreed with a single homography. RANSAC rejected the rest as outliers. As can be seen, the Church Building pair had the highest inlier rate, so its matches were the cleanest.</p>
+                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">Note: I had to reorient my Part A mosaics, so they may look different from how they appeared in Part A.</p>
                   <div className="mt-4 space-y-5">
                     {[
                       ["Church Building", "auto-church.png", "nonauto-church.png"],
@@ -725,6 +726,7 @@ const CVProjectDetail = () => {
                       </section>
                     ))}
                   </div>
+                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">At a glance the mosaics look similar, but when I looked at the seams where the images connect, the automatic ones were noticeably better and I couldn’t spot the connection edge, while the manual ones were rougher there.</p>
                 </article>
                 <div className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">Reflection</h3>
