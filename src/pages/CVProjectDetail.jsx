@@ -118,7 +118,7 @@ const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", ba
           {caption}
         </figcaption>
         {zoomOnHover && (
-          <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[90] invisible flex items-center justify-center bg-slate-950/70 p-4 opacity-0 transition-opacity duration-150 delay-300 group-hover/zoom:visible group-hover/zoom:opacity-100 sm:p-8">
+          <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[90] invisible flex items-center justify-center bg-slate-950/70 p-4 opacity-0 transition-opacity duration-150 delay-700 group-hover/zoom:visible group-hover/zoom:opacity-100 sm:p-8">
             <img src={imagePath} alt="" className="max-h-[90vh] max-w-[94vw] object-contain shadow-2xl" />
           </div>
         )}
