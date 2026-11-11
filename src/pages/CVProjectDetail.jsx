@@ -83,7 +83,7 @@ const Project4MathBlock = ({ latex, fallback, className = "", display = true }) 
   );
 };
 
-const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a", lightbox = false, zoomOnHover = basePath === "/cvproj/proj4-part-b" }) => {
+const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a", lightbox = false, zoomOnHover = true }) => {
   const [isZoomed, setIsZoomed] = useState(false);
   const imagePath = `${basePath}/${file}`;
   const image = (
@@ -551,8 +551,8 @@ const CVProjectDetail = () => {
                       <p>After this, I implemented the ANMS (Adaptive Non-Maximal Suppression) function, and the key idea behind it is that if I just keep the x amount of corners with the highest Harris strength, most of them will be in highly textured areas. This can be the tree in my image or the grid of windows. But the big, flat areas like the sky and the wall wouldn’t get anything, and this is important because I need them to be spread out; otherwise, they would be concentrated in an area and therefore result in a bad mosaic. To tackle this problem, the paper suggests that a corner should be kept if it is the strongest one in the region. The size is picked adaptively instead of being fixed. Using the formula from the paper:</p>
                       <Project4MathBlock
                         className="project4-equation"
-                        latex="\\begin{aligned} r_i &= \\min_j \\left|x_i - x_j\\right| \\\\[0.35em] \\text{where } f(x_i) &< c_{\\mathrm{robust}} \\cdot f(x_j) \\end{aligned}"
-                        fallback="rᵢ = minⱼ |xᵢ − xⱼ|\nwhere f(xᵢ) < c_robust · f(xⱼ)"
+                        latex="r_i = \\min_{j:\\,f(x_i)<c_{\\mathrm{robust}}\\cdot f(x_j)} \\left|x_i-x_j\\right|"
+                        fallback="rᵢ = min over j satisfying f(xᵢ) < c_robust · f(xⱼ) of |xᵢ − xⱼ|"
                       />
                       <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
                       <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
@@ -649,7 +649,7 @@ const CVProjectDetail = () => {
                     ].map(([title, autoFile, nonAutoFile]) => (
                       <section key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                         <h4 className="mb-3 text-sm font-medium text-slate-800">{title}</h4>
-                        <div className="grid gap-3 sm:grid-cols-2">
+                        <div className="space-y-4">
                           <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
                           <Project4Image file={nonAutoFile} alt={`${title}, nonAuto result`} caption="nonAuto" imageClassName="h-80 sm:h-96" basePath="/cvproj/proj4-part-b" lightbox />
                         </div>
