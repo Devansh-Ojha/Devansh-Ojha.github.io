@@ -651,20 +651,7 @@ const CVProjectDetail = () => {
                       </div>
                     </div>
                     <p>The threshold value I picked was 0.53. The 1-NN error alone is a poor test, because the paper shows that correct and incorrect matches overlap too much on it. The calculation works because a correct match should be much better than the next point.</p>
-                    <p>I chose t = 0.53 because looking at the graph in paper the incorrect matches are less below a ratio of about 0.4 but goes over correct starting 0.7. So my choice allows to be in the safe zone. I also tested t = 0.65 on my images, and it let through noticeably more wrong matches like diagonal lines.</p>
-                    <p>I also tried t = 0.65, which gave more matches but also less inlier rate with noticeably more wrong matches on all the image pairs.</p>
-                    <div className="overflow-x-auto">
-                      <table className="project4-timing w-full table-fixed text-left text-sm">
-                        <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Results using t = 0.65</caption>
-                        <thead><tr><th scope="col">Pair</th><th scope="col">Matches</th><th scope="col">Inliers</th><th scope="col">Inlier rate</th></tr></thead>
-                        <tbody>
-                          <tr><th scope="row">Church</th><td>127</td><td>99</td><td>78%</td></tr>
-                          <tr><th scope="row">Undergraduate Building</th><td>113</td><td>71</td><td>63%</td></tr>
-                          <tr><th scope="row">BearMarket Unit 3 at night</th><td>175</td><td>101</td><td>58%</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <p>In my observation, I noticed that the lines were mostly parallel because of the way we took pictures in Part A.1. The steep diagonals are wrong matches, mostly on repeated texture.</p>
+                    <p>Incorrect matches are rare below a ratio of about 0.4 and become more common than correct ones above about 0.7, so I picked 0.53 to stay safely below that.</p>
                     <p>Match count was as follows:</p>
                   </div>
                   <div className="mt-4 overflow-x-auto">
@@ -688,6 +675,7 @@ const CVProjectDetail = () => {
                       </div>
                     ))}
                   </div>
+                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">In my observation, I noticed that the lines were mostly parallel because of the way we took pictures in Part A.1. The steep diagonals are wrong matches, mostly on repeated texture.</p>
                 </article>
                 <article id="proj4-b4" className="project4-subsection mt-4 scroll-mt-24 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.4: RANSAC for Robust Homography</h3>
@@ -703,6 +691,18 @@ const CVProjectDetail = () => {
                         <tr><th scope="row">Church Building</th><td>91 of 103</td><td>88%</td></tr>
                         <tr><th scope="row">Undergraduate Building</th><td>56 of 82</td><td>68%</td></tr>
                         <tr><th scope="row">BearMarket Unit 3 at night</th><td>89 of 144</td><td>62%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">I also tried t = 0.65, which gave more matches but also less inlier rate with noticeably more wrong matches on all the image pairs.</p>
+                  <div className="mt-3 overflow-x-auto">
+                    <table className="project4-timing w-full table-fixed text-left text-sm">
+                      <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Results using t = 0.65</caption>
+                      <thead><tr><th scope="col">Pair</th><th scope="col">Matches</th><th scope="col">Inliers</th><th scope="col">Inlier rate</th></tr></thead>
+                      <tbody>
+                        <tr><th scope="row">Church</th><td>127</td><td>99</td><td>78%</td></tr>
+                        <tr><th scope="row">Undergraduate Building</th><td>113</td><td>71</td><td>63%</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>175</td><td>101</td><td>58%</td></tr>
                       </tbody>
                     </table>
                   </div>
