@@ -651,6 +651,7 @@ const CVProjectDetail = () => {
                       </div>
                     </div>
                     <p>The threshold value I picked was 0.53. The 1-NN error alone is a poor test, because the paper shows that correct and incorrect matches overlap too much on it. The calculation works because a correct match should be much better than the next point.</p>
+                    <p>I chose t = 0.53 because looking at the graph in paper the incorrect matches are less below a ratio of about 0.4 but goes over correct starting 0.7. So my choice allows to be in the safe zone. I also tested t = 0.65 on my images, and it let through noticeably more wrong matches like diagonal lines.</p>
                     <p>In my observation, I noticed that the lines were mostly parallel because of the way we took pictures in Part A.1. The steep diagonals are wrong matches, mostly on repeated texture.</p>
                     <p>Match count was as follows:</p>
                   </div>
