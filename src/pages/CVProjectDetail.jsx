@@ -83,7 +83,7 @@ const Project4MathBlock = ({ latex, fallback, className = "", display = true }) 
   );
 };
 
-const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a", lightbox = false }) => {
+const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a", lightbox = false, zoomOnHover = basePath === "/cvproj/proj4-part-b" }) => {
   const [isZoomed, setIsZoomed] = useState(false);
   const imagePath = `${basePath}/${file}`;
   const image = (
@@ -97,7 +97,7 @@ const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", ba
 
   return (
     <>
-      <figure className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+      <figure className={`relative rounded-lg border border-slate-200 bg-white ${zoomOnHover ? "group/zoom overflow-visible" : "overflow-hidden"}`}>
         {lightbox ? (
           <button type="button" onClick={() => setIsZoomed(true)} className="block w-full" aria-label={`Zoom image: ${alt}`}>
             {image}
@@ -110,6 +110,11 @@ const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", ba
         <figcaption className="border-t border-slate-100 px-3 py-2.5 text-xs leading-relaxed text-slate-500 sm:px-4">
           {caption}
         </figcaption>
+        {zoomOnHover && (
+          <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[90] hidden items-center justify-center bg-slate-950/70 p-4 group-hover/zoom:flex sm:p-8">
+            <img src={imagePath} alt="" className="max-h-[90vh] max-w-[94vw] object-contain shadow-2xl" />
+          </div>
+        )}
       </figure>
       {lightbox && isZoomed && (
         <div
