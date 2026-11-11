@@ -486,7 +486,7 @@ const CVProjectDetail = () => {
                     For the first task, I used the Python file called “Harris.py” given to us. The code computes the Harris corner response image using the scikit-image library to measure the strength of the corners. Then it keeps local maxima and discards corners within 20 pixels of the border. Harris corners near the edge are discarded, and the coordinates of the remaining corners are returned. A 2D array containing the H value of every pixel is also returned.
                   </p>
                   <p className="mt-4 text-sm font-medium text-slate-700">Here are the images with Harris corners:</p>
-                  <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
                     {[
                       ["AllHarrisImg1.png", "Church Building Image 1 with Harris corners", "Church Building · Image 1"],
                       ["AllHarrisImg2.png", "Church Building Image 2 with Harris corners", "Church Building · Image 2"],
@@ -495,7 +495,7 @@ const CVProjectDetail = () => {
                       ["AllHarrisImg5.png", "BearMarket Unit 3 at night Image 1 with Harris corners", "BearMarket Unit 3 at night · Image 1"],
                       ["AllHarrisImg6.png", "BearMarket Unit 3 at night Image 2 with Harris corners", "BearMarket Unit 3 at night · Image 2"]
                     ].map(([file, alt, caption]) => (
-                      <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-48 sm:h-56" basePath="/cvproj/proj4-part-b" />
+                      <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-56 sm:h-64" basePath="/cvproj/proj4-part-b" />
                     ))}
                   </div>
                   <div className="mt-5 overflow-x-auto">
@@ -524,14 +524,14 @@ const CVProjectDetail = () => {
                       <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
                       <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
                     </div>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       {Array.from({ length: 8 }, (_, index) => (
                         <Project4Image
                           key={index}
                           file={`anms-points-${String(index + 1).padStart(2, "0")}.png`}
                           alt={`ANMS corner points, image ${index + 1}`}
                           caption={`ANMS points · Image ${index + 1}`}
-                          imageClassName="h-40 sm:h-48"
+                          imageClassName="h-56 sm:h-64"
                           basePath="/cvproj/proj4-part-b"
                         />
                       ))}
@@ -545,26 +545,28 @@ const CVProjectDetail = () => {
                       file="feature-descriptor-patches.png"
                       alt="Feature descriptor patch examples"
                       caption="Feature descriptor patches"
-                      imageClassName="h-40 sm:h-52"
+                      imageClassName="h-56 sm:h-64"
                       basePath="/cvproj/proj4-part-b"
                     />
                   </div>
                 </article>
                 <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.3: Feature Matching</h3>
-                  <div className="mt-4 grid gap-3 lg:grid-cols-2">
+                  <div className="mt-4 space-y-4">
                     {[
                       ["matches-church.png", "Church image feature matches", "Church · Feature matches"],
                       ["matches-undergraduate-building.png", "Undergraduate Building feature matches", "Undergraduate Building · Feature matches"],
                       ["matches-bear-market.png", "BearMarket Unit 3 at night feature matches", "BearMarket Unit 3 at night · Feature matches"]
                     ].map(([file, alt, caption]) => (
-                      <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-48 sm:h-60" basePath="/cvproj/proj4-part-b" />
+                      <div key={file} className="sm:mx-auto sm:max-w-4xl">
+                        <Project4Image file={file} alt={alt} caption={caption} imageClassName="h-64 sm:h-80" basePath="/cvproj/proj4-part-b" />
+                      </div>
                     ))}
                   </div>
                 </article>
                 <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.4: RANSAC for Robust Homography</h3>
-                  <div className="mt-4 grid gap-4 lg:grid-cols-3">
+                  <div className="mt-4 space-y-5">
                     {[
                       ["Unit 3 courtyard", "auto-bear-market.png", "nonauto-bear-market.png"],
                       ["Undergraduate Building", "auto-undergraduate-building.png", "nonauto-undergraduate-building.png"],
@@ -572,9 +574,9 @@ const CVProjectDetail = () => {
                     ].map(([title, autoFile, nonAutoFile]) => (
                       <section key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
                         <h4 className="mb-3 text-sm font-medium text-slate-800">{title}</h4>
-                        <div className="grid grid-cols-2 gap-2">
-                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto" imageClassName="h-32 sm:h-40" basePath="/cvproj/proj4-part-b" />
-                          <Project4Image file={nonAutoFile} alt={`${title}, nonAuto result`} caption="nonAuto" imageClassName="h-32 sm:h-40" basePath="/cvproj/proj4-part-b" />
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto" imageClassName="h-64 sm:h-80" basePath="/cvproj/proj4-part-b" />
+                          <Project4Image file={nonAutoFile} alt={`${title}, nonAuto result`} caption="nonAuto" imageClassName="h-64 sm:h-80" basePath="/cvproj/proj4-part-b" />
                         </div>
                       </section>
                     ))}
