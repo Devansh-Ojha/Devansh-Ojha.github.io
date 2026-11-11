@@ -726,7 +726,7 @@ const CVProjectDetail = () => {
                       </section>
                     ))}
                   </div>
-                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">At a glance the mosaics look similar, but when I looked at the seams where the images connect, the automatic ones were noticeably better and I couldn’t spot the connection edge, while the manual ones were rougher there.</p>
+                  <p className="mt-4 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">At a glance the mosaics look similar, but when I looked at the seams where the images connect, the automatic ones were slightly better. The only difference is seams, where the manual ones had a slightly more visible seam.</p>
                 </article>
                 <div className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">Reflection</h3>
