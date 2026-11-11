@@ -688,9 +688,9 @@ const CVProjectDetail = () => {
                     <table className="project4-timing w-full table-fixed text-left text-sm">
                       <thead><tr><th scope="col">Image pair</th><th scope="col">Inliers / matches</th><th scope="col">Inlier rate</th></tr></thead>
                       <tbody>
-                        <tr><th scope="row">Church Building</th><td>89 of 103</td><td>86%</td></tr>
-                        <tr><th scope="row">Undergraduate Building</th><td>55 of 82</td><td>67%</td></tr>
-                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>94 of 144</td><td>65%</td></tr>
+                        <tr><th scope="row">Church Building</th><td>91 of 103</td><td>88%</td></tr>
+                        <tr><th scope="row">Undergraduate Building</th><td>56 of 82</td><td>68%</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night</th><td>89 of 144</td><td>62%</td></tr>
                       </tbody>
                     </table>
                   </div>
