@@ -546,8 +546,8 @@ const CVProjectDetail = () => {
                       <p>After this, I implemented the ANMS (Adaptive Non-Maximal Suppression) function, and the key idea behind it is that if I just keep the x amount of corners with the highest Harris strength, most of them will be in highly textured areas. This can be the tree in my image or the grid of windows. But the big, flat areas like the sky and the wall wouldn’t get anything, and this is important because I need them to be spread out; otherwise, they would be concentrated in an area and therefore result in a bad mosaic. To tackle this problem, the paper suggests that a corner should be kept if it is the strongest one in the region. The size is picked adaptively instead of being fixed. Using the formula from the paper:</p>
                       <Project4MathBlock
                         className="project4-equation"
-                        latex="r_i = \\min_{\\substack{j \\\\ f(x_i) < c_{\\mathrm{robust}} \\cdot f(x_j)}} \\left|x_i - x_j\\right|"
-                        fallback="rᵢ = min over j |xᵢ − xⱼ|, such that f(xᵢ) < c_robust · f(xⱼ)"
+                        latex="\\begin{aligned} r_i &= \\min_j \\left|x_i - x_j\\right|, \\\\ &\\text{such that } f(x_i) < c_{\\mathrm{robust}} \\cdot f(x_j) \\end{aligned}"
+                        fallback="rᵢ = minⱼ |xᵢ − xⱼ|,\nsuch that f(xᵢ) < c_robust · f(xⱼ)"
                       />
                       <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
                       <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
@@ -568,6 +568,9 @@ const CVProjectDetail = () => {
                 </div>
                 <article className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.2: Feature Descriptor Extraction</h3>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
+                    Now, in this task, I take the ANMS corner and then blur the grayscale image with a Gaussian function, keeping sigma at 2. Then I take the 8 × 8 patch with spacing of 5 pixels, which covers the 40 × 40 window around the corner. The reason for the Gaussian blur is that sampling can cause aliasing, and it makes the descriptor less prone to that. Then, to complete the process, I use a mean of 0 and a standard deviation of 1, so it ignores the brightness and contrast changes (bias/gain) between the pictures.
+                  </p>
                   <div className="mt-4 space-y-4">
                     {[
                       ["feature-descriptor-patches.png", "Feature descriptor patch examples", "Feature descriptor patches · Image 1"],
@@ -582,6 +585,27 @@ const CVProjectDetail = () => {
                 </article>
                 <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.3: Feature Matching</h3>
+                  <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
+                    <p>In this task, for each pair of pictures, I find the squared distance to every descriptor in the other image in the pair. I then find the nearest (1-NN) and second nearest (2-NN). I keep a match only if:</p>
+                    <Project4MathBlock
+                      className="project4-equation"
+                      latex="\\frac{e_{1\\mathrm{NN}}}{e_{2\\mathrm{NN}}} < t"
+                      fallback="e₁NN / e₂NN < t"
+                    />
+                    <p>The threshold value I picked was 0.53. The 1-NN error alone is a poor test, because the paper shows that correct and incorrect matches overlap too much on it. The calculation works because a correct match should be much better than the next point.</p>
+                    <p>In my observation, I noticed that the lines were mostly parallel because of the way we took pictures in Part A.1. The steep diagonals are wrong matches, mostly on repeated texture.</p>
+                    <p>Match count was as follows:</p>
+                  </div>
+                  <div className="mt-4 overflow-x-auto">
+                    <table className="project4-timing w-full table-fixed text-left text-sm">
+                      <thead><tr><th scope="col">Image pair</th><th scope="col">Matches</th></tr></thead>
+                      <tbody>
+                        <tr><th scope="row">Church building</th><td>103 matches</td></tr>
+                        <tr><th scope="row">Undergraduate Building</th><td>82 matches</td></tr>
+                        <tr><th scope="row">BearMarket unit 3 in night</th><td>144 matches</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                   <div className="mt-4 space-y-4">
                     {[
                       ["matches-church.png", "Church image feature matches", "Church · Feature matches"],
@@ -596,6 +620,22 @@ const CVProjectDetail = () => {
                 </article>
                 <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
                   <h3 className="text-lg font-medium tracking-tight">B.4: RANSAC for Robust Homography</h3>
+                  <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
+                    <p>In this task, I built a 4-point RANSAC algorithm that was taught in the lecture and discussion. From the previous test, there were a few wrong matches. Why do we care about this? Because a single bad match can ruin the homography.</p>
+                    <p>In my algorithm, in every iteration of 3000 runs, it picks 4 random matches and computes a homography on them. Then I use that to warp every image-1 point with that homography and measure its distance to its matched point in image 2 (for each mosaic pair). Then I count the matches within 4 pixels as my inliers, while trying to keep the homography with the most inliers. I used a 4-pixel inlier threshold because Harris corners are only accurate to about 1 to 3 pixels. This means that a match does not land exactly on its partner, while matches off by more than a few pixels are likely wrong.</p>
+                    <p>The RANSAC kept the following inliers out of the matches that passed the test.</p>
+                  </div>
+                  <div className="mt-4 overflow-x-auto">
+                    <table className="project4-timing w-full table-fixed text-left text-sm">
+                      <thead><tr><th scope="col">Image pair</th><th scope="col">Inliers / matches</th><th scope="col">Inlier rate</th></tr></thead>
+                      <tbody>
+                        <tr><th scope="row">Church building</th><td>89 of 103</td><td>86%</td></tr>
+                        <tr><th scope="row">Undergraduate Building</th><td>55 of 82</td><td>67%</td></tr>
+                        <tr><th scope="row">BearMarket unit 3 in night</th><td>94 of 144</td><td>65%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">In all the pairs, most matches were horizontal lines connecting the same point in both pictures. Most of the matches agreed with a single homography. RANSAC rejected the rest as outliers. As can be seen, the Church building pair had the highest inlier rate, so its matches were the cleanest.</p>
                   <div className="mt-4 space-y-5">
                     {[
                       ["Unit 3 courtyard", "auto-bear-market.png", "nonauto-bear-market.png"],
