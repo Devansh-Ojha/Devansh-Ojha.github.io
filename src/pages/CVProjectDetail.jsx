@@ -558,15 +558,19 @@ const CVProjectDetail = () => {
                     <h4 className="text-base font-medium tracking-tight">Adaptive Non-Maximal Suppression (ANMS)</h4>
                     <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
                       <p>After this, I implemented the ANMS (Adaptive Non-Maximal Suppression) function, and the key idea behind it is that if I just keep the x amount of corners with the highest Harris strength, most of them will be in highly textured areas. This can be the tree in my image or the grid of windows. But the big, flat areas like the sky and the wall wouldn’t get anything, and this is important because I need them to be spread out; otherwise, they would be concentrated in an area and therefore result in a bad mosaic. To tackle this problem, the paper suggests that a corner should be kept if it is the strongest one in the region. The size is picked adaptively instead of being fixed. Using the formula from the paper:</p>
-                      <div className="project4-math-block project4-equation" role="math" aria-label="r sub i is the minimum distance from x sub i to x sub j, over j such that f of x sub i is less than c robust times f of x sub j">
+                      <div className="project4-math-block project4-equation" role="math" aria-label="r sub i equals the minimum of the distance between x sub i and x sub j, over j satisfying f of x sub i is less than c robust times f of x sub j">
                         <div className="flex min-w-max flex-col items-center justify-center gap-1 font-serif text-lg text-slate-800 sm:text-xl">
                           <div className="flex items-center justify-center gap-3">
                             <span className="italic">r<sub>i</sub></span>
                             <span>=</span>
-                            <span className="flex flex-col items-center leading-none"><span>min</span><sub className="-mt-0.5 text-xs not-italic">j</sub></span>
+                            <span className="inline-flex flex-col items-center leading-none">
+                              <span>min</span>
+                              <span className="mt-1 whitespace-nowrap text-[0.58em] leading-tight not-italic">
+                                j: <i>f</i>(<i>x</i><sub>i</sub>) &lt; <i>c</i><sub>robust</sub> · <i>f</i>(<i>x</i><sub>j</sub>)
+                              </span>
+                            </span>
                             <span className="italic">|x<sub>i</sub> − x<sub>j</sub>|</span>
                           </div>
-                          <div className="text-center text-sm sm:text-base">where <i>f</i>(<i>x</i><sub>i</sub>) &lt; <i>c</i><sub>robust</sub> · <i>f</i>(<i>x</i><sub>j</sub>)</div>
                         </div>
                       </div>
                       <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
