@@ -83,11 +83,11 @@ const Project4MathBlock = ({ latex, fallback, className = "", display = true }) 
   );
 };
 
-const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64" }) => (
+const Project4Image = ({ file, alt, caption, imageClassName = "h-56 sm:h-64", basePath = "/cvproj/proj4-part-a" }) => (
   <figure className="overflow-hidden rounded-lg border border-slate-200 bg-white">
-    <a href={`/cvproj/proj4-part-a/${file}`} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${alt}`}>
+    <a href={`${basePath}/${file}`} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${alt}`}>
       <img
-        src={`/cvproj/proj4-part-a/${file}`}
+        src={`${basePath}/${file}`}
         alt={alt}
         loading="lazy"
         className={`w-full ${imageClassName} object-contain bg-slate-50 p-2`}
@@ -469,6 +469,122 @@ const CVProjectDetail = () => {
                       </div>
                     </article>
                   ))}
+                </div>
+              </section>
+
+              <section className="project4-section rounded-xl border p-4 sm:p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-blue-600">Project 4 · Part B</p>
+                  <h2 className="mt-2 text-2xl font-light tracking-[-0.04em] text-slate-900">Feature Matching for Autostitching</h2>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
+                    The overarching goal in this part of the project was to pick the points algorithmically or automatically using the paper “Multi-Image Matching using Multi-Scale Oriented Patches” and get better mosaic results for my images. This allows me to construct better mosaics, which are less prone to human error compared to Part A. I use Harris corner detection, feature descriptors, feature matching, and RANSAC to achieve this.
+                  </p>
+                </div>
+                <div className="project4-subsection rounded-lg border p-4 sm:p-5">
+                  <h3 className="text-lg font-medium tracking-tight">B.1: Harris Corner Detection</h3>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
+                    For the first task, I used the Python file called “Harris.py” given to us. The code computes the Harris corner response image using the scikit-image library to measure the strength of the corners. Then it keeps local maxima and discards corners within 20 pixels of the border. Harris corners near the edge are discarded, and the coordinates of the remaining corners are returned. A 2D array containing the H value of every pixel is also returned.
+                  </p>
+                  <p className="mt-4 text-sm font-medium text-slate-700">Here are the images with Harris corners:</p>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {[
+                      ["AllHarrisImg1.png", "Church Building Image 1 with Harris corners", "Church Building · Image 1"],
+                      ["AllHarrisImg2.png", "Church Building Image 2 with Harris corners", "Church Building · Image 2"],
+                      ["AllHarrisImg3.png", "Undergraduate Building Image 1 with Harris corners", "Undergraduate Building · Image 1"],
+                      ["AllHarrisImg4.png", "Undergraduate Building Image 2 with Harris corners", "Undergraduate Building · Image 2"],
+                      ["AllHarrisImg5.png", "BearMarket Unit 3 at night Image 1 with Harris corners", "BearMarket Unit 3 at night · Image 1"],
+                      ["AllHarrisImg6.png", "BearMarket Unit 3 at night Image 2 with Harris corners", "BearMarket Unit 3 at night · Image 2"]
+                    ].map(([file, alt, caption]) => (
+                      <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-48 sm:h-56" basePath="/cvproj/proj4-part-b" />
+                    ))}
+                  </div>
+                  <div className="mt-5 overflow-x-auto">
+                    <table className="project4-timing w-full table-fixed text-left text-sm">
+                      <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-wider">Number of Harris corners</caption>
+                      <thead><tr><th scope="col">Image</th><th scope="col">Number of points</th></tr></thead>
+                      <tbody>
+                        <tr><th scope="row">Church Building Image 1</th><td>31331</td></tr>
+                        <tr><th scope="row">Church Building Image 2</th><td>32432</td></tr>
+                        <tr><th scope="row">Undergraduate Building Image 1</th><td>29762</td></tr>
+                        <tr><th scope="row">Undergraduate Building Image 2</th><td>30877</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night Image 1</th><td>30785</td></tr>
+                        <tr><th scope="row">BearMarket Unit 3 at night Image 2</th><td>30734</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
+                    <h4 className="text-base font-medium tracking-tight">Adaptive Non-Maximal Suppression (ANMS)</h4>
+                    <div className="mt-3 max-w-4xl space-y-3 text-sm font-light leading-[1.7] text-slate-600">
+                      <p>After this, I implemented the ANMS (Adaptive Non-Maximal Suppression) function, and the key idea behind it is that if I just keep the x amount of corners with the highest Harris strength, most of them will be in highly textured areas. This can be the tree in my image or the grid of windows. But the big, flat areas like the sky and the wall wouldn’t get anything, and this is important because I need them to be spread out; otherwise, they would be concentrated in an area and therefore result in a bad mosaic. To tackle this problem, the paper suggests that a corner should be kept if it is the strongest one in the region. The size is picked adaptively instead of being fixed. Using the formula from the paper:</p>
+                      <Project4MathBlock
+                        className="project4-equation"
+                        latex="r_i = \\min_{\\substack{j \\\\ f(x_i) < c_{\\mathrm{robust}} \\cdot f(x_j)}} \\left|x_i - x_j\\right|"
+                        fallback="rᵢ = min over j |xᵢ − xⱼ|, such that f(xᵢ) < c_robust · f(xⱼ)"
+                      />
+                      <p>f is the Harris corner strength, and x<sub>i</sub> is the pixel location of corner i. It looks at all corners and then, for the ones that are stronger than corner i, takes the distance to the nearest one (this is r<sub>i</sub>).</p>
+                      <p>I sort the corners by r<sub>i</sub> and keep the 500 points with the largest value. Think of them as the small regional points that are the strongest. This is also vital to do because otherwise plain Harris would give me all the points on the trees or one concentrated area (a window corner is another example), thus ruining our mosaic construction. I also used c<sub>robust</sub> = 0.9 so that the neighbor only overshadows the corner if it is about 10% more powerful/stronger.</p>
+                    </div>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                      {Array.from({ length: 8 }, (_, index) => (
+                        <Project4Image
+                          key={index}
+                          file={`anms-points-${String(index + 1).padStart(2, "0")}.png`}
+                          alt={`ANMS corner points, image ${index + 1}`}
+                          caption={`ANMS points · Image ${index + 1}`}
+                          imageClassName="h-40 sm:h-48"
+                          basePath="/cvproj/proj4-part-b"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <article className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
+                  <h3 className="text-lg font-medium tracking-tight">B.2: Feature Descriptor Extraction</h3>
+                  <div className="mt-4 sm:mx-auto sm:max-w-3xl">
+                    <Project4Image
+                      file="feature-descriptor-patches.png"
+                      alt="Feature descriptor patch examples"
+                      caption="Feature descriptor patches"
+                      imageClassName="h-40 sm:h-52"
+                      basePath="/cvproj/proj4-part-b"
+                    />
+                  </div>
+                </article>
+                <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
+                  <h3 className="text-lg font-medium tracking-tight">B.3: Feature Matching</h3>
+                  <div className="mt-4 grid gap-3 lg:grid-cols-2">
+                    {[
+                      ["matches-church.png", "Church image feature matches", "Church · Feature matches"],
+                      ["matches-undergraduate-building.png", "Undergraduate Building feature matches", "Undergraduate Building · Feature matches"],
+                      ["matches-bear-market.png", "BearMarket Unit 3 at night feature matches", "BearMarket Unit 3 at night · Feature matches"]
+                    ].map(([file, alt, caption]) => (
+                      <Project4Image key={file} file={file} alt={alt} caption={caption} imageClassName="h-48 sm:h-60" basePath="/cvproj/proj4-part-b" />
+                    ))}
+                  </div>
+                </article>
+                <article className="project4-subsection mt-4 rounded-lg border p-4 sm:p-5">
+                  <h3 className="text-lg font-medium tracking-tight">B.4: RANSAC for Robust Homography</h3>
+                  <div className="mt-4 grid gap-4 lg:grid-cols-3">
+                    {[
+                      ["Unit 3 courtyard", "auto-bear-market.png", "nonauto-bear-market.png"],
+                      ["Undergraduate Building", "auto-undergraduate-building.png", "nonauto-undergraduate-building.png"],
+                      ["Church", "auto-church.png", "nonauto-church.png"]
+                    ].map(([title, autoFile, nonAutoFile]) => (
+                      <section key={title} className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
+                        <h4 className="mb-3 text-sm font-medium text-slate-800">{title}</h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          <Project4Image file={autoFile} alt={`${title}, Auto result`} caption="Auto" imageClassName="h-32 sm:h-40" basePath="/cvproj/proj4-part-b" />
+                          <Project4Image file={nonAutoFile} alt={`${title}, nonAuto result`} caption="nonAuto" imageClassName="h-32 sm:h-40" basePath="/cvproj/proj4-part-b" />
+                        </div>
+                      </section>
+                    ))}
+                  </div>
+                </article>
+                <div className="project4-subsection mt-6 rounded-lg border p-4 sm:p-5">
+                  <h3 className="text-lg font-medium tracking-tight">Reflection</h3>
+                  <p className="mt-3 max-w-4xl text-sm font-light leading-[1.7] text-slate-600">
+                    What I learned from the project as a whole was that when I hard-coded or chose the points myself, there was some roughness (it was not perfect) in my mosaic. But when I used techniques like Harris points, feature matching, and RANSAC, the final mosaic was much cleaner. It was cool to understand how RANSAC only needs a few correct matches to agree on a homography and build vastly better results. It was also nice to read the paper and then implement it, as it taught me how to be more effective at reading research papers while applying the ideas discussed in them. It is an important skill to have, especially if you are presenting or verifying work at conferences.
+                  </p>
                 </div>
               </section>
             </div>
